@@ -2,15 +2,15 @@
 # This script is a utility for the ILI9488-Xilinx TFT display library.
 # See https://github.com/viktor-nikolov/ILI9488-Xilinx
 #
-# The script reads an image file (any RGB image format supported by the "Image" library of the PIL package)
-# and outputs to the standard output a constant in C++ (array of bytes), which contains image data in
-# the color coding R:G:B 8b:8b:8b.
+# The script reads an image file (any RGB image format supported by the "Image" module of the 
+# Pillow library) and write to the standard output a constant in C++ (an array of bytes), 
+# which contains image data in the color coding R:G:B 8b:8b:8b.
 # This constant is meant to be used by the method ILI9488::drawImage888, which shows the image
 # on the display.
 #
 # usage: python ImageTo888ColorConst.py <input_image_path>
 #
-# requires PIL package, which can be installed by the command: python -m pip install Pillow
+# Requires the Pillow library, which can be installed by the command: python -m pip install Pillow
 #
 
 from PIL import Image
