@@ -3,7 +3,7 @@
 # See https://github.com/viktor-nikolov/ILI9488-Xilinx
 #
 # The script reads an image file (any RGB image format supported by the "Image" module of the 
-# Pillow library) and write to the standard output a constant in C++ (an array of bytes), 
+# Pillow library) and write to the standard output definition of a constant in C++ (an array of bytes), 
 # which contains image data in the color coding R:G:B 8b:8b:8b.
 # This constant is meant to be used by the method ILI9488::drawImage888, which shows the image
 # on the display.
