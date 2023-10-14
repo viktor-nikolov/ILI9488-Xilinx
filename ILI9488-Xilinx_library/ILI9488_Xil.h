@@ -2,13 +2,13 @@
 This is the port of Jaret Burkett's ILI9488 Arduino library to AMD Xilinx SoCs.
 
 I removed all Arduino-specific code, optimized SPI writes for the DMA capabilities
-of Xilinx xspips.h library and did other modifications.
+of Xilinx SPI libraries and did other modifications.
 
 Tested on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (using MicroBlaze CPU) with
 following display: http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520
 
 Published on GitHub: https://github.com/viktor-nikolov/ILI9488-Xilinx
-Requires Adafruit_GFX library: https://github.com/adafruit/Adafruit-GFX-Library
+I must also port the Adafruit_GFX library: https://github.com/adafruit/Adafruit-GFX-Library
 Original ILI9488 Arduino library: https://github.com/jaretburkett/ILI9488
 
 BSD 2-Clause License:
