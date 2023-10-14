@@ -1,3 +1,6 @@
+/*
+ * This header defines a constant, which contains an image, which can be displayed by ILI9488::drawImage565.
+ */
 #pragma once
 
 const uint16_t PragueCastle_png_width  = 480;
