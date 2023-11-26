@@ -13,3 +13,5 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 **TODO**
 
 For MicroBlaze AXI Quad SPI FIFO 256, otherwise unstable.
+
+Increase stack size for the MB.
