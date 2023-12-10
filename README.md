@@ -15,3 +15,6 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 For MicroBlaze AXI Quad SPI FIFO 256, otherwise unstable.
 
 Increase stack size for the MB.
+
+Add folders src/Adafruit_GFX and src/Adafruit_GFX/Fonts as include paths. Without it the IDE is not able to generate Outlines of the source files.  
+Properties of the application project, C/C++ General, Paths and Symbols, Includes. Specify it as a directory within the workspace.
