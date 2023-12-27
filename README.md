@@ -28,3 +28,25 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
   - AXI UART lie max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG142](https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2FdB1MAeh~uLG7FE62a5_QbA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg142-axi-uartlite.pdf#G5.309065).
 
 - Two warnings when compiling MicroBlaze demo in Release configuration are result of the compiler's optimization.
+
+- Compiler optimization matters.
+
+# Measurements
+
+For all tests, the app was compiled with the highest gcc compiler optimization (flag -O3).
+
+###### Fill display 320x480
+
+| HW         | FIFO length | Duration |
+| ---------- | ----------- | -------- |
+| MicroBlaze | 256         | 184.9 ms |
+| MicroBlaze | 16          | 193.6 ms |
+|            |             |          |
+
+###### Fill rectangle 50x50
+
+| HW         | FIFO length | Duration |
+| ---------- | ----------- | -------- |
+| MicroBlaze | 256         | 3.035 ms |
+| MicroBlaze | 16          | 3.177 ms |
+|            |             |          |
