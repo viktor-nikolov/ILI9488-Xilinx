@@ -39,14 +39,12 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 
 | HW         | FIFO length | Duration |
 | ---------- | ----------- | -------- |
-| MicroBlaze | 256         | 184.9 ms |
-| MicroBlaze | 16          | 193.6 ms |
+| MicroBlaze | 256         | 185.1 ms |
 |            |             |          |
 
 ###### Fill rectangle 50x50
 
 | HW         | FIFO length | Duration |
 | ---------- | ----------- | -------- |
-| MicroBlaze | 256         | 3.035 ms |
-| MicroBlaze | 16          | 3.177 ms |
+| MicroBlaze | 256         | 3.041 ms |
 |            |             |          |
