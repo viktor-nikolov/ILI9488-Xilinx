@@ -12,6 +12,8 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 
 **TODO:**
 
+- Not supporting multiple devices on SPI besides the display.
+
 - For MicroBlaze AXI Quad SPI FIFO 256 for performance reasons. **Transaction width must be 8 bits.**
   Don't enable Performance Mode AXI-Lite has to be used (AXI on the MicroBlaze is AXI-Lite).
   Must reduce AXI peripheral frequency to 90 MHz (AXI Quad SPI wasn't working at 100 MHz).
