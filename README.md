@@ -12,7 +12,7 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 
 **TODO:**
 
-- Not supporting multiple devices on SPI besides the display.
+- PS SPI: The code using the library is responsible to select/deselect slaves. Library doesn't do it.
 
 - For MicroBlaze AXI Quad SPI FIFO 256 for performance reasons. **Transaction width must be 8 bits.**
   Don't enable Performance Mode AXI-Lite has to be used (AXI on the MicroBlaze is AXI-Lite).
@@ -39,14 +39,14 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 
 ###### Fill display 320x480
 
-| HW         | FIFO length | Duration |
-| ---------- | ----------- | -------- |
-| MicroBlaze | 256         | 185.1 ms |
-|            |             |          |
+| HW                          | FIFO length | Duration |
+| --------------------------- | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI | 256 B       | 185.1 ms |
+| Zynq-7000 667 MHz, PS SPI   | 128 B       | 203.3 ms |
 
 ###### Fill rectangle 50x50
 
-| HW         | FIFO length | Duration |
-| ---------- | ----------- | -------- |
-| MicroBlaze | 256         | 3.041 ms |
-|            |             |          |
+| HW                          | FIFO length | Duration |
+| --------------------------- | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI | 256 B       | 3.041 ms |
+| Zynq-7000 667 MHz, PS SPI   | 128 B       | 3.324    |
