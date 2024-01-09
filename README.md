@@ -35,11 +35,13 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 
 - Compiler optimization matters.
 
-# Measurements
+# Performace measurements
 
 For all tests, the app was compiled with the highest gcc compiler optimization (flag -O3).
 
 #### Fill display 320x480
+
+Durations listed in the table are durations of the call `display.fillRect( 0, 0, 480, 320, ILI9488_BLUE );` (measured using a GPIO and and an osciloscope).
 
 | HW                          | SW implementation                                                                                                  | FIFO length | Duration |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
@@ -49,6 +51,8 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 | Zynq-7000 667 MHz, AXI SPI  | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library | 256 B       | 462.7 ms |
 
 #### Fill rectangle 50x50
+
+Durations listed in the table are durations of the call `display.fillRect( 0, 0, 50, 50, ILI9488_BLUE );` (measured using a GPIO and and an osciloscope).
 
 | HW                                                                                                                                       | SW implementation                                                                                                  | FIFO length | Duration |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
