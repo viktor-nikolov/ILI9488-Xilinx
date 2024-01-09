@@ -12,6 +12,8 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 
 **TODO:**
 
+- Přečíslovat pin CS na Zynq.
+
 - PS SPI: The code using the library is responsible to select/deselect slaves. Library doesn't do it.
 
 - For MicroBlaze AXI Quad SPI FIFO 256 for performance reasons. **Transaction width must be 8 bits.**
@@ -39,14 +41,18 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 
 ###### Fill display 320x480
 
-| HW                          | FIFO length | Duration |
-| --------------------------- | ----------- | -------- |
-| MicroBlaze 160 MHz, AXI SPI | 256 B       | 185.1 ms |
-| Zynq-7000 667 MHz, PS SPI   | 128 B       | 203.3 ms |
+| HW                                                          | FIFO length | Duration |
+| ----------------------------------------------------------- | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI                                 | 256 B       | 185.1 ms |
+| Zynq-7000 667 MHz, PS SPI                                   | 128 B       | 203.3 ms |
+| Zynq-7000 667 MHz, AXI SPI<br/>low-level SPI functions used | 128 B       | 185.0 ms |
+| Zynq-7000 667 MHz, AXI SPI<br/>function XSpi_Transfer used  | 128 B       | 462.7 ms |
 
 ###### Fill rectangle 50x50
 
-| HW                          | FIFO length | Duration |
-| --------------------------- | ----------- | -------- |
-| MicroBlaze 160 MHz, AXI SPI | 256 B       | 3.041 ms |
-| Zynq-7000 667 MHz, PS SPI   | 128 B       | 3.324    |
+| HW                                                          | FIFO length | Duration |
+| ----------------------------------------------------------- | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI                                 | 256 B       | 3.041 ms |
+| Zynq-7000 667 MHz, PS SPI                                   | 128 B       | 3.324 ms |
+| Zynq-7000 667 MHz, AXI SPI<br/>low-level SPI functions used | 128 B       | 3.019 ms |
+| Zynq-7000 667 MHz, AXI SPI<br/>XSpi_Transfer used           | 128 B       | 7.665 ms |
