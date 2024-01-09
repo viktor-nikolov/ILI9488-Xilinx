@@ -106,11 +106,11 @@ public:
 #if defined(ILI9488_SPI_PS) && defined(ILI9488_GPIO_PS)
 	void init(   XSpiPs *spi, XGpioPs *gpio, u32 _RSTPin, u32 _DCPin );
 #elif defined(ILI9488_SPI_PS) && defined(ILI9488_GPIO_AXI)
-	void init(   XSpiPs *spi, XGpio   *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel );
+	void init(   XSpiPs *spi, XGpio   *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
 #elif defined(ILI9488_SPI_AXI) && defined(ILI9488_GPIO_PS)
 	void init(   XSpi   *spi, XGpioPs *gpio, u32 _RSTPin, u32 _DCPin );
 #elif defined(ILI9488_SPI_AXI) && defined(ILI9488_GPIO_AXI)
-	void init(   XSpi   *spi, XGpio   *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel );
+	void init(   XSpi   *spi, XGpio   *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
 #endif
 
 	// Pass 8-bit (each) R,G,B, get back 16-bit packed color
@@ -139,11 +139,12 @@ public:
 	 * setting is that the whole display is scrolled).
 	 *
 	 * The method scroll() does the actual scrolling by setting address (i.e. line's number) of the line in the display's
-	 * Frame Memory to be displayed as the last line above Bottom Fixed Area. This address is relative to the whole display,
-	 * not just to the scrolling area.
-	 * I.e. by calling scroll(10), the graphics on the display will seem to scroll down by 10 pixels, however
-	 * the 10 bottom pixels will appear on top of the scroll area.
-	 * If you want to scroll graphics by another 10 pixels, you must call scroll(20).
+	 * Frame Memory to be displayed as the last line above Bottom Fixed Area. Beware that this address is relative
+	 * to the whole display (not just to the scrolling area) and is indexed BACKWARD (i.e. the last line at the bottom
+	 * of the display has address 0).
+	 * E.g., by calling 'setScrollArea(0,0); scroll(10);', the graphics on the display will seem to scroll down by 10 pixels,
+	 * however the 10 bottom pixels will appear on top of the display.
+	 * If you want to scroll graphics by another 10 pixels, you must call 'scroll(20)'.
 	 */
     void setScrollArea( uint16_t topFixedAreaLines, uint16_t bottomFixedAreaLines );
     void scroll( uint16_t pixels );
@@ -179,7 +180,12 @@ protected:
 	u32 RSTPin = 0, DCPin = 0;
 
 	inline __attribute__((always_inline)) void writeToSPI( u8 c );
-	inline __attribute__((always_inline)) void writeToSPI( const u8 *buff, u32 len );
+
+#if defined(ILI9488_SPI_PS)
+	inline __attribute__((always_inline))
+#endif
+	void writeToSPI( const u8 *buff, u32 len );
+
 	inline __attribute__((always_inline)) void setPinHigh( u32 pin );
 	inline __attribute__((always_inline)) void setPinLow( u32 pin );
 

@@ -45,11 +45,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define _ILI9488_XIL_setup_H
 
 /**** select one of the SPI types used by given application ****/
-//#define ILI9488_SPI_PS  //SPI of Zynq Processing Systems is used.
+#define ILI9488_SPI_PS  //SPI of Zynq Processing Systems is used.
 //#define ILI9488_SPI_AXI //AXI Quad SPI IP is used.
 
 /**** select one of the GPIO types used by given application ****/
-//#define ILI9488_GPIO_PS  //EMIO GPIO of Zynq Processing Systems is used.
+#define ILI9488_GPIO_PS  //EMIO GPIO of Zynq Processing Systems is used.
 //#define ILI9488_GPIO_AXI //AXI GPIO IP is used.
 
 

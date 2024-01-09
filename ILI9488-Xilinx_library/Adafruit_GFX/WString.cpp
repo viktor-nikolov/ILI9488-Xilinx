@@ -718,7 +718,16 @@ void String::remove(unsigned int index, unsigned int count){
 	if (count > len - index) { count = len - index; }
 	char *writeTo = buffer + index;
 	len = len - count;
+
+/* Remove a warning, which was happening when compiled with optimization enabled. */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wrestrict"
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+
 	strncpy(writeTo, buffer + index + count,len - index);
+
+#pragma GCC diagnostic pop //Return to command line warnings setup
+
 	buffer[len] = 0;
 }
 

@@ -131,15 +131,74 @@ void ILI9488::init( XSpiPs *spi, XGpio *gpio, , u32 _RSTPin, u32 _DCPin, unsigne
 	GPIOChannel = _GPIOChannel;
 
 	initDisplay();
-}
+} //init
 
 #elif defined(ILI9488_SPI_AXI) && defined(ILI9488_GPIO_PS)
 
-void ILI9488::init( XSpi *spi, XGpioPs *gpio );
+void ILI9488::init( XSpi *spi, XGpioPs *gpio, u32 _RSTPin, u32 _DCPin ) {
+	if( spi  == NULL )
+		throw std::invalid_argument( "Argument 'spi' is NULL on calling ILI9488::init" );
+	if( gpio == NULL )
+		throw std::invalid_argument( "Argument 'gpio' is NULL on calling ILI9488::init" );
+	if( spi->DataWidth != XSP_DATAWIDTH_BYTE )
+		/* We must be working with the AXI Quad SPI of Transaction Width 8 bits
+		 * because ILI9488 controller accepts data as bytes. */
+		throw std::logic_error( "SPI instance provided to ILI9488::init does not have Transaction Width equal to 8bits" );
+	if( !(XSpi_GetOptions(spi) & XSP_MASTER_OPTION) )
+		throw std::logic_error( "SPI instance provided to ILI9488::init is not set as a master" );
+
+	SpiInstance  = spi;
+	GpioInstance = gpio;
+	RSTPin = _RSTPin;
+	DCPin  = _DCPin;
+
+	/* Make sure that the SPI instance is started */
+	if( SpiInstance->IsStarted != XIL_COMPONENT_IS_STARTED )
+		XSpi_Start( SpiInstance );
+
+	/* Cancel inhibition of the transmitter.
+	 * We want transfer of data to start as soon as we write to the FIFO. */
+	u32 ControlReg = XSpi_ReadReg(SpiInstance->BaseAddr, XSP_CR_OFFSET);
+	ControlReg &= ~XSP_CR_TRANS_INHIBIT_MASK;
+	XSpi_WriteReg(SpiInstance->BaseAddr, XSP_CR_OFFSET, ControlReg);
+
+	initDisplay();
+} //init
 
 #elif defined(ILI9488_SPI_AXI) && defined(ILI9488_GPIO_AXI)
 
-void ILI9488::init( XSpi *spi, XGpio *gpio, unsigned _GPIOChannel );
+void ILI9488::init( XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel ) {
+	if( spi  == NULL )
+		throw std::invalid_argument( "Argument 'spi' is NULL on calling ILI9488::init" );
+	if( gpio == NULL )
+		throw std::invalid_argument( "Argument 'gpio' is NULL on calling ILI9488::init" );
+	if( _GPIOChannel != 1 && _GPIOChannel != 2 )
+		throw std::invalid_argument( "Argument '_GPIOChannel' must have value 1 or 2 on calling ILI9488::init" );
+	if( spi->DataWidth != XSP_DATAWIDTH_BYTE )
+		/* We must be working with the AXI Quad SPI of Transaction Width 8 bits
+		 * because ILI9488 controller accepts data as bytes. */
+		throw std::logic_error( "SPI instance provided to ILI9488::init does not have Transaction Width equal to 8bits" );
+	if( !(XSpi_GetOptions(spi) & XSP_MASTER_OPTION) )
+		throw std::logic_error( "SPI instance provided to ILI9488::init is not set as a master" );
+
+	SpiInstance  = spi;
+	GpioInstance = gpio;
+	RSTPin = _RSTPin;
+	DCPin  = _DCPin;
+	GPIOChannel = _GPIOChannel;
+
+	/* Make sure that the SPI instance is started */
+	if( SpiInstance->IsStarted != XIL_COMPONENT_IS_STARTED )
+		XSpi_Start( SpiInstance );
+
+	/* Cancel inhibition of the transmitter.
+	 * We want transfer of data to start as soon as we write to the FIFO. */
+	u32 ControlReg = XSpi_ReadReg(SpiInstance->BaseAddr, XSP_CR_OFFSET);
+	ControlReg &= ~XSP_CR_TRANS_INHIBIT_MASK;
+	XSpi_WriteReg(SpiInstance->BaseAddr, XSP_CR_OFFSET, ControlReg);
+
+	initDisplay();
+} //init
 
 #endif //elif defined(ILI9488_SPI_AXI) && defined(ILI9488_GPIO_AXI)
 
@@ -153,7 +212,7 @@ void ILI9488::drawImage888( const uint8_t* img, uint16_t x, uint16_t y, uint16_t
 	 * writeToSPI calls.
 	 */
 	const uint32_t MAX_WRITE_BYTES = 480*100*3;
-	uint32_t noOfBytes = 3* w * h;
+	uint32_t noOfBytes = 3 * w * h;
 	uint8_t *writePtr = (uint8_t *)img;
 
 	//first we do maximum size writes
@@ -229,19 +288,18 @@ void ILI9488::fillRect( int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col
 	setAddrWindow(x, y, x+w-1, y+h-1);
 	setPinHigh( DCPin );
 
-    /* I did runtime measurements on AVNET MicroZed board, which has Zynq-7000 SoC.
-     *
+    /* I did runtime speed measurements on AVNET MicroZed board, which has Zynq-7000 SoC.
      * It seems that sweet spot of buffer size for bigger rectangles is 480 pixels.
      * I guess having the buffer of size 1.4 kB (==480*3) is OK for Zynq-7000 SoC,
      * which typically come with plenty of RAM.
      *
-     * However on MicroBlaze default stack size is just 1 kB. Also in my measurements setting FIFO
-     * size on AXI Quad SPI IP to 256 B (from default 16 B) actually reduced transfer speed.
-     * I'm therefore setting BUFFERED_PIXELS to 16 on MicroBlaze (i.e. buffer size 48 B).
+     * Testing on MicroBlaze showed that optimal buffer size is 256 pixels.
+     * However on MicroBlaze default stack size is just 1 kB.
+     * For MicroBlaze with MIG (i.e., when DDR SDRAM is used), I set BUFFERED_PIXELS to 256
+     * (i.e. buffer size 768 B).
+     * For MicroBlaze without MIG (i.e., when FPGA block RAM is used), I set BUFFERED_PIXELS to only 32
+     * (i.e. buffer size 96 B).
      *
-	 * On scope I see that PS SPI transfer is actually broken into bursts 128 bytes long with 5 us
-	 * delay between bursts.
-	 *
      * COMPILER OPTIMIZATION DOES MATTER A LOT! Do compile the final product in Release Configuration.
      * Real measurements on Zynq-7000 Soc:
 	 *   BUFFERED_PIXELS = 480
@@ -250,9 +308,15 @@ void ILI9488::fillRect( int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col
 	 *   build release, gcc flag -O3:  2.34 us duration of buffer fill
 	 */
 #if defined(__arm__)
-	const unsigned BUFFERED_PIXELS = 480; //max. size of the buffer of pixels we write to SPI
+	const unsigned BUFFERED_PIXELS = 480;       //Max. size of the buffer of pixels we write to SPI
 #elif defined(__MICROBLAZE__)
-	const unsigned BUFFERED_PIXELS =  16;
+	#if defined(XPAR_XMIG7SERIES_NUM_INSTANCES) //This macro is defined when a MIG is present in the HW design,
+	                                            //i.e., we are using external RAM and can spare more memory.
+		const unsigned BUFFERED_PIXELS =  256;  //But be aware that default stack size for MicroBlaze project is 1 kB.
+		                                        //It can be increased in the lscript.ld.
+	#else
+		const unsigned BUFFERED_PIXELS =  32;
+	#endif
 #else
 	#error "Both '__arm__' and '__MICROBLAZE__' macros are undefined. Make sure that a relevant one is defined."
 #endif
@@ -332,16 +396,57 @@ inline __attribute__((always_inline)) void ILI9488::writeToSPI( u8 c ) {
 #if defined(ILI9488_SPI_PS)
 	XSpiPs_PolledTransfer( SpiInstance, &c, NULL, 1 );
 #elif defined(ILI9488_SPI_AXI)
-	XSpi_Transfer( SpiInstance, &c, NULL, 1 );
+	writeToSPI( &c, 1 );
 #endif
 } //writeToSPI
 
-inline __attribute__((always_inline)) void ILI9488::writeToSPI( const u8 *buff, u32 len ) {
 #if defined(ILI9488_SPI_PS)
-	XSpiPs_PolledTransfer( SpiInstance, (u8*) buff, NULL, len );
-#elif defined(ILI9488_SPI_AXI)
-	XSpi_Transfer( SpiInstance, (u8*) buff, NULL, len );
+inline __attribute__((always_inline))
 #endif
+void ILI9488::writeToSPI( const u8 *buff, u32 len ) {
+#if defined(ILI9488_SPI_PS)
+
+	/* Note: On Zynq-7000 SoC PS SPI has FIFO of 128 bytes. */
+	XSpiPs_PolledTransfer( SpiInstance, (u8*) buff, NULL, len );
+
+#elif defined(ILI9488_SPI_AXI)
+	/* We are using low-level functions to work with the AXI SPI because we have no benefit
+	 * from using the more complex function XSpi_Transfer.
+	 * We make a performance advantage from the fact that we are only writing to the SPI.
+	 * We ignore any data that may come back.
+	 *
+	 * IMPORTANT: For this writeToSPI method to work, the code using the ILI9488 library must
+	 * properly set the slave select register (i.e., enable the SPI slave) by calling for example:
+	 *   XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg)
+	 */
+
+	u32 NumBytesSent = 0;
+	u32 TransactionLen;
+	while( NumBytesSent < len ) {
+		/* Fill transmit FIFO to the whole FIFO capacity or with all remaining data. */
+		if ( len - NumBytesSent > SpiInstance->FifosDepth && SpiInstance->FifosDepth != 0 ) {
+			TransactionLen = SpiInstance->FifosDepth;
+		}
+		else if( SpiInstance->FifosDepth == 0 ) {
+			TransactionLen = 1; //We are working with the AXI Quad SPI of Transaction Width 8 bits
+			                    //because ILI9488 controller accepts data as bytes.
+		} else { // "remaining bytes" <= SpiInstance->FifosDepth && FIFO exists
+			TransactionLen = len - NumBytesSent;
+		}
+
+		/* SPI device is enabled so as soon as the data is written to the DTR/FIFO,
+		 * it gets pushed out on to the lines. */
+		for( u32 i = 0; i < TransactionLen; i++ )
+			XSpi_WriteReg( SpiInstance->BaseAddr, XSP_DTR_OFFSET, buff[ NumBytesSent + i] );
+
+		NumBytesSent += TransactionLen;
+
+		/* Wait for the transmit FIFO to transition to empty.
+		 * We also must make sure that transfer is finished before we exit this function.
+		 */
+		while( !(XSpi_ReadReg(SpiInstance->BaseAddr, XSP_SR_OFFSET) & XSP_SR_TX_EMPTY_MASK) );
+	}
+#endif //#if defined(ILI9488_SPI_AXI)
 } //writeToSPI
 
 inline __attribute__((always_inline)) void ILI9488::setPinHigh( u32 pin ) {
@@ -470,7 +575,7 @@ void ILI9488::initDisplay() {
 	writeData(0x80);      //VCOM value from VCM_REG
 
 	writeCommand(0x36);   //Memory Access Control
-	writeData(0x48);      //MX set, BGR set
+	writeData(0x48);      //0b01001000 = MX set (D6), BGR set (D3)
 
 	writeCommand(0x3A);   //Interface Pixel Format
 	writeData(0x66); 	  //18 bit

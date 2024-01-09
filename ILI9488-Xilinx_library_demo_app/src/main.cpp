@@ -30,6 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <vector>
 #include "xil_printf.h"
+#include "xil_cache.h"
 #include "sleep.h"
 
 #include "ILI9488_Xil.h"
@@ -48,36 +49,48 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #if defined(ILI9488_SPI_PS)
 
-/* Define SPI device ID, to which is the ILI9488 display connected. Macro XPAR_XSPIPS_0_DEVICE_ID,
- * which provides ID of SPI PS device 0, is from the header system\ps7_cortexa9_0\standalone_domain\bsp\ps7_cortexa9_0\include\xparameters.h,
- * which was generated based on the HW design.
- */
-#define ILI9488_SPI_DEVICE_ID   XPAR_XSPIPS_0_DEVICE_ID
-
-/* Define GPIO device ID, to which is the ILI9488 display connected. Macro XPAR_PS7_GPIO_0_DEVICE_ID,
- * which provides ID of Zynq PS GPIO device, is from the header system\ps7_cortexa9_0\standalone_domain\bsp\ps7_cortexa9_0\include\xparameters.h,
- * which was generated based on the HW design.
- */
-#define ILI9488_GPIO_DEVICE_ID  XPAR_PS7_GPIO_0_DEVICE_ID
-
-/* Define numbers of EMIO GPIO pins to which are the RST and DC pins of ILI9488 display connected.
- * The first EMIO pin has number 54.
- */
-#define ILI9488_RST_PIN  54 //== EMIO pin 0
-#define ILI9488_DC_PIN   55 //== EMIO pin 1
+	/* Define SPI device ID, to which is the ILI9488 display connected. Macro XPAR_PS7_QSPI_0_DEVICE_ID,
+	 * is from the header xparameters.h, which was generated based on the HW design. */
+	#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_QSPI_0_DEVICE_ID
 
 	XSpiPs SpiInstance;
 
 #elif defined(ILI9488_SPI_AXI)
 
+	/* Define SPI device ID, to which is the ILI9488 display connected. Macro XPAR_AXI_QUAD_SPI_0_DEVICE_ID,
+	 * is from the header xparameters.h, which was generated based on the HW design. */
+	#define ILI9488_SPI_DEVICE_ID   XPAR_AXI_QUAD_SPI_0_DEVICE_ID
+
 	XSpi   SpiInstance;
 
 #endif //if defined(ILI9488_SPI_PS)
+
 #if defined(ILI9488_GPIO_PS)
+
+	/* Define GPIO device ID, to which is the ILI9488 display connected. Macro XPAR_PS7_GPIO_0_DEVICE_ID,
+	 * is from the header xparameters.h, which was generated based on the HW design.
+	 */
+	#define ILI9488_GPIO_DEVICE_ID  XPAR_PS7_GPIO_0_DEVICE_ID
+
+	/* Define numbers of EMIO GPIO pins to which are the RST and DC pins of ILI9488 display connected.
+	 * The first EMIO pin has number 54.
+	 */
+	#define ILI9488_RST_PIN  54 //== EMIO pin 0
+	#define ILI9488_DC_PIN   55 //== EMIO pin 1
 
 	XGpioPs GpioInstance;
 
-#elif defined(ILI9488_SPI_AXI)
+#elif defined(ILI9488_GPIO_AXI)
+
+	/* Define GPIO device ID, to which is the ILI9488 display connected. Macro XPAR_AXI_GPIO_0_DEVICE_ID,
+	 * is from the header xparameters.h, which was generated based on the HW design.
+	 */
+	#define ILI9488_GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+
+	/* Define masks of GPIO pins to which are the RST and DC pins of ILI9488 display connected.
+	 */
+	#define ILI9488_RST_PIN  0x01 //bit 0
+	#define ILI9488_DC_PIN   0x02 //bit 1
 
 	XGpio   GpioInstance;
 
@@ -107,20 +120,31 @@ int initialize_PS_SPI() {
 		return XST_FAILURE;
 	}
 
+	/* Set the SPI interface as Master.
+	 * Set Force Slave Select option: The SPI_SS_outN signal indicated by the Slave Select Control bit is forced active (driven low)
+	 * regardless of any transfers in progress.
+	 */
 	Status = XSpiPs_SetOptions(&SpiInstance, XSPIPS_MASTER_OPTION | XSPIPS_FORCE_SSELECT_OPTION);
 	if(Status != XST_SUCCESS) {
 		print("XSpiPs_SetOptions failed\r\n");
 		return XST_FAILURE;
 	}
 
+	/* Select Slave 0 */
+	Status = XSpiPs_SetSlaveSelect(&SpiInstance, 0);
+	if(Status != XST_SUCCESS) {
+		print("XSpiPs_SetSlaveSelect failed\r\n");
+		return XST_FAILURE;
+	}
+
 	/* Setting SCK frequency for the PS SPI:
 	 *
 	 * ZYNQ7 Processing System default SPI clock is 166.666666 MHz
-	 * Using XSPIPS_CLK_PRESCALE_16 -> SCK frequency 10.42 MHz = cycle duration  96 ns, this is unnecessarily slow
-	 * Using XSPIPS_CLK_PRESCALE_8  -> SCK frequency 20.83 MHz = cycle duration  48 ns
+	 * Using XSPIPS_CLK_PRESCALE_16 -> SCK frequency 10.42 MHz = cycle duration 96 ns, this is unnecessarily slow
+	 * Using XSPIPS_CLK_PRESCALE_8  -> SCK frequency 20.83 MHz = cycle duration 48 ns
 	 *
 	 * According to ILI9488 datasheet minimal SCK cycle for write operations is 50 ns (20 MHz).
-	 * However my specimen worked well with SCK cycle duration 48 ns.
+	 * However my specimen worked well with SCK cycle duration 48 ns (20.83 MHz).
 	 *
 	 * SPI clock can be lowered to 150 MHz in the ZYNQ7 Processing System IP configuration,
 	 * which gives SCK frequency 18.75 MHz. That is well within specification of ILI9488.
@@ -132,19 +156,74 @@ int initialize_PS_SPI() {
 		return XST_FAILURE;
 	}
 
-	Status = XSpiPs_SetSlaveSelect(&SpiInstance, 0);
-	if(Status != XST_SUCCESS) {
-		print("XSpiPs_SetSlaveSelect failed\r\n");
-		return XST_FAILURE;
-	}
 	return 0;
 } //initialize_PS_SPI
 
 #elif defined(ILI9488_SPI_AXI)
 
 int initialize_AXI_SPI() {
+    int Status;
+    XSpi_Config *SpiConfig;
+
+    SpiConfig = XSpi_LookupConfig(ILI9488_SPI_DEVICE_ID);
+	if(SpiConfig == NULL) {
+		print("XSpi_LookupConfig failed\r\n");
+		return XST_FAILURE;
+	}
+
+	Status = XSpi_CfgInitialize(&SpiInstance, SpiConfig, SpiConfig->BaseAddress);
+	if(Status != XST_SUCCESS) {
+		print("XSpi_CfgInitialize failed\r\n");
+		return XST_FAILURE;
+	}
+
+	Status = XSpi_SelfTest(&SpiInstance);
+	if(Status != XST_SUCCESS) {
+		print("XSpi_SelfTest failed\r\n");
+		return XST_FAILURE;
+	}
+
+
+	if( SpiInstance.DataWidth != 8 ) {
+		print("ERROR: Transaction Width of the AXI SPI is not set to 8 bits\r\n");
+		return XST_FAILURE;
+	}
+
+	/* Set the SPI interface as Master.
+	 * Set Manual Slave Select. We don't want the AXI SPI to toggle SS for us. */
+	Status = XSpi_SetOptions(&SpiInstance, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION );
+	if(Status != XST_SUCCESS) {
+		print("XSpi_SetOptions failed\r\n");
+		return XST_FAILURE;
+	}
+
+	Status = XSpi_Start(&SpiInstance);
+	if(Status != XST_SUCCESS) {
+		print("XSpi_Start failed\r\n");
+		return XST_FAILURE;
+	}
+
+	/* Disable Global interrupt to use polled mode operation.
+	 * Note: XSpi_Start enabled the interrupt.
+	 * Pooled mode means that function XSpi_Transfer blocks until all data has been sent/received.
+	 * ILI9488 library is not using XSpi_Transfer function. Nevertheless we do not want to mess with interrupts.
+	 */
+	XSpi_IntrGlobalDisable(&SpiInstance);
+
+	/* Select Slave 0 in the SPI instance configuration. */
+	Status = XSpi_SetSlaveSelect(&SpiInstance, 1);
+	  //value 1 means that bit 0 is set and therefore Slave 0 is active
+	if(Status != XST_SUCCESS) {
+		print("XSpi_SetSlaveSelect failed\r\n");
+		return XST_FAILURE;
+	}
+	/* Set the slave select register to select the device on the SPI before starting the transfer
+	 * of data. This call actually drives the respective SS signal low to active the SPI slave.
+	 */
+	XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
+
 	return 0;
-} //initialize_PS_SPI
+} //initialize_AXI_SPI
 
 #endif //if defined(ILI9488_SPI_AXI)
 
@@ -179,8 +258,22 @@ int initialize_PS_GPIO() {
 #elif defined(ILI9488_GPIO_AXI)
 
 int initialize_AXI_GPIO() {
+	int Status;
+
+	Status = XGpio_Initialize(&GpioInstance, ILI9488_GPIO_DEVICE_ID);
+	if (Status != XST_SUCCESS) {
+		print("XGpio_Initialize failed\r\n");
+		return XST_FAILURE;
+	}
+
+	XGpio_SetDataDirection(&GpioInstance, 1 /*Channel*/, 0 /*DirectionMask*/ );
+		//DirectionMask: Bits set to 0 are output and bits set to 1 are input.
+
+	//drive RST and DC pins low
+	XGpio_DiscreteClear(&GpioInstance, 1 /*Channel*/, ILI9488_RST_PIN | ILI9488_DC_PIN /*Mask*/ );
+
 	return 0;
-} //initialize_PS_GPIO
+} //initialize_AXI_GPIO
 
 #endif //if defined(ILI9488_GPIO_AXI)
 
@@ -204,7 +297,6 @@ void testImages(ILI9488 &tft) {
 void testScroll(ILI9488 &tft) {
     tft.setRotation( 2 ); //scrolling works only along the long 480px edge
 	tft.fillRect( 0, 0, 320, 20, ILI9488_BLUE);
-	tft.fillRect( 0, 20, 320, 480-40, ILI9488_WHITE);
 	tft.fillRect( 0, 480-20, 320, 20, ILI9488_BLUE);
 
 	tft.setScrollArea( 20, 20 );
@@ -431,7 +523,27 @@ void testFilledRoundRects(ILI9488 &tft) {
 
 int main()
 {
-    print("*** ILI9488 DEMO START ***\r\n");
+    /************ For MicroBlaze: Initialize instruction and data caches ************/
+#ifdef __MICROBLAZE__
+	#ifdef XPAR_MICROBLAZE_USE_ICACHE //Macro XPAR_MICROBLAZE_USE_ICACHE is defined in xparameters.h when MicroBlaze has an instruction cache configured
+		Xil_ICacheEnable();
+	#else
+		#warning "Instruction cache is not active, the program will be slow!"
+		#ifndef XSLEEP_TIMER_IS_AXI_TIMER //Macro XSLEEP_TIMER_IS_AXI_TIMER is defined in xparameters.h when AXI Timer is used in the HW design
+			#error "Functions sleep and usleep don't work correctly when cache is disabled and AXI Timer is not used."
+		#endif
+	#endif
+	#ifdef XPAR_MICROBLAZE_USE_DCACHE //Macro XPAR_MICROBLAZE_USE_DCACHE is defined in xparameters.h when MicroBlaze has a data cache configured
+		Xil_DCacheEnable();
+	#else
+		#warning "Data cache is not active, the program will be slow!"
+		#ifndef XSLEEP_TIMER_IS_AXI_TIMER //Macro XSLEEP_TIMER_IS_AXI_TIMER is defined in xparameters.h when AXI Timer is used in the HW design
+			#error "Functions sleep and usleep don't work correctly when cache is disabled and AXI Timer is not used."
+		#endif
+	#endif
+#endif //ifdef __MICROBLAZE__
+
+	print("*** ILI9488 DEMO START ***\r\n");
 
     /*** Initialize SPI driver ***/
 #if defined(ILI9488_SPI_PS)
@@ -466,34 +578,40 @@ int main()
 
     	testText( display );
         sleep ( 3 );
+
         display.invertDisplay( true );
         usleep( 1500*1000 );
         display.invertDisplay( false );
         sleep( 1 );
-    	testTextBigFont( display );
+
+        testTextBigFont( display );
         usleep( 1500*1000 );
 
         testLines( display, ILI9488_YELLOW );
 		sleep ( 1 );
 		testFastLines( display, ILI9488_YELLOW, ILI9488_WHITE );
 		sleep ( 1 );
+
 		testRects( display, ILI9488_YELLOW );
 		sleep ( 1 );
 		testFilledRects( display, ILI9488_YELLOW, ILI9488_RED );
 		sleep ( 1 );
-    	testCircles( display, 10, ILI9488_YELLOW );
+
+		testCircles( display, 10, ILI9488_YELLOW );
     	sleep ( 1 );
     	testFilledCircles( display, 10, ILI9488_YELLOW );
     	sleep ( 1 );
+
     	testTriangles( display );
     	sleep ( 1 );
     	testFilledTriangles( display );
     	sleep ( 1 );
+
     	testRoundRects( display );
     	sleep ( 1 );
     	testFilledRoundRects( display );
     	sleep( 1 );
-	}
+    }
 
     print("graceful exit\r\n"); //never reached
     return 0;
