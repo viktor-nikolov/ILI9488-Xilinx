@@ -44,10 +44,10 @@ The performance measurements revealed that for AXI SPI, the use of the high-leve
 The library only writes over the SPI; we do not read any data back. However, function XSpi_Transfer always reads the receive FIFO buffer from the AXI SPI IP (even when you provide NULL as the value of the receive buffer).  
 It means that when you send 100 B of data to the display, 200 B of data are transferred in total over a relatively slow AXI bus.
 
-For AXI SPI, I, therefore, implemented the private method ILI9488::writeToSPI using low-level SPI functions (e.g., XSpi_WriteReg). The implementation doesn't read any data back from the receive FIFO buffer fo the AXI SPI IP.  
-The fact v::writeToSPI has similar performance on both slow 160 MHz MicroBlaze and 667 MHz Zynq-7000 tells me that its efficient and the performance bottle neck is 20 MHz SPI clock of the ILI9488 controller.
+For AXI SPI, I, therefore, implemented the private method ILI9488::writeToSPI using low-level SPI functions (e.g., XSpi_WriteReg). The implementation doesn't read any data back from the receive FIFO buffer for the AXI SPI IP.  
+The fact that  ILI9488::writeToSPI has similar performance on both slow 160 MHz MicroBlaze and fast 667 MHz Zynq-7000 tells me that it's efficient and the performance bottleneck is the 20 MHz SPI clock of the ILI9488 controller.
 
-For PS SPI on Zynq-7000, the method ILI9488::writeToSPI just calls the function XSpiPs_PolledTransfer. XSpiPs_PolledTransfer also always reads content of the receive FIFO but that is very fast on Zynq-7000 and I therefore didn't invest time into low-level SPI implementation.
+For PS SPI on Zynq-7000, the method ILI9488::writeToSPI just calls the function XSpiPs_PolledTransfer. XSpiPs_PolledTransfer also always reads the content of the receive FIFO, but that is very fast on Zynq-7000, and, I, therefore, didn't invest time into low-level SPI implementation for PS SPI.
 
 For all tests listed below, the app was compiled with the highest gcc compiler optimization (flag -O3).
 
