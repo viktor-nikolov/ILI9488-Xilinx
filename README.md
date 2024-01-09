@@ -54,9 +54,9 @@ The durations listed in the table are the durations of the call `display.fillRec
 
 The durations listed in the table are the durations of the call `display.fillRect( 0, 0, 50, 50, ILI9488_BLUE );` (measured using a GPIO pin and an oscilloscope).
 
-| HW                          | SW implementation                                                                                                              | FIFO length | Duration |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
-| MicroBlaze 160 MHz, AXI SPI | low-level SPI functions used                                                                                                   | 256 B       | 3.041 ms |
-| Zynq-7000 667 MHz, PS SPI   | function XSpiPs_PolledTransfer used                                                                                            | 128 B       | 3.324 ms |
-| Zynq-7000 667 MHz, AXI SPI  | low-level SPI functions used                                                                                                   | 256 B       | 3.019 ms |
-| Zynq-7000 667 MHz, AXI SPI  | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library for AXI SPI | 256 B       | 7.665 ms |
+| HW                                          | SW implementation                                                                                                              | FIFO length | Duration |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI<img width=200/> | low-level SPI functions used                                                                                                   | 256 B       | 3.041 ms |
+| Zynq-7000 667 MHz, PS SPI                   | function XSpiPs_PolledTransfer used                                                                                            | 128 B       | 3.324 ms |
+| Zynq-7000 667 MHz, AXI SPI                  | low-level SPI functions used                                                                                                   | 256 B       | 3.019 ms |
+| Zynq-7000 667 MHz, AXI SPI                  | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library for AXI SPI | 256 B       | 7.665 ms |
