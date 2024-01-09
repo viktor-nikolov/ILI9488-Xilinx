@@ -41,18 +41,18 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 
 #### Fill display 320x480
 
-| HW                                                          | FIFO length | Duration |
-| ----------------------------------------------------------- | ----------- | -------- |
-| MicroBlaze 160 MHz, AXI SPI                                 | 256 B       | 185.1 ms |
-| Zynq-7000 667 MHz, PS SPI                                   | 128 B       | 203.3 ms |
-| Zynq-7000 667 MHz, AXI SPI<br/>low-level SPI functions used | 128 B       | 185.0 ms |
-| Zynq-7000 667 MHz, AXI SPI<br/>function XSpi_Transfer used  | 128 B       | 462.7 ms |
+| HW                          | SW implementation                                                                                                  | FIFO length | Duration |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI | low-level SPI functions used                                                                                       | 256 B       | 185.1 ms |
+| Zynq-7000 667 MHz, PS SPI   | function XSpiPs_PolledTransfer used                                                                                | 128 B       | 203.3 ms |
+| Zynq-7000 667 MHz, AXI SPI  | low-level SPI functions used                                                                                       | 256 B       | 185.0 ms |
+| Zynq-7000 667 MHz, AXI SPI  | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library | 256 B       | 462.7 ms |
 
 #### Fill rectangle 50x50
 
-| HW                                                          | FIFO length | Duration |
-| ----------------------------------------------------------- | ----------- | -------- |
-| MicroBlaze 160 MHz, AXI SPI                                 | 256 B       | 3.041 ms |
-| Zynq-7000 667 MHz, PS SPI                                   | 128 B       | 3.324 ms |
-| Zynq-7000 667 MHz, AXI SPI<br/>low-level SPI functions used | 128 B       | 3.019 ms |
-| Zynq-7000 667 MHz, AXI SPI<br/>XSpi_Transfer used           | 128 B       | 7.665 ms |
+| HW                                                                                                                                       | SW implementation                                                                                                  | FIFO length | Duration |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI                                                                                                              | low-level SPI functions used                                                                                       | 256 B       | 3.041 ms |
+| Zynq-7000 667 MHz, PS SPI                                                                                                                | function XSpiPs_PolledTransfer used                                                                                | 128 B       | 3.324 ms |
+| Zynq-7000 667 MHz, AXI SPI                                                                                                               | low-level SPI functions used                                                                                       | 256 B       | 3.019 ms |
+| Zynq-7000 667 MHz, AXI SPI<br/>XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library | 256 B       | 7.665 ms |
