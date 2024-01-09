@@ -43,12 +43,12 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 
 The durations listed in the table are the durations of the call `display.fillRect( 0, 0, 480, 320, ILI9488_BLUE );` (measured using a GPIO pin and an oscilloscope).
 
-| HW                          | SW implementation                                                                                                  | FIFO length | Duration |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
-| MicroBlaze 160 MHz, AXI SPI | low-level SPI functions used                                                                                       | 256 B       | 185.1 ms |
-| Zynq-7000 667 MHz, PS SPI   | function XSpiPs_PolledTransfer used                                                                                | 128 B       | 203.3 ms |
-| Zynq-7000 667 MHz, AXI SPI  | low-level SPI functions used                                                                                       | 256 B       | 185.0 ms |
-| Zynq-7000 667 MHz, AXI SPI  | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library | 256 B       | 462.7 ms |
+| HW                          | SW implementation                                                                                                              | FIFO length | Duration |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
+| MicroBlaze 160 MHz, AXI SPI | low-level SPI functions used                                                                                                   | 256 B       | 185.1 ms |
+| Zynq-7000 667 MHz, PS SPI   | function XSpiPs_PolledTransfer used                                                                                            | 128 B       | 203.3 ms |
+| Zynq-7000 667 MHz, AXI SPI  | low-level SPI functions used                                                                                                   | 256 B       | 185.0 ms |
+| Zynq-7000 667 MHz, AXI SPI  | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library for AXI SPI | 256 B       | 462.7 ms |
 
 #### Fill rectangle 50x50
 
