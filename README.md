@@ -41,7 +41,7 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 
 #### Fill display 320x480
 
-Durations listed in the table are durations of the call `display.fillRect( 0, 0, 480, 320, ILI9488_BLUE );` (measured using a GPIO and and an osciloscope).
+The durations listed in the table are the durations of the call `display.fillRect( 0, 0, 480, 320, ILI9488_BLUE );` (measured using a GPIO pin and an oscilloscope).
 
 | HW                          | SW implementation                                                                                                  | FIFO length | Duration |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
@@ -52,7 +52,7 @@ Durations listed in the table are durations of the call `display.fillRect( 0, 0,
 
 #### Fill rectangle 50x50
 
-Durations listed in the table are durations of the call `display.fillRect( 0, 0, 50, 50, ILI9488_BLUE );` (measured using a GPIO and and an osciloscope).
+The durations listed in the table are the durations of the call `display.fillRect( 0, 0, 50, 50, ILI9488_BLUE );` (measured using a GPIO pin and an oscilloscope).
 
 | HW                                                                                                                                       | SW implementation                                                                                                  | FIFO length | Duration |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------- | -------- |
