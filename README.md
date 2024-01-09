@@ -39,7 +39,7 @@ the following display: [3.5" SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.
 
 For all tests, the app was compiled with the highest gcc compiler optimization (flag -O3).
 
-###### Fill display 320x480
+#### Fill display 320x480
 
 | HW                                                          | FIFO length | Duration |
 | ----------------------------------------------------------- | ----------- | -------- |
@@ -48,7 +48,7 @@ For all tests, the app was compiled with the highest gcc compiler optimization (
 | Zynq-7000 667 MHz, AXI SPI<br/>low-level SPI functions used | 128 B       | 185.0 ms |
 | Zynq-7000 667 MHz, AXI SPI<br/>function XSpi_Transfer used  | 128 B       | 462.7 ms |
 
-###### Fill rectangle 50x50
+#### Fill rectangle 50x50
 
 | HW                                                          | FIFO length | Duration |
 | ----------------------------------------------------------- | ----------- | -------- |
