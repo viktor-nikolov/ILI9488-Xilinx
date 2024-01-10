@@ -43,7 +43,7 @@ It uses SPI with a 20 MHz clock and a data width of 8 bits. Each pixel on the di
 So when you fill the whole 320x480 display with a color using ILI9488::fillRect, 450 kB of data needs to be transferred over the SPI (plus a few bytes of commands).
 
 Drawing a single pixel using ILI9488::drawPixel requires a transfer of 13 bytes (10 bytes of commands and 3 bytes of data).  
-That is why drawing of big fonts is visibly slow because Adafruit_GFX library draws these bitmaps pixel by pixel. (Adafruit_GFX big fonts are defined in the header files in the [Fonts folder](ILI9488-Xilinx_library/Adafruit_GFX/Fonts). See function )
+That is why the drawing of big fonts is visibly slow because the Adafruit_GFX library draws these bitmaps pixel by pixel. (Adafruit_GFX big fonts are defined in the header files in the [Fonts folder](ILI9488-Xilinx_library/Adafruit_GFX/Fonts). See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for example of use.)
 
 The performance measurements revealed that for AXI SPI, the use of the high-level function [XSpi_Transfer](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#ga4c44c082ef2d2b9cf4ba3db8bcebd954) significantly decreases the library's overall performance.
 
