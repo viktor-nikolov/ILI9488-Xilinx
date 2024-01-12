@@ -16,12 +16,12 @@ the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lc
 
 ## HW connection and design
 
-Control of the display requires a connection to a SPI and to two GPIO pins.
+Control of the display requires a connection to an SPI and to two GPIO pins.
 
-The library supports both the Zynq Processing System SPI and AXI SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
+The library supports both Zynq Processing System SPI and AXI SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
 The library also supports both [Zynq Processing System EMIO GPIO](https://support.xilinx.com/s/article/386661) and [AXI GPIO IP](https://www.xilinx.com/products/intellectual-property/axi_gpio.html).
 
-Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice cersa). All four combinations are supported by the library.
+Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice versa). All four combinations are supported by the library.
 
 For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect the pins highlighted on the photo below.
 
