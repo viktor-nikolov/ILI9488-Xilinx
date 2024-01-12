@@ -23,7 +23,7 @@ For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect
 | pin        | meaning                                                         | where to connect to                                                                             |
 | ---------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | LED        | Display backlight control, level 3.3 V gives maximum brightness | 3.3 V power source                                                                              |
-| SCK        | SPI bus clock signal                                            | PS SPI: SPI*x*_SCLK_O signal (e.g., SPI0_SCLK_O)<br/>AXI SPI: sck_o signal                      |
+| SCK        | SPI bus clock signal                                            | PS SPI: SPI*x*_SCLK_O signal&nbsp;(e.g.,&nbsp;SPI0_SCLK_O)<br/>AXI SPI: sck_o signal            |
 | SDI (MOSI) | SPI bus write data signal (input into the display)              | PS SPI: SPI*x*_MOSI_O signal (e.g., SPI0_MOSI_O)<br/>AXI SPI: io*x*_o signal (e.g. io0_o)       |
 | DC/RS      | Data/Command selection signal<br/>high: command, low: data      | A GPIO signal                                                                                   |
 | RESET      | Display reset signal, low for reset                             | A GPIO signal                                                                                   |
