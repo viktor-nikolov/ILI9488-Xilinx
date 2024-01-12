@@ -20,16 +20,16 @@ For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect
 
 <img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="230">
 
-| pin        | meaning                                                         | where to connect to                                                                                 |
-| ---------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| LED        | Display backlight control, level 3.3 V gives maximum brightness | 3.3 V power source                                                                                  |
-| SCK        | SPI bus clock signal                                            | PS&nbsp;SPI:&nbsp;SPI*x*_SCLK_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_SCLK_O)<br/>AXI SPI: sck_o signal |
-| SDI (MOSI) | SPI bus write data signal (input into the display)              | PS SPI: SPI*x*_MOSI_O signal (e.g., SPI0_MOSI_O)<br/>AXI SPI: io*x*_o signal (e.g. io0_o)           |
-| DC/RS      | Data/Command selection signal<br/>high: command, low: data      | A GPIO signal                                                                                       |
-| RESET      | Display reset signal, low for reset                             | A GPIO signal                                                                                       |
-| CS         | SPI chip select signal, low level for enable                    | PS SPI: SPI*x*_SS_O signal (e.g., SPI0_SS_O)<br/>AXI SPI: ss_o[*x*:*x*] signal (e.g. ss_o[0:0])     |
-| GND        | Ground                                                          | Ground                                                                                              |
-| VCC        | 5 V or 3.3V power input                                         | 5 V or 3.3V power source                                                                            |
+| pin        | meaning                                                         | where to connect to                                                                                                |
+| ---------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| LED        | Display backlight control, level 3.3 V gives maximum brightness | 3.3 V power source                                                                                                 |
+| SCK        | SPI bus clock signal                                            | PS&nbsp;SPI:&nbsp;SPI*x*_SCLK_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_SCLK_O)<br/>AXI SPI: sck_o signal                |
+| SDI (MOSI) | SPI bus write data signal (input into the display)              | PS&nbsp;SPI:&nbsp;SPI*x*_MOSI_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_MOSI_O)<br/>AXI SPI: io*x*_o signal (e.g. io0_o) |
+| DC/RS      | Data/Command selection signal<br/>high: command, low: data      | A GPIO signal                                                                                                      |
+| RESET      | Display reset signal, low for reset                             | A GPIO signal                                                                                                      |
+| CS         | SPI chip select signal, low level for enable                    | PS SPI: SPI*x*_SS_O signal (e.g., SPI0_SS_O)<br/>AXI SPI: ss_o[*x*:*x*] signal (e.g. ss_o[0:0])                    |
+| GND        | Ground                                                          | Ground                                                                                                             |
+| VCC        | 5 V or 3.3V power input                                         | 5 V or 3.3V power source                                                                                           |
 
 Please note that we do not need to connect "SDO (MISO)" pin of the display to SPI, because we are not reading any data from the display.
 
