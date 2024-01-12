@@ -7,7 +7,7 @@ of Xilinx SPI libraries and did other modifications.
 I must also port the [Adafruit_GFX library](https://github.com/adafruit/Adafruit-GFX-Library).
 
 I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU) with
-the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) (can be purchased [on Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or [on AliExpress](https://www.aliexpress.com/item/32995839609.html)).
+the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) (can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html)).
 
 > [!NOTE]
 > The ILI9488 3.5&Prime; TFT LCD is a touch screen. However, the library presented here contains only graphics display capabilities. It does not read any user touch inputs from the display.
@@ -16,9 +16,13 @@ the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lc
 
 ## HW connection and design
 
+For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect the pins highlighted on this photo:
+
+<img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="200">
+
 TBD
 
-## SW configuration and implementation
+## SW configuration and usage
 
 TBD
 
