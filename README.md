@@ -19,11 +19,11 @@ the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lc
 Control of the display requires a connection to an SPI and to two GPIO pins.
 
 The library supports both Zynq Processing System SPI and AXI SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
-The library also supports both [Zynq Processing System EMIO GPIO](https://support.xilinx.com/s/article/386661) and [AXI GPIO IP](https://www.xilinx.com/products/intellectual-property/axi_gpio.html).
+The library also supports both Zynq Processing System [EMIO GPIO](https://support.xilinx.com/s/article/386661) and [AXI GPIO IP](https://www.xilinx.com/products/intellectual-property/axi_gpio.html).
 
 Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice versa). All four combinations are supported by the library.
 
-For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect the pins highlighted on the photo below.
+For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted on the photo below.
 
 - Please note that we do not need to connect "SDO (MISO)" pin of the display to SPI, because we are not reading any data from the display.
 
@@ -39,8 +39,6 @@ For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect
 | CS         | SPI chip select signal, low level for enable                    | PS SPI: SPI*x*_SS_O signal (e.g., SPI0_SS_O)<br/><br/>AXI SPI: ss_o[*x*:*x*] signal (e.g. ss_o[0:0])                    |
 | GND        | Ground                                                          | Ground                                                                                                                  |
 | VCC        | 5 V or 3.3V power input                                         | 5 V or 3.3V power source                                                                                                |
-
-
 
 TBD
 
