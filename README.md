@@ -23,9 +23,13 @@ The library also supports both Zynq Processing System [EMIO GPIO](https://suppor
 
 Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice versa). All four combinations are supported by the library.
 
+**TODO 20 MHz SPI**
+
 For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted on the photo below.
 
 - Please note that we do not need to connect "SDO (MISO)" pin of the display to SPI, because we are not reading any data from the display.
+
+Logic IO pins accept 3.3 V voltage level (TTL).
 
 <img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="230">
 
@@ -39,8 +43,6 @@ For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI
 | CS         | SPI chip select signal, low level for enable                    | PS SPI: SPI*x*_SS_O signal (e.g., SPI0_SS_O)<br/><br/>AXI SPI: ss_o[*x*:*x*] signal (e.g. ss_o[0:0])                    |
 | GND        | Ground                                                          | Ground                                                                                                                  |
 | VCC        | 5 V or 3.3V power input                                         | 5 V or 3.3V power source                                                                                                |
-
-TBD
 
 ## SW configuration and usage
 
