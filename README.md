@@ -16,13 +16,22 @@ the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lc
 
 ## HW connection and design
 
-For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect the pins highlighted on this photo:
+For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect the pins highlighted on the photo below.
+
+- Please note that we do not need to connect "SDO (MISO)" pin of the display to SPI, because we are not reading any data from the display.
+
+Control of the display requires a connection to a SPI and to two GPIO pins.
+
+The library supports both the Zynq Processing System SPI and AXI SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
+The library also supports both [Zynq Processing System EMIO GPIO](https://support.xilinx.com/s/article/386661) and [AXI GPIO IP](https://www.xilinx.com/products/intellectual-property/axi_gpio.html).
+
+Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice cersa). All four combinations are supported by the library.
 
 <img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="230">
 
-| pin        | meaning                                                         | where to connect to                                                                                                     |
+| Pin        | Meaning                                                         | Where to connect to                                                                                                     |
 | ---------- | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| LED        | Display backlight control, level 3.3 V gives maximum brightness | 3.3 V power source                                                                                                      |
+| LED        | Display backlight control; level 3.3 V gives maximum brightness | 3.3 V power source                                                                                                      |
 | SCK        | SPI bus clock signal                                            | PS&nbsp;SPI:&nbsp;SPI*x*_SCLK_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_SCLK_O)<br/><br/>AXI SPI: sck_o signal                |
 | SDI (MOSI) | SPI bus write data signal (input into the display)              | PS&nbsp;SPI:&nbsp;SPI*x*_MOSI_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_MOSI_O)<br/><br/>AXI SPI: io*x*_o signal (e.g. io0_o) |
 | DC/RS      | Data/Command selection signal<br/>high: command, low: data      | A GPIO signal                                                                                                           |
@@ -31,7 +40,7 @@ For using the 3.5&Prime; SPI Module ILI9488 with the library, we need to connect
 | GND        | Ground                                                          | Ground                                                                                                                  |
 | VCC        | 5 V or 3.3V power input                                         | 5 V or 3.3V power source                                                                                                |
 
-Please note that we do not need to connect "SDO (MISO)" pin of the display to SPI, because we are not reading any data from the display.
+
 
 TBD
 
