@@ -76,11 +76,16 @@ Logic IO pins accept 3.3 V voltage level (TTL).
 
 ## SW configuration and usage
 
-## Using the library
+### Using the library in Vitis
 
+To use the library, copy the whole content of the [ILI9488-Xilinx_library](ILI9488-Xilinx_library) folder to the src folder of your application project in Vitis.
 
+The library itself defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h) and [ILI9488_Xil.cpp](ILI9488-Xilinx_library/ILI9488_Xil.cpp).
 
-TBD
+The class ILI9488 extends class Adafruit_GFX which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
+
+Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts which came with the Adafruit_GFX library.  
+(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for example of use.)
 
 **TODO:**
 
@@ -109,7 +114,7 @@ It uses SPI with a 20 MHz clock and a data width of 8 bits. Each pixel on the di
 So when you fill the whole 320x480 display with a color using ILI9488::fillRect, 450 kB of data needs to be transferred over the SPI (plus a few bytes of commands).
 
 Drawing a single pixel using ILI9488::drawPixel requires a transfer of 13 bytes (10 bytes of commands and 3 bytes of data).  
-That is why the drawing of big fonts is visibly slow because the Adafruit_GFX library draws these bitmaps pixel by pixel. (Adafruit_GFX big fonts are defined in the header files in the [Fonts folder](ILI9488-Xilinx_library/Adafruit_GFX/Fonts). See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for example of use.)
+That is why the drawing of "big fonts" (definded in the headers in the folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts)) is visibly slow because the Adafruit_GFX library draws these bitmaps pixel by pixel.
 
 The performance measurements revealed that for AXI SPI, the use of the high-level function [XSpi_Transfer](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#ga4c44c082ef2d2b9cf4ba3db8bcebd954) significantly decreases the library's overall performance.
 
@@ -117,7 +122,7 @@ The library only writes over the SPI; we do not read any data back. However, fun
 It means that when you send 100 B of data to the display, 200 B of data are transferred in total over a relatively slow AXI bus.
 
 For AXI SPI, I, therefore, implemented the private method [ILI9488::writeToSPI](ILI9488-Xilinx_library/ILI9488_Xil.cpp#L406) using low-level SPI functions (e.g., [XSpi_WriteReg](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#ga32e741800118678aa060ef2a13661e31)). The implementation doesn't read any data back from the receive FIFO buffer from the AXI SPI IP.  
-The fact that  ILI9488::writeToSPI has similar performance on both slow 160 MHz MicroBlaze and fast 667 MHz Zynq-7000 tells me that it's efficient and the performance bottleneck is the 20 MHz SPI clock of the ILI9488 controller.
+The fact that  ILI9488::writeToSPI has similar performance on both slow 160 MHz MicroBlaze and fast 667 MHz Zynq-7000 tells me that it's efficient and the performance bottleneck is the 20 MHz SPI clock of the ILI9488 display controller IC.
 
 For PS SPI on Zynq-7000, the method [ILI9488::writeToSPI](ILI9488-Xilinx_library/ILI9488_Xil.cpp#L406) just calls the function [XSpiPs_PolledTransfer](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/group__spips.html#ga94490f99431c92c2a9a54cc41d4abe71). XSpiPs_PolledTransfer also always reads the content of the receive FIFO, but that is very fast on Zynq-7000, and, I, therefore, didn't invest time into low-level SPI implementation for PS SPI.
 
