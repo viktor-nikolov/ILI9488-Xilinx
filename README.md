@@ -80,12 +80,12 @@ Logic IO pins accept 3.3 V voltage level (TTL).
 
 To use the library, copy the whole content of the [ILI9488-Xilinx_library](ILI9488-Xilinx_library) folder to the src folder of your application project in Vitis.
 
-The library itself defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h) and [ILI9488_Xil.cpp](ILI9488-Xilinx_library/ILI9488_Xil.cpp).
+The library is defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h) and [ILI9488_Xil.cpp](ILI9488-Xilinx_library/ILI9488_Xil.cpp).
 
 The class ILI9488 extends class Adafruit_GFX which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
 
 Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts which came with the Adafruit_GFX library.  
-(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for example of use.)
+(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
 
 **TODO:**
 
