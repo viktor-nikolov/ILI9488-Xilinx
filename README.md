@@ -24,7 +24,7 @@ ILI9488 display controller IC has several interfaces. The 3.5″ SPI Module modu
 
 The display, therefore, needs to be connected to an SPI interface and to two GPIO pins.
 
-The library supports both Zynq Processing System SPI and AXI SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
+The library supports both Zynq Processing System SPI and AXI Quad SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
 The library also supports both Zynq Processing System [EMIO GPIO](https://support.xilinx.com/s/article/386661) and [AXI GPIO IP](https://www.xilinx.com/products/intellectual-property/axi_gpio.html).
 
 Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice versa). All four combinations are supported by the library.
@@ -38,9 +38,19 @@ The Zynq-7000 Processing System default SPI clock is 166.67 MHz. You can scale t
 For getting a setting closest to the ILI9488 rated 20 MHz, we can call `XSpiPs_SetClkPrescaler(&SpiInstance,XSPIPS_CLK_PRESCALE_8)`, which gives us an SPI clock of 20.83 MHz (==&nbsp;166,67&nbsp;/&nbsp;8).  
 20.83 MHz is higher than the 20 MHz from the datasheet. Nevertheless, my specimen of the display worked well at this frequency.
 
-If you want to be on the safe side, you can set SPI frequency to 150 MHz in the Zynq-7000 configuration in Vivado. The with the factor `XSPIPS_CLK_PRESCALE_8` you get the SPI frequency of 18,75 MHz.
+If you want to be on the safe side, you can set the SPI frequency to 150 MHz in the Zynq-7000 configuration in Vivado. Then, with the factor `XSPIPS_CLK_PRESCALE_8`, you get the SPI frequency of 18,75 MHz.
 
 ### AXI SPI setup
+
+The library expects that the AXI Quad SPI is configured as a Master, in the standard mode and with Transaction Width of 8 bits.
+
+For best performance, I highly recommend configuring the AXI SPI IP with a FIFO of 256 bytes. (The library will work with FIFO of 16 bytes and without a FIFO, but the performance will be reduced.)
+
+To achieve the 20 MHz SPI clock for the ILI9488 I recommend to drive AXI SPI input signal ext_spi_clk with 40 MHz and set the Frequency Ratio in the IP configuration to 2.
+
+I tested the library with AXI Quad SPI configured in this way:
+
+
 
 ### Physical connection
 
