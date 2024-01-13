@@ -35,7 +35,7 @@ The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Shee
 
 The Zynq-7000 Processing System default SPI clock is 166.67 MHz. You can scale this frequency down by a power of two factors by calling [XSpiPs_SetClkPrescaler](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/group__spips.html#ga146ed84d7a6ab3b3f8961697bd78da60).
 
-For getting a setting closest to the ILI9488 rated 20 MHz, we can call `XSpiPs_SetClkPrescaler(&SpiInstance,XSPIPS_CLK_PRESCALE_8);`, which gives us an SPI clock of 20.83 MHz (== 166,67 / 8).  
+For getting a setting closest to the ILI9488 rated 20 MHz, we can call `XSpiPs_SetClkPrescaler(&SpiInstance,XSPIPS_CLK_PRESCALE_8)`, which gives us an SPI clock of 20.83 MHz (==&nbsp;166,67&nbsp;/&nbsp;8).  
 20.83 MHz is higher than the 20 MHz from the datasheet. Nevertheless, my specimen of the display worked well at this frequency.
 
 If you want to be on the safe side, you can set SPI frequency to 150 MHz in the Zynq-7000 configuration in Vivado. The with the factor `XSPIPS_CLK_PRESCALE_8` you get the SPI frequency of 18,75 MHz.
