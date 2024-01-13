@@ -50,7 +50,7 @@ To achieve the 20 MHz SPI clock for the ILI9488 I recommend to drive AXI SPI inp
 
 I tested the library with AXI Quad SPI configured in this way:
 
-<img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="350">
+<img src="pictures\AXI_SPI_configuration.png" title="" alt="ILI9488 TFT display pins" width="500">
 
 ### Physical connection
 
