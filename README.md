@@ -14,10 +14,13 @@ the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lc
 
 # How to use the library
 
-## HW connection and design
+## HW connection and setup
 
-I'm describing here the connection of the [3.5″ SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520), which seems to be the most easily available display with the ILI9488 controller IC.  
-ILI9488 IC has several interfaces. The display module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.
+I'm describing here the connection of the [3.5″ SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520), which seems to be the most easily available display with the ILI9488 controller IC.
+
+### Interfaces
+
+ILI9488 display controller IC has several interfaces. The 3.5″ SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.
 
 The display, therefore, needs to be connected to an SPI interface and to two GPIO pins.
 
@@ -26,9 +29,13 @@ The library also supports both Zynq Processing System [EMIO GPIO](https://suppor
 
 Different kinds of SPI and GPIO can be combined (e.g., you can use AXI SPI with PS GPIO and vice versa). All four combinations are supported by the library.
 
+### PS SPI setup
+
 The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the minimum SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet).
 
-**TODO 20 MHz SPI**
+### AXI SPI setup
+
+### Physical connection
 
 For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted on the photo below.
 
@@ -38,16 +45,16 @@ Logic IO pins accept 3.3 V voltage level (TTL).
 
 <img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="230">
 
-| Pin        | Meaning                                                                                       | Where to connect to                                                                                                     |
-| ---------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| LED        | Display backlight control; level 3.3 V gives maximum brightness                               | 3.3 V power source                                                                                                      |
-| SCK        | SPI bus clock signal<br/>rated at 20 MHz<br/>(my specimen of the display worked at 20.83 MHz) | PS&nbsp;SPI:&nbsp;SPI*x*_SCLK_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_SCLK_O)<br/><br/>AXI SPI: sck_o signal                |
-| SDI (MOSI) | SPI bus write data signal (input into the display)                                            | PS&nbsp;SPI:&nbsp;SPI*x*_MOSI_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_MOSI_O)<br/><br/>AXI SPI: io*x*_o signal (e.g. io0_o) |
-| DC/RS      | Data/Command selection signal<br/>high: command, low: data                                    | A GPIO signal                                                                                                           |
-| RESET      | Display reset signal, low for reset                                                           | A GPIO signal                                                                                                           |
-| CS         | SPI chip select signal, low level for enable                                                  | PS SPI: SPI*x*_SS_O signal (e.g., SPI0_SS_O)<br/><br/>AXI SPI: ss_o[*x*:*x*] signal (e.g. ss_o[0:0])                    |
-| GND        | Ground                                                                                        | Ground                                                                                                                  |
-| VCC        | 5 V or 3.3V power input                                                                       | 5 V or 3.3V power source                                                                                                |
+| Pin        | Meaning                                                                                             | Where to connect to                                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| LED        | Display backlight control; level 3.3 V gives maximum brightness                                     | 3.3 V power source                                                                                                      |
+| SCK        | SPI bus clock signal,<br/>rated at 20 MHz<br/>(my specimen of the display worked at 20.83&nbsp;MHz) | PS&nbsp;SPI:&nbsp;SPI*x*_SCLK_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_SCLK_O)<br/><br/>AXI SPI: sck_o signal                |
+| SDI (MOSI) | SPI bus write data signal (input into the display)                                                  | PS&nbsp;SPI:&nbsp;SPI*x*_MOSI_O&nbsp;signal&nbsp;(e.g.,&nbsp;SPI0_MOSI_O)<br/><br/>AXI SPI: io*x*_o signal (e.g. io0_o) |
+| DC/RS      | Data/Command selection signal<br/>high: command, low: data                                          | A GPIO signal                                                                                                           |
+| RESET      | Display reset signal, low for reset                                                                 | A GPIO signal                                                                                                           |
+| CS         | SPI chip select signal, low level for enable                                                        | PS SPI: SPI*x*_SS_O signal (e.g., SPI0_SS_O)<br/><br/>AXI SPI: ss_o[*x*:*x*] signal (e.g. ss_o[0:0])                    |
+| GND        | Ground                                                                                              | Ground                                                                                                                  |
+| VCC        | 5 V or 3.3V power input                                                                             | 5 V or 3.3V power source                                                                                                |
 
 ## SW configuration and usage
 
