@@ -20,9 +20,10 @@ I'm describing here the connection of the [3.5″ SPI Module ILI9488](http://www
 
 ### Interfaces
 
-ILI9488 display controller IC has several interfaces. The 3.5″ SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.
+ILI9488 display controller IC has several interfaces. The 3.5″ SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.  
+The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the shortest possible SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet).
 
-The display, therefore, needs to be connected to an SPI interface and to two GPIO pins.
+In addition to the SPI, the display needs to be connected to two GPIO pins (reset and Data/Command selection signals).
 
 The library supports both Zynq Processing System SPI and AXI Quad SPI IP (see [this short introduction](https://support.xilinx.com/s/article/796622) to the two types of SPI).  
 The library also supports both Zynq Processing System [EMIO GPIO](https://support.xilinx.com/s/article/386661) and [AXI GPIO IP](https://www.xilinx.com/products/intellectual-property/axi_gpio.html).
@@ -42,11 +43,11 @@ If you want to be on the safe side, you can set the SPI frequency to 150 MHz in 
 
 ### AXI SPI setup
 
-The library expects that the AXI Quad SPI is configured as a Master, in the standard mode and with Transaction Width of 8 bits.
+The library expects that the AXI Quad SPI is configured as a Master, in the standard mode and with a Transaction Width of 8 bits.
 
-For best performance, I highly recommend configuring the AXI SPI IP with a FIFO of 256 bytes. (The library will work with FIFO of 16 bytes and without a FIFO, but the performance will be reduced.)
+For best performance, I highly recommend configuring the AXI SPI IP with a FIFO of 256 bytes. (The library will work with a FIFO of 16 bytes and without a FIFO, but the performance will be reduced.)
 
-To achieve the 20 MHz SPI clock for the ILI9488 I recommend to drive AXI SPI input signal ext_spi_clk with 40 MHz and set the Frequency Ratio in the IP configuration to 2.
+To achieve the 20 MHz SPI clock for the ILI9488, I recommend to drive AXI SPI input signal ext_spi_clk with 40 MHz and set the Frequency Ratio in the IP configuration to 2.
 
 I tested the library with AXI Quad SPI configured in this way:
 
@@ -75,6 +76,10 @@ Logic IO pins accept 3.3 V voltage level (TTL).
 
 ## SW configuration and usage
 
+## Using the library
+
+
+
 TBD
 
 **TODO:**
@@ -82,10 +87,6 @@ TBD
 - Přečíslovat pin CS na Zynq.
 
 - PS SPI: The code using the library is responsible to select/deselect slaves. Library doesn't do it.
-
-- For MicroBlaze AXI Quad SPI FIFO 256 for performance reasons. **Transaction width must be 8 bits.**
-  Don't enable Performance Mode AXI-Lite has to be used (AXI on the MicroBlaze is AXI-Lite).
-  Must reduce AXI peripheral frequency to 90 MHz (AXI Quad SPI wasn't working at 100 MHz).
 
 - Increase stack size for the MicroBlaze.
 
@@ -97,8 +98,6 @@ TBD
   - AXI GPIO max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG144](https://docs.xilinx.com/v/u/en-US/pg144-axi-gpio), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2F0c0ItRCmnYkoHpcYUCPkEA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg144-axi-gpio.pdf#G5.306784).
   - AXI Quad SPI max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG153](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi), chapter [Performance](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi/Performance).
   - AXI UART lie max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG142](https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2FdB1MAeh~uLG7FE62a5_QbA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg142-axi-uartlite.pdf#G5.309065).
-
-- Two warnings when compiling MicroBlaze demo in Release configuration are result of the compiler's optimization.
 
 - Compiler optimization matters.
 
