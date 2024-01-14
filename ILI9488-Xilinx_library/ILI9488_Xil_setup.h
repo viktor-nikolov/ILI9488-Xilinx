@@ -55,16 +55,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //checking consistency of the settings:
 #if !defined(ILI9488_SPI_PS) && !defined(ILI9488_SPI_AXI)
-	#error "You must define one of the macros ILI9488_SPI_PS and ILI9488_SPI_AXI in ILI9488_Xil_setup.hpp"
+	#error "You must define one of the macros ILI9488_SPI_PS and ILI9488_SPI_AXI in ILI9488_Xil_setup.h"
 #endif
 #if defined(ILI9488_SPI_PS) && defined(ILI9488_SPI_AXI)
-	#error "Only one of the macros ILI9488_SPI_PS and ILI9488_SPI_AXI can be defined in ILI9488_Xil_setup.hpp"
+	#error "Only one of the macros ILI9488_SPI_PS and ILI9488_SPI_AXI can be defined in ILI9488_Xil_setup.h"
 #endif
 #if !defined(ILI9488_GPIO_PS) && !defined(ILI9488_GPIO_AXI)
-	#error "You must define one of the macros ILI9488_GPIO_PS and ILI9488_GPIO_AXI in ILI9488_Xil_setup.hpp"
+	#error "You must define one of the macros ILI9488_GPIO_PS and ILI9488_GPIO_AXI in ILI9488_Xil_setup.h"
 #endif
 #if defined(ILI9488_GPIO_PS) && defined(ILI9488_GPIO_AXI)
-	#error "Only one of the macros ILI9488_GPIO_PS and ILI9488_GPIO_AXI can be defined in ILI9488_Xil_setup.hpp"
+	#error "Only one of the macros ILI9488_GPIO_PS and ILI9488_GPIO_AXI can be defined in ILI9488_Xil_setup.h"
 #endif
 
 #ifdef __MICROBLAZE__
