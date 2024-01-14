@@ -82,10 +82,14 @@ To use the library, copy the whole content of the [ILI9488-Xilinx_library](ILI94
 
 The library is defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h) and [ILI9488_Xil.cpp](ILI9488-Xilinx_library/ILI9488_Xil.cpp).
 
-The class ILI9488 extends class Adafruit_GFX which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
+The class ILI9488 extends the class Adafruit_GFX, which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
 
 Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts which came with the Adafruit_GFX library.  
 (See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
+
+### Configuring the library
+
+As described in the chapter [Interfaces](https://github.com/viktor-nikolov/ILI9488-Xilinx?tab=readme-ov-file#interfaces), abc [Interfaces](#interfaces)
 
 **TODO:**
 
