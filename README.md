@@ -89,7 +89,23 @@ Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains 
 
 ### Configuring the library
 
-As described in the chapter [Interfaces](https://github.com/viktor-nikolov/ILI9488-Xilinx?tab=readme-ov-file#interfaces), abc [Interfaces](#interfaces)
+As described in the chapter [Interfaces](#interfaces), the display can be connected to the system using PS SPI or AXI SPI and PS GPIO or AXI GPIO.  
+We need to tell the library which connection we use.  
+The library is configured by editing the header [ILI9488_Xil_setup.h](ILI9488-Xilinx_library/ILI9488_Xil_setup.h). (The ILI9488_Xil_setup.h is being included by the ILI9488_Xil.h.)
+
+You must edit the following section of this header, uncommenting one of the macros for SPI and one of the macros for GPIO:
+
+```c
+/**** select one of the SPI types used by given application ****/
+//#define ILI9488_SPI_PS  //SPI of Zynq Processing Systems is used.
+//#define ILI9488_SPI_AXI //AXI Quad SPI IP is used.
+
+/**** select one of the GPIO types used by given application ****/
+//#define ILI9488_GPIO_PS  //EMIO GPIO of Zynq Processing Systems is used.
+//#define ILI9488_GPIO_AXI //AXI GPIO IP is used.
+```
+
+tbd
 
 **TODO:**
 
