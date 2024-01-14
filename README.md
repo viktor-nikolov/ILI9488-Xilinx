@@ -158,6 +158,7 @@ On AXI SPI, I recommend selecting a Slave by following commands:
 ```c
 /* Select Slave 0 in the SPI instance configuration.
  * Parameter value 1 means that bit 0 is set, and therefore, Slave 0 is active.
+ * We call this in order to have the correct value in SpiInstance.SlaveSelectReg.
  */
 XSpi_SetSlaveSelect(&SpiInstance, 1);
 
