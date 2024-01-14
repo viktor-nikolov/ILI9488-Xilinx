@@ -121,12 +121,12 @@ Here is the definition of ILI9488::init for the case that AXI SPI and AXI GPIO a
 void ILI9488::init( XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
 ```
 
-| Parameter | Meaning                                                                                                                                                                            |
-| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| spi       | Address of a [XSpi](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_spi.html) instance representing an initialized SPI driver <ins>ready for use</ins>.    |
-| gpio      | Address of a [XGpio](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_gpio.html) instance representing an initialized GPIO driver <ins>ready for use</ins>. |
-|           |                                                                                                                                                                                    |
-|           |                                                                                                                                                                                    |
+| Parameter | Meaning                                                                                                                                                                             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| spi       | Address of a [XSpi](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_spi.html) instance representing an initialized SPI driver <ins>ready for use</ins>.     |
+| gpio      | Address of a [XGpio](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/struct_x_gpio.html) instance representing an initialized GPIO driver <ins>ready for use</ins>. |
+|           |                                                                                                                                                                                     |
+|           |                                                                                                                                                                                     |
 
 **TODO:**
 
