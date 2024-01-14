@@ -12,7 +12,7 @@ I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [M
 the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) (can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html)).
 
 > [!NOTE]
-> The ILI9488 3.5&Prime; TFT LCD is a touch screen. However, the library presented here contains only graphics display capabilities. It does not read any user touch inputs from the display.
+> The ILI9488 3.5&Prime; TFT LCD module is a touch screen. However, the library presented here contains only graphics display capabilities. It does not read any user touch inputs from the display.
 
 # How to use the library
 
@@ -121,7 +121,7 @@ You must edit the following section of this header, uncommenting one of the macr
 The class ILI9488 has an empty constructor.  
 The initialization of the class and configuration of the display is done by the method ILI9488::init. During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
 
-> [!IMPORTANT]
+> [!WARNING]
 > You must call ILI9488::init  before using any other method of the ILI9488 class.
 
 The method will raise std::invalid_argument or std::logic_error exceptions if it detects an issue with the parameters passed into it.
