@@ -151,12 +151,12 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 
 The code using the library is responsible for selecting the correct SPI Slave before calling any of the library's methods. The library doesn't do Slave selection.
 
-On PS SPI, you can select, for example, Slave 0 by the call ` XSpiPs_SetSlaveSelect(&SpiInstance, 0);`.
+On PS SPI, you can select, for example, Slave 0 by the call `XSpiPs_SetSlaveSelect(&SpiInstance, 0);`.
 
 On AXI SPI, I recommend selecting a Slave by following commands:
 
 ```C
-XSpi   SpiInstance;
+XSpi SpiInstance;
 
 ...
 
