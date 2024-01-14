@@ -30,4 +30,8 @@
 *.exe
 *.out
 *.app
+
+# Other unneeded files
 *.bak
+*.log
+*.jou
