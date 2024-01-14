@@ -173,7 +173,7 @@ XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 ```
 
 > [!WARNING]
-> On AXI SPI, you must select the Slave by calling [XSpi_SetSlaveSelectReg]([spi: Overview](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#gae93befb10305b5abccc5483b73e60060)), which does the actual write to the AXI SPI IP register, thus driving the relevant ss_o[*x*:*x*] signal low.
+> On AXI SPI, you must select the Slave by calling [XSpi_SetSlaveSelectReg](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#gae93befb10305b5abccc5483b73e60060), which does the actual write to the AXI SPI IP register, thus driving the relevant ss_o[*x*:*x*] signal low.
 > 
 > This is because, on AXI SPI, the library uses low-level SPI function [XSpi_WriteReg](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#ga32e741800118678aa060ef2a13661e31), which does not set the slave register automatically based on the setting in the [XSpi](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_spi.html) instance.
 
