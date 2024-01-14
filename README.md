@@ -93,7 +93,7 @@ Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains 
 > The compiler optimization matters!  
 > There is a code in the library (especially in ILI9488::fillRect) which is CPU intensive.
 > 
-> Do compile the final application in the Release configuration.
+> Do build the final application in the Release configuration.
 > 
 > I recommend changing the Properties|C/C++ Build|Setting|Optimization to "Optimize most (-O3)" (the default is -O2 optimization setting).  
 > I measured that using -O3 increases library's performance as compared to -O2.
@@ -149,7 +149,25 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 
 ### SPI Slave selection
 
-The code using the library is responsible to select/deselect slaves. Library doesn't do it.
+The code using the library is responsible for selecting the correct SPI Slave before calling any of the library's methods. The library doesn't do Slave selection.
+
+On PS SPI, you can select, for example, Slave 0 by the call ` XSpiPs_SetSlaveSelect(&SpiInstance, 0);`.
+
+On AXI SPI, I recommend selecting a Slave by following commands:
+
+```c
+/* Select Slave 0 in the SPI instance configuration.
+ * Parameter value 1 means that bit 0 is set, and therefore, Slave 0 is active.
+ */
+XSpi_SetSlaveSelect(&SpiInstance, 1);
+
+/* Set the slave select register to select the device on the SPI before starting the transfer
+ * of data. This call actually drives the respective SS signal low to activate the SPI slave.
+ */
+XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
+
+
+```
 
 ### Using Adafruit GFX
 
@@ -169,8 +187,6 @@ Note 888 color display vs 565 GFX
   - AXI GPIO max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG144](https://docs.xilinx.com/v/u/en-US/pg144-axi-gpio), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2F0c0ItRCmnYkoHpcYUCPkEA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg144-axi-gpio.pdf#G5.306784).
   - AXI Quad SPI max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG153](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi), chapter [Performance](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi/Performance).
   - AXI UART lie max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG142](https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2FdB1MAeh~uLG7FE62a5_QbA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg142-axi-uartlite.pdf#G5.309065).
-
-- Compiler optimization matters.
 
 # Performace
 
