@@ -155,7 +155,7 @@ On PS SPI, you can select, for example, Slave 0 by the call ` XSpiPs_SetSlaveSel
 
 On AXI SPI, I recommend selecting a Slave by following commands:
 
-```c
+```C
 /* Select Slave 0 in the SPI instance configuration.
  * Parameter value 1 means that bit 0 is set, and therefore, Slave 0 is active.
  * We call this in order to have the correct value in SpiInstance.SlaveSelectReg.
@@ -166,8 +166,6 @@ XSpi_SetSlaveSelect(&SpiInstance, 1);
  * of data. This call actually drives the respective SS signal low to activate the SPI slave.
  */
 XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
-
-
 ```
 
 ### Using Adafruit GFX
