@@ -218,7 +218,7 @@ int initialize_AXI_SPI() {
 		return XST_FAILURE;
 	}
 	/* Set the slave select register to select the device on the SPI before starting the transfer
-	 * of data. This call actually drives the respective SS signal low to active the SPI slave.
+	 * of data. This call actually drives the respective SS signal low to activate the SPI slave.
 	 */
 	XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 
