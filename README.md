@@ -110,14 +110,23 @@ You must edit the following section of this header, uncommenting one of the macr
 ### Initializing the library
 
 The class ILI9488 has an empty constructor.  
-The initialization of the class and configuration of the display is done by the method ILI9488::init.  You must call this method before using any other method of the ILI9488 class.  
-During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
+The initialization of the class and configuration of the display is done by the method ILI9488::init. During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
+
+> [!IMPORTANT]
+> You must call ILI9488::init  before using any other method of the ILI9488 class.
 
 Here is the definition of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPI connection, see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
 
 ```c
 void ILI9488::init( XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
 ```
+
+| Parameter | Meaning |
+| --------- | ------- |
+| spi       |         |
+|           |         |
+|           |         |
+|           |         |
 
 **TODO:**
 
