@@ -115,7 +115,7 @@ The initialization of the class and configuration of the display is done by the 
 > [!IMPORTANT]
 > You must call ILI9488::init  before using any other method of the ILI9488 class.
 
-Here is the definition of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPIO connection, see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
+Here is the declaration of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPIO connection, see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
 
 ```c
 void ILI9488::init( XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
@@ -128,6 +128,13 @@ void ILI9488::init( XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _G
 | _RSTPin      | Mask of the GPIO pin to which the RESET signal of the display is connected to.<br/>This mask is a value the library will use when calling functions [XGpio_DiscreteSet](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/group__gpio.html#ga8f2cea7ef78412c03c7ebdba87b7cdd4)/[XGpio_DiscreteClear](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/group__gpio.html#gae430718af9f347c91be42aad580b216c). A GPIO pin represented by bit 0 has the mask 0x01. |
 | _DCPin       | Mask of the GPIO pin to which the DC/RS signal of the display is connected to.                                                                                                                                                                                                                                                                                                                                                                                                              |
 | _GPIOChannel | AXI GPIO IP can be configured to have two channels (i.e., two banks of GPIO ports.). The default channel is identified by value 1.<br/>In case you connect RESET and DC/RS signals to channel 2 of an AXI GPIO IP, provide 2 as the value of the _GPIOChannel parameter. (Please note that RESET and DC/RS signals must be in the same channel.)                                                                                                                                            |
+
+You must pass initialized and ready to use instances of SPI and GPIO drivers to the ILI9488::init.
+
+> [!TIP]
+> Part of this repository is a [demo application](ILI9488-Xilinx_library_demo_app), which shows the usage of the library. The application is implemented to work with all combinations of PS/AXI SPI/GPIO connections.
+> 
+> I recommend that you use functions 
 
 **TODO:**
 
