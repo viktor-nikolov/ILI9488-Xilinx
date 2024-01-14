@@ -86,7 +86,7 @@ The library is defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_li
 
 The class ILI9488 extends the class Adafruit_GFX, which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
 
-Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts which came with the Adafruit_GFX library.  
+Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts that came with the Adafruit_GFX library.  
 (See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
 
 ### Configuring the library
@@ -107,7 +107,17 @@ You must edit the following section of this header, uncommenting one of the macr
 //#define ILI9488_GPIO_AXI //AXI GPIO IP is used.
 ```
 
-tbd
+### Initializing the library
+
+The class ILI9488 has an empty constructor.  
+The initialization of the class and configuration of the display is done by the method ILI9488::init.  You must call this method before using any other method of the ILI9488 class.
+During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
+
+Here is the definition of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPI connection, see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
+
+```c
+void init( ILI9488 XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
+```
 
 **TODO:**
 
