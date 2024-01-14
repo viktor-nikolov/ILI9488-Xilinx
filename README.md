@@ -134,7 +134,7 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 > [!TIP]
 > Part of this repository is a [demo application](ILI9488-Xilinx_library_demo_app), which shows the usage of the library. The application is implemented to work with all combinations of PS/AXI SPI/GPIO connections.
 > 
-> I recommend that you use functions 
+> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L101), initialize_AXI_SPI(), initialize_PS_GPIO() and initialize_AXI_GPIO() as templates for SPI/GPIO interfaces initialization.
 
 **TODO:**
 
