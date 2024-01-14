@@ -89,6 +89,15 @@ The class ILI9488 extends the class Adafruit_GFX, which is defined (together wit
 Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts that came with the Adafruit_GFX library.  
 (See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
 
+> [!IMPORTANT]
+> The compiler optimization matters!  
+> There is a code in the library (especially in ILI9488::fillRect) which is CPU intensive.
+> 
+> Do compile the final application in the Release configuration.
+> 
+> I recommend changing the Properties|C/C++ Build|Setting|Optimization to "Optimize most (-O3)" (the default is -O2 optimization setting).  
+> I measured that using -O3 increases library's performance as compared to -O2.
+
 ### Configuring the library
 
 As described in the chapter [Interfaces](#interfaces), the display can be connected to the system using PS SPI or AXI SPI and PS GPIO or AXI GPIO.  
@@ -115,6 +124,8 @@ The initialization of the class and configuration of the display is done by the 
 > [!IMPORTANT]
 > You must call ILI9488::init  before using any other method of the ILI9488 class.
 
+The method will raise std::invalid_argument or std::logic_error exceptions if it detects an issue with the parameters passed into it.
+
 Here is the declaration of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPIO connection, see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
 
 ```c
@@ -136,13 +147,17 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 > 
 > I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L101), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L164), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L232) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L260) from the demo application as templates for SPI/GPIO interfaces initialization.
 
-TBD
+### SPI Slave selection
+
+The code using the library is responsible to select/deselect slaves. Library doesn't do it.
+
+### Using Adafruit GFX
+
+Note 888 color display vs 565 GFX
 
 **TODO:**
 
 - Přečíslovat pin CS na Zynq.
-
-- PS SPI: The code using the library is responsible to select/deselect slaves. Library doesn't do it.
 
 - Increase stack size for the MicroBlaze.
 
