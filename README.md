@@ -179,11 +179,17 @@ XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 
 ### Using Adafruit GFX
 
-Please refer to the [Adafruit GFX Library reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [User Guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf).
+Please refer to the [Adafruit GFX Library reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [User Guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf). Please ignore Arduino-specific aspects of the Adafruit GFX library.
+
+Demo app.
 
 Note 888 color display vs 565 GFX
 
-#### Drawing bitmap images
+set rotation
+
+### Drawing bitmap images
+
+tbd
 
 ### TODO:
 
