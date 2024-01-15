@@ -199,14 +199,24 @@ The only way to draw 24-bit color graphics by the ILI9488 library is to draw a 2
 
 ### Drawing RGB bitmap images
 
-The ILI9488 library contains the following two methods for drawing RGB bitmap images, which are not inherited from the Adafruit GFX library.
+The ILI9488 library contains the following two methods for drawing RGB bitmap images, which are not inherited from the Adafruit GFX library:
 
 ```c
 void ILI9488::drawImage888( const uint8_t* img, uint16_t x, uint16_t y, uint16_t w, uint16_t h );
 void ILI9488::drawImage565( const uint8_t* img, uint16_t x, uint16_t y, uint16_t w, uint16_t h );
 ```
 
-dddd
+These methods take as argument img a byte array of consecutive image pixels starting with the top left corner pixel [0,0], going horizontally along the x-axis.
+
+ILI9488::drawImage888 works with pixels in color coding R:G:B 8b:8b:8b (i.e., 3 bytes per pixel).
+ILI9488::drawImage565 works with pixels in color coding R:G:B 5b:6b:5b (i.e., 2 bytes per pixel).
+
+ILI9488::drawImage565 doesn't utilize the full 24-bit color depth of ILI9488. Nevertheless, the input image takes less space in memory as compared to 24-bit depth.
+
+> [!TIP]
+> In this GitHub repository I provided two Python scripts (for both color bit depths), which read an image file and write to the standard output definition of a constant in C++ (an array of bytes) usable as input to the ILI9488::drawImage888 and ILI9488::drawImage565. See details in [image_to_source_code_conversion](image_to_source_code_conversion).
+
+tbd
 
 ### Demo application and sample projects
 
