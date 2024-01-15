@@ -217,9 +217,9 @@ ILI9488::drawImage565 doesn't utilize the full 24-bit color depth of ILI9488. Ne
 > In this GitHub repository, I provided two Python scripts (for both color bit depths), which read an image file and write to the standard output definition of a constant in C++ (an array of bytes) usable as input to the ILI9488::drawImage888 and ILI9488::drawImage565. See details in image_to_source_code_conversion.
 
 > [!TIP]
-> Using ILI9488::drawImage888 is actually the fastest way to draw anything (even a single pixel) to the ILI9488 because input graphic data are already in the format ready to be sent to the display over SPI. No conversion needed.
+> Using ILI9488::drawImage888 is actually the fastest way to draw anything (even a single pixel) to the ILI9488 because input graphic data are already in the format ready to be sent to the display over SPI. No conversion is needed.
 > 
-> For example `ILI9488::drawPixel( int16_t x, int16_t y, uint16_t color )` must first convert 16-bit R:G:B 5b:6b:5b color to three bytes R:G:B 8b:8b:8b, which are then sent over SPI.
+> For example, `ILI9488::drawPixel( int16_t x, int16_t y, uint16_t color )` must first convert 16-bit R:G:B 5b:6b:5b color to three bytes R:G:B 8b:8b:8b, which are then sent over SPI. This puts a load on the CPU.
 
 Please note that ILI9488::drawImage565 looks similar to [Adafruit_GFX::drawRGBBitmap](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html#a70768127ee8548d2a3690440c1694169), but the methods use different image data format.  
 For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For Adafruit_GFX::drawRGBBitmap, a pixel is represented as a 16-bit unsigned integer (i.e., the bytes are in the reverse order due to little-endian data storage.)
