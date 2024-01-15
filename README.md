@@ -208,7 +208,7 @@ void ILI9488::drawImage565( const uint8_t* img, uint16_t x, uint16_t y, uint16_t
 
 These methods take as argument img a byte array of consecutive image pixels starting with the top left corner pixel [0,0], going horizontally along the x-axis.
 
-ILI9488::drawImage888 works with pixels in color coding R:G:B 8b:8b:8b (i.e., 3 bytes per pixel).
+ILI9488::drawImage888 works with pixels in color coding R:G:B 8b:8b:8b (i.e., 3 bytes per pixel).  
 ILI9488::drawImage565 works with pixels in color coding R:G:B 5b:6b:5b (i.e., 2 bytes per pixel).
 
 ILI9488::drawImage565 doesn't utilize the full 24-bit color depth of ILI9488. Nevertheless, the input image takes less space in memory as compared to 24-bit depth.
