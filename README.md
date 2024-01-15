@@ -182,7 +182,9 @@ XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 The method `void ILI9488::setRotation(uint8_t rotation)` sets the position of the pixel [0,0] and the rotation of the graphics on the display.  
 The following image shows effect of calling ILI9488::setRotation on the 3.5&Prime; SPI Module ILI9488. The default setting is setRotation(0).
 
-![](pictures/directions.png)
+
+
+![](pictures/rotations.png)
 
 ### Drawing graphics elements
 
