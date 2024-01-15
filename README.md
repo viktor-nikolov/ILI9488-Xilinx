@@ -214,7 +214,7 @@ ILI9488::drawImage565 works with pixels in color coding R:G:B 5b:6b:5b (i.e., 2 
 ILI9488::drawImage565 doesn't utilize the full 24-bit color depth of ILI9488. Nevertheless, the input image takes less space in memory as compared to 24-bit depth.
 
 > [!TIP]
-> In this GitHub repository, I provided two Python scripts (for both color bit depths), which read an image file and write to the standard output definition of a constant in C++ (an array of bytes) usable as input to the ILI9488::drawImage888 and ILI9488::drawImage565. See details in image_to_source_code_conversion.
+> In this GitHub repository, I provided two Python scripts (for both color bit depths), which read an image file and write to the standard output definition of a constant in C++ (an array of bytes) usable as input to the ILI9488::drawImage888 and ILI9488::drawImage565. See details in [image_to_source_code_conversion](image_to_source_code_conversion).
 
 > [!TIP]
 > Using ILI9488::drawImage888 is actually the fastest way to draw anything (even a single pixel) to the ILI9488 because input graphic data are already in the format ready to be sent to the display over SPI. No conversion is needed.
