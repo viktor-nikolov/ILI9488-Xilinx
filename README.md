@@ -181,10 +181,8 @@ XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 
 The method `void ILI9488::setRotation(uint8_t rotation)` sets the position of the pixel [0,0] and the rotation of the graphics on the display.
 
-The following image shows effect of calling ILI9488::setRotation on the 3.5&Prime; SPI Module ILI9488.  
+The following image shows the effect of calling ILI9488::setRotation on the 3.5&Prime; SPI Module ILI9488.  
 The default setting is setRotation(0).
-
-
 
 ![](pictures/rotations.png)
 
@@ -194,17 +192,25 @@ You can refer to the Adafruit GFX library's [reference](https://adafruit.github.
 
 In my [demo application](ILI9488-Xilinx_library_demo_app), I strived to show the usage of the most common Adafruit GFX methods.
 
-The Adafruit GFX library is based on 16-bit color representation R:G:B 5b:6b:5b. The color values are passed as unsigned 16-bit integers. 
+The Adafruit GFX library uses 16-bit color representation R:G:B 5b:6b:5b. The color values are passed to library methods as unsigned 16-bit integers.  
+The ILI9488 display has a 24-bit color representation R:G:B 8b:8b:8b. It means that you can't utilize the full color depth of ILI9488 by the Adafruit GFX library.
 
-Note 888 color display vs 565 GFX
+The only way to draw 24-bit color graphics by the ILI9488 library is to draw a 24-bit color bitmap using the method ILI9488::drawImage888 (see next chapter for details).
 
 ### Drawing RGB bitmap images
 
-tbd
+The ILI9488 library contains the following two methods for drawing RGB bitmap images, which are not inherited from the Adafruit GFX library.
+
+```c
+void ILI9488::drawImage888( const uint8_t* img, uint16_t x, uint16_t y, uint16_t w, uint16_t h );
+void ILI9488::drawImage565( const uint8_t* img, uint16_t x, uint16_t y, uint16_t w, uint16_t h );
+```
+
+dddd
+
+### Demo application and sample projects
 
 ### TODO:
-
-- Implementovat drawRGBbitmap
 
 - Přečíslovat pin CS na Zynq.
 
