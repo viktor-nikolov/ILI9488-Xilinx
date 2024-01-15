@@ -118,8 +118,8 @@ public:
 		return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
 	}
 
-	/* drawImage methods expect an array of consecutive image's pixels at pointer "img" starting
-	 * with top left corner pixel [0,0], going horizontally along the x axis.
+	/* drawImage methods expect a byte array of consecutive image pixels at pointer "img" starting
+	 * with the top left corner pixel [0,0], going horizontally along the x-axis.
 	 * drawImage888 works with pixels in color coding R:G:B 8b:8b:8b (i.e., 3 bytes per pixel).
 	 * drawImage565 works with pixels in color coding R:G:B 5b:6b:5b (i.e., 2 bytes per pixel).
 	 *
