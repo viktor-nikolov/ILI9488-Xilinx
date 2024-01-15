@@ -177,17 +177,24 @@ XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 > 
 > This is because, on AXI SPI, the library uses low-level SPI function [XSpi_WriteReg](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#ga32e741800118678aa060ef2a13661e31), which does not set the slave register automatically based on the setting in the [XSpi](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_spi.html) instance.
 
-### Using Adafruit GFX
+### Setting display rotation
 
-Please refer to the [Adafruit GFX Library reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [User Guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf). Please ignore Arduino-specific aspects of the Adafruit GFX library.
+The method `void ILI9488::setRotation(uint8_t rotation)` sets the position of the pixel [0,0] and the rotation of the graphics on the display.  
+The following image shows effect of calling ILI9488::setRotation on the 3.5&Prime; SPI Module ILI9488. The default setting is setRotation(0).
 
-Demo app.
+![](pictures/directions.png)
+
+### Drawing graphics elements
+
+You can refer to the Adafruit GFX library's [reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [user guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) for information on drawing graphic elements. You just need to ignore Arduino-specific aspects of the Adafruit GFX library.
+
+In my [demo application](ILI9488-Xilinx_library_demo_app), I strived to show the usage of the most common Adafruit GFX methods.
+
+The Adafruit GFX library is based on 16-bit color representation R:G:B 5b:6b:5b. The color values are passed as unsigned 16-bit integers. 
 
 Note 888 color display vs 565 GFX
 
-set rotation
-
-### Drawing bitmap images
+### Drawing RGB bitmap images
 
 tbd
 
