@@ -1,0 +1,32 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.5",
+   "Default View_TopLeft":"-357,-218",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 3 -x 520 -y 220 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 3 -x 520 -y 250 -defaultsOSRD
+preplace port port-id_MOSI_JE_3 -pg 1 -lvl 3 -x 520 -y 310 -defaultsOSRD
+preplace port port-id_CS_JE_7 -pg 1 -lvl 3 -x 520 -y 340 -defaultsOSRD
+preplace port port-id_SCK_JE_4 -pg 1 -lvl 3 -x 520 -y 280 -defaultsOSRD
+preplace portBus RST_JE_1 -pg 1 -lvl 3 -x 520 -y 60 -defaultsOSRD
+preplace portBus DC_JE_2 -pg 1 -lvl 3 -x 520 -y 160 -defaultsOSRD
+preplace inst xlslice_0 -pg 1 -lvl 2 -x 400 -y 60 -defaultsOSRD
+preplace inst xlslice_1 -pg 1 -lvl 2 -x 400 -y 160 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 150 -y 290 -defaultsOSRD
+preplace netloc processing_system7_0_GPIO_O 1 1 1 300 60n
+preplace netloc processing_system7_0_SPI0_MOSI_O 1 1 2 N 310 N
+preplace netloc processing_system7_0_SPI0_SCLK_O 1 1 2 N 290 500
+preplace netloc processing_system7_0_SPI0_SS_O 1 1 2 300 340 N
+preplace netloc xlslice_0_Dout 1 2 1 N 60
+preplace netloc xlslice_1_Dout 1 2 1 N 160
+preplace netloc processing_system7_0_DDR 1 1 2 300 220 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 2 N 250 NJ
+levelinfo -pg 1 0 150 400 520
+pagesize -pg 1 -db -bbox -sgen 0 0 660 450
+"
+}
+{
+   "da_ps7_cnt":"1"
+}
