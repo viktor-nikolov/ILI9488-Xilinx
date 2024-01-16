@@ -228,6 +228,8 @@ For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For 
 
 tbd
 
+embed video
+
 ### TODO:
 
 - Přečíslovat pin CS na Zynq.
