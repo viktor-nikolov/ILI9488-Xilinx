@@ -1,1 +1,0 @@
-AXI Quad SPI: Enable FIFO, FIFO Depth 256
