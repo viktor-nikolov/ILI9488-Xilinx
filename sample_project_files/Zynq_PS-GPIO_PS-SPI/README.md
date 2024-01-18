@@ -14,6 +14,8 @@ tbd
 
 !(../../pictures/ZyboZ7_connection_schematics.png)
 
+<img src="(../../pictures/ZyboZ7_connection_schematics.png" title="" alt="" width="431">
+
 tbd
 
 tbd
