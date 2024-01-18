@@ -12,9 +12,7 @@ The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Zybo Z7-20]
 
 tbd
 
-!(../../pictures/ZyboZ7_connection_schematics.png)
-
-<img src="(../../pictures/ZyboZ7_connection_schematics.png" title="" alt="" width="431">
+<img src="(https://raw.githubusercontent.com/viktor-nikolov/ILI9488-Xilinx/main/pictures/ZyboZ7_connection_schematics.png" title="" alt="" width="431">
 
 tbd
 
