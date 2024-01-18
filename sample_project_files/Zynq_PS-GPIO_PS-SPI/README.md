@@ -16,4 +16,6 @@ tbd
 
 tbd
 
+<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Zybo_Z7.jpg?raw=true" title="" alt="" width="600">
+
 tbd
