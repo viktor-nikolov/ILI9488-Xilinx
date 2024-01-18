@@ -57,11 +57,11 @@ I tested the library with AXI Quad SPI configured in this way:
 
 ### Physical connection
 
-For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted on the photo below.
+For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted in the photo below.
 
-- Please note that we do not need to connect "SDO (MISO)" pin of the display to SPI, because we are not reading any data from the display.
+- Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
 
-Logic IO pins accept 3.3 V voltage level (TTL).
+Logic IO pins accept a 3.3 V voltage level (TTL).
 
 <img src="pictures\ILI9488_TFT_display_pins.png" title="" alt="ILI9488 TFT display pins" width="230">
 
@@ -96,7 +96,7 @@ Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains 
 > Do build the final application in the Release configuration.
 > 
 > I recommend changing the Properties|C/C++ Build|Setting|Optimization to "Optimize most (-O3)" (the default is -O2 optimization setting).  
-> I measured that using -O3 increases library's performance as compared to -O2.
+> I measured that using -O3 increases the library's performance as compared to -O2.
 
 ### Configuring the library
 
@@ -126,19 +126,19 @@ The initialization of the class and configuration of the display is done by the 
 
 The method will raise std::invalid_argument or std::logic_error exceptions if it detects an issue with the parameters passed into it.
 
-Here is the declaration of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPIO connection, see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
+Here is the declaration of ILI9488::init for the case that AXI SPI and AXI GPIO are used (there are another three versions of ILI9488::init covering other combinations of SPI and GPIO connection; see [ILI9488_Xil.h](ILI9488-Xilinx_library/ILI9488_Xil.h#L106)):
 
 ```c
 void ILI9488::init( XSpi *spi, XGpio *gpio, u32 _RSTPin, u32 _DCPin, unsigned _GPIOChannel = 1 );
 ```
 
-| Parameter    | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| spi          | Address of a [XSpi](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_spi.html) instance representing an initialized SPI driver <ins>ready for use</ins>.                                                                                                                                                                                                                                                                                                             |
-| gpio         | Address of a [XGpio](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/struct_x_gpio.html) instance representing an initialized GPIO driver <ins>ready for use</ins>.                                                                                                                                                                                                                                                                                                         |
+| Parameter    | Meaning                                                      |
+| ------------ | ------------------------------------------------------------ |
+| spi          | Address of an [XSpi](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/struct_x_spi.html) instance representing an initialized SPI driver <ins>ready for use</ins>. |
+| gpio         | Address of an [XGpio](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/struct_x_gpio.html) instance representing an initialized GPIO driver <ins>ready for use</ins>. |
 | _RSTPin      | Mask of the GPIO pin to which the RESET signal of the display is connected to.<br/>This mask is a value the library will use when calling functions [XGpio_DiscreteSet](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/group__gpio.html#ga8f2cea7ef78412c03c7ebdba87b7cdd4)/[XGpio_DiscreteClear](https://xilinx.github.io/embeddedsw.github.io/gpio/doc/html/api/group__gpio.html#gae430718af9f347c91be42aad580b216c). A GPIO pin represented by bit 0 has the mask 0x01. |
-| _DCPin       | Mask of the GPIO pin to which the DC/RS signal of the display is connected to.                                                                                                                                                                                                                                                                                                                                                                                                              |
-| _GPIOChannel | AXI GPIO IP can be configured to have two channels (i.e., two banks of GPIO ports.). The default channel is identified by value 1.<br/>In case you connect RESET and DC/RS signals to channel 2 of an AXI GPIO IP, provide 2 as the value of the _GPIOChannel parameter. (Please note that RESET and DC/RS signals must be in the same channel.)                                                                                                                                            |
+| _DCPin       | Mask of the GPIO pin to which the DC/RS signal of the display is connected to. |
+| _GPIOChannel | AXI GPIO IP can be configured to have two channels (i.e., two banks of GPIO ports.). The default channel is identified by value 1.<br/>In case you connect RESET and DC/RS signals to channel 2 of an AXI GPIO IP, provide 2 as the value of the _GPIOChannel parameter. (Please note that RESET and DC/RS signals must be in the same channel.) |
 
 You must pass initialized and ready to use instances of SPI and GPIO drivers to the ILI9488::init.
 
@@ -232,8 +232,6 @@ embed video
 
 ### TODO:
 
-- Přečíslovat pin CS na Zynq.
-
 - Increase stack size for the MicroBlaze.
 
 - Add folders src/Adafruit_GFX and src/Adafruit_GFX/Fonts as include paths. Without it the IDE is not able to generate Outlines of the source files.  
@@ -245,7 +243,7 @@ embed video
   - AXI Quad SPI max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG153](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi), chapter [Performance](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi/Performance).
   - AXI UART lie max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG142](https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2FdB1MAeh~uLG7FE62a5_QbA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg142-axi-uartlite.pdf#G5.309065).
 
-# Performace
+# Performance
 
 ILI9488 is not very fast.  
 It uses SPI with a 20 MHz clock and a data width of 8 bits. Each pixel on the display is represented by 3 bytes.
@@ -253,7 +251,7 @@ It uses SPI with a 20 MHz clock and a data width of 8 bits. Each pixel on the di
 So when you fill the whole 320x480 display with a color using ILI9488::fillRect, 450 kB of data needs to be transferred over the SPI (plus a few bytes of commands).
 
 Drawing a single pixel using ILI9488::drawPixel requires a transfer of 13 bytes (10 bytes of commands and 3 bytes of data).  
-That is why the drawing of "big fonts" (definded in the headers in the folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts)) is visibly slow because the Adafruit_GFX library draws these bitmaps pixel by pixel.
+That is why the drawing of "big fonts" (defined in the headers in the folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts)) is visibly slow because the Adafruit_GFX library draws these bitmaps pixel by pixel.
 
 The performance measurements revealed that for AXI SPI, the use of the high-level function [XSpi_Transfer](https://xilinx.github.io/embeddedsw.github.io/spi/doc/html/api/group__spi.html#ga4c44c082ef2d2b9cf4ba3db8bcebd954) significantly decreases the library's overall performance.
 
