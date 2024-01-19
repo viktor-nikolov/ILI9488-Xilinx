@@ -1,6 +1,9 @@
 BSD 2-Clause License
 
-Copyright (c) 2023, Viktor Nikolov
+Copyright (c) 2024 Viktor Nikolov for porting to AMD Xilinx SoC and FPGA
+Copyright (c) 2016 Jaret Burkett for original ILI9488 Arduino library
+Copyright (c) 2012 Adafruit Industries for Adafruit_GFX library
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
