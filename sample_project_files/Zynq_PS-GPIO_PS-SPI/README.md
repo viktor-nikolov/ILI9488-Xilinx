@@ -1,6 +1,6 @@
 # ILI9488 library on Zynq-7000 (PS GPIO, PS AXI)
 
-:construction_worker_man: :construction::construction::construction::construction: **THIS README FILE IS WORK IN PROGRESS** :construction::construction::construction::construction:
+:construction::construction::construction::construction: **THIS README FILE IS WORK IN PROGRESS** :construction::construction::construction::construction:
 
 This folder contains a sample project for using the ILI9488 library on Zynq-7000 with PS GPIO and PS AXI.
 
