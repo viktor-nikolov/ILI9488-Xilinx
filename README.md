@@ -226,24 +226,17 @@ For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For 
 
 ### Demo application and sample projects
 
-tbd
+THIS CHAPTER IS WORK IN PROGRESS
 
-embed video
+Demo app (copy the files to src folder in Vitis): [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app)
 
-### TODO:
+Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
 
-- Increase stack size for the MicroBlaze.
+#### TODO:
 
-- Add folders src/Adafruit_GFX and src/Adafruit_GFX/Fonts as include paths. Without it the IDE is not able to generate Outlines of the source files.  
-  Properties of the application project, C/C++ General, Paths and Symbols, Includes. Specify it as a directory within the workspace.
+- Mention to increase stack size for the MicroBlaze.
 
-- Peripherals are overclocked in the demo design:
-  
-  - AXI GPIO max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG144](https://docs.xilinx.com/v/u/en-US/pg144-axi-gpio), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2F0c0ItRCmnYkoHpcYUCPkEA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg144-axi-gpio.pdf#G5.306784).
-  - AXI Quad SPI max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG153](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi), chapter [Performance](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi/Performance).
-  - AXI UART lie max AXI-lite clock on Artix-7 (slowest speed grade) is 120 MHz in [PG142](https://docs.xilinx.com/v/u/en-US/pg142-axi-uartlite), [Table 2-1](https://docs.xilinx.com/pdf-viewer?file=https%3A%2F%2Fdocs.xilinx.com%2Fapi%2Fkhub%2Fdocuments%2FdB1MAeh~uLG7FE62a5_QbA%2Fcontent%3FFt-Calling-App%3Dft%252Fturnkey-portal%26Ft-Calling-App-Version%3D4.2.26%26filename%3Dpg142-axi-uartlite.pdf#G5.309065).
-
-# Performance
+### Performance
 
 ILI9488 is not very fast.  
 It uses SPI with a 20 MHz clock and a data width of 8 bits. Each pixel on the display is represented by 3 bytes.
