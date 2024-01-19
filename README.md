@@ -18,11 +18,11 @@ the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lc
 
 ## HW connection and setup
 
-I'm describing here the connection of the [3.5″ SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520), which seems to be the most easily available display with the ILI9488 controller IC.
+I'm describing here the connection of the [3.5″ TFT SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520), which seems to be the most easily available display with the ILI9488 controller IC.
 
 ### Interfaces
 
-ILI9488 display controller IC has several interfaces. The 3.5″ SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.  
+ILI9488 display controller IC has several interfaces. The 3.5″ TFT SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.  
 The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the shortest possible SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet). Nevertheless, my specimen of the display was able to run with the SPI clock increased to 20.83 MHz.
 
 In addition to the SPI, the display needs to be connected to two GPIO pins (reset and Data/Command selection signals).
@@ -57,7 +57,7 @@ I tested the library with AXI Quad SPI configured in this way:
 
 ### Physical connection
 
-For using the [3.5&Prime; SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted in the photo below.
+For using the [3.5&Prime; TFT SPI Module ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) with the library, we need to connect the pins highlighted in the photo below.
 
 - Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
 
@@ -181,7 +181,7 @@ XSpi_SetSlaveSelectReg(&SpiInstance, SpiInstance.SlaveSelectReg);
 
 The method `void ILI9488::setRotation(uint8_t rotation)` sets the position of the pixel [0,0] and the rotation of the graphics on the display.
 
-The following image shows the effect of calling ILI9488::setRotation on the 3.5&Prime; SPI Module ILI9488.  
+The following image shows the effect of calling ILI9488::setRotation on the 3.5&Prime; TFT SPI Module ILI9488.  
 The default setting is setRotation(0).
 
 ![](pictures/rotations.png)
