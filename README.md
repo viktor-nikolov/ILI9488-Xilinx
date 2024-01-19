@@ -226,7 +226,7 @@ For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For 
 
 ### Demo application and sample projects
 
-THIS CHAPTER IS WORK IN PROGRESS
+:construction::construction::construction::construction: THIS CHAPTER IS WORK IN PROGRESS :construction::construction::construction::construction:
 
 Demo app (copy the files to src folder in Vitis): [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app)
 
