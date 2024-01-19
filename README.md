@@ -23,7 +23,7 @@ I'm describing here the connection of the [3.5″ SPI Module ILI9488](http://www
 ### Interfaces
 
 ILI9488 display controller IC has several interfaces. The 3.5″ SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.  
-The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the shortest possible SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet).
+The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the shortest possible SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet). Nevertheless, my specimen of the display was able to run with the SPI clock increased to 20.83 MHz.
 
 In addition to the SPI, the display needs to be connected to two GPIO pins (reset and Data/Command selection signals).
 
