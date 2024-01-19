@@ -279,3 +279,9 @@ The durations listed in the table are the durations of the call `display.fillRec
 | Zynq-7000 667 MHz, AXI SPI                      | low-level SPI functions used                                 | 256 B       | 3.019 ms |
 | Zynq-7000 667 MHz, PS SPI                       | function XSpiPs_PolledTransfer used                          | 128 B       | 3.324 ms |
 | Zynq-7000 667 MHz, AXI SPI                      | function XSpi_Transfer used<br/>based on this measurement, I decided to use low-level SPI functions in the library for AXI SPI | 256 B       | 7.665 ms |
+
+
+
+
+
+[<img src="pictures/ILI9488_with_Zybo_Z7.jpg" title="" alt="" width="600">](pictures/ILI9488_with_Zybo_Z7.jpg)
