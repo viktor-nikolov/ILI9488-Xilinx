@@ -232,6 +232,8 @@ Demo app (copy the files to src folder in Vitis): [ILI9488-Xilinx_library_demo_a
 
 Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
 
+[![Watch the video](https://img.youtube.com/vi/Yp6-icTad4Y/maxresdefault.jpg)](https://youtu.be/Yp6-icTad4Y)
+
 #### TODO:
 
 - Mention to increase stack size for the MicroBlaze.
