@@ -1,6 +1,6 @@
 # ILI9488 library on Zynq-7000 (PS GPIO, PS SPI)
 
-This folder contains a sample project for using the [ILI9488](https://github.com/viktor-nikolov/ILI9488-Xilinx) library on Zynq-7000 with PS GPIO and PS SPI.
+This folder contains a sample project for using the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on Zynq-7000 with PS GPIO and PS SPI.
 
 The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Zybo Z7-20](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/).
 
