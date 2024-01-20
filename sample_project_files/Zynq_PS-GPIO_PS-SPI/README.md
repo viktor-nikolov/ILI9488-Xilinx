@@ -17,8 +17,13 @@ The HW design is very simple.
 
 I selected Pmod JE on the Zybo Z7 to connect the display. JE is a so-called standard Pmod (see details in the Zybo Z7 [Reference Manual](https://digilent.com/reference/programmable-logic/zybo-z7/reference-manual?redirect=1#standard_pmod)).
 
-SPI0 of the Zynq is used, and two EMIO GPIO pins are enabled.  
-The two Slices are used solely for "aesthetic purposes" so the RST and DC pins can be scalar pins in the diagram.
+SPI0 of the Zynq is used, and two EMIO GPIO pins are enabled to be used for RST and DC signals.  
+The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
+
+Zynq SPI frequency is kept at default 166.67 MHz. The initialization call `XSpiPs_SetClkPrescaler(&SpiInstance,XSPIPS_CLK_PRESCALE_8)` is used, which sets the SPI clock for the display to 20.83 MHz (==&nbsp;166,67&nbsp;/&nbsp;8).  
+20.83 MHz is higher than the 20 MHz specified in the ILI9488 datasheet. Nevertheless, my specimen of the display worked well at this frequency.
+
+If you want to be on the safe side, you can set the SPI frequency to 150 MHz in the Zynq-7000 configuration in Vivado. Then, with the factor `XSPIPS_CLK_PRESCALE_8`, you get the SPI frequency of 18,75 MHz.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_PS-SPI_diagram.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_PS-SPI_diagram.png)
 
