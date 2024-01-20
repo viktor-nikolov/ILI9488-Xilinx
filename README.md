@@ -232,8 +232,8 @@ Demo app (copy the files to src folder in Vitis): [ILI9488-Xilinx_library_demo_a
 
 Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=Yp6-icTad4Y" target="_blank">
- <img src="http://img.youtube.com/vi/Yp6-icTad4Y/mqdefault.jpg" alt="Watch the video" width="300"  border="10" />
+<a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
+ <img src="demo_app_video_frame.png" alt="Watch the video" width="300"  border="10" />
 </a>
 
 #### TODO:
