@@ -221,21 +221,23 @@ ILI9488::drawImage565 doesn't utilize the full 24-bit color depth of ILI9488. Ne
 > 
 > Consider, for example, that `ILI9488::drawPixel(int16_t x, int16_t y, uint16_t color)` must first convert 16-bit R:G:B 5b:6b:5b color to three bytes R:G:B 8b:8b:8b, which are then sent over the SPI. This puts a load on the CPU.
 
-Please note that ILI9488::drawImage565 looks similar to [Adafruit_GFX::drawRGBBitmap](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html#a70768127ee8548d2a3690440c1694169), but the methods use different image data format.  
+Please note that ILI9488::drawImage565 looks similar to [Adafruit_GFX::drawRGBBitmap](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html#a70768127ee8548d2a3690440c1694169), but the methods use different image data formats.  
 For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For Adafruit_GFX::drawRGBBitmap, a pixel is represented as a 16-bit unsigned integer (i.e., the bytes are in the reverse order due to little-endian data storage.)
 
 ### Demo application and sample projects
 
 :construction::construction::construction::construction: THIS CHAPTER IS WORK IN PROGRESS :construction::construction::construction::construction:
 
-Demo app (copy the files to src folder in Vitis): [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app)
+I prepared a [demo application](ILI9488-Xilinx_library_demo_app), which shows how to initialize GPIO and SPI, how to initialize the library, and how to use its methods.  
+To use the application, copy files from folder [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app) into the src folder of your application project in Vitis.
 
-Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
+The application contains code for all four combinations of PS/AXI GPIO/SPI interfaces. The correct version of code will be enabled based on defionition library's configuration macros in [ILI9488_Xil_setup.h](ILI9488-Xilinx_library/ILI9488_Xil_setup.h) (see chapter [Configuring the library](#configuring-the-library) for details.)
 
 This YouTube video shows what the demo application does:  
 <a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
- <img src="pictures/demo_app_video_frame.png" alt="Watch the video" width="300"  border="10" />
-</a>
+ <img src="pictures/demo_app_video_frame.png" alt="Watch the video" width="300"  border="10" /></a>
+
+Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
 
 #### TODO:
 
