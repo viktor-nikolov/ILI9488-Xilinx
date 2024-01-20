@@ -228,14 +228,18 @@ For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For 
 
 :construction::construction::construction::construction: THIS CHAPTER IS WORK IN PROGRESS :construction::construction::construction::construction:
 
-I prepared a [demo application](ILI9488-Xilinx_library_demo_app), which shows how to initialize GPIO and SPI, how to initialize the library, and how to use its methods.  
-To use the application, copy files from folder [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app) into the src folder of your application project in Vitis.
-
-The application contains code for all four combinations of PS/AXI GPIO/SPI interfaces. The correct version of code will be enabled based on defionition library's configuration macros in [ILI9488_Xil_setup.h](ILI9488-Xilinx_library/ILI9488_Xil_setup.h) (see chapter [Configuring the library](#configuring-the-library) for details.)
+I prepared a [demo application](ILI9488-Xilinx_library_demo_app), which shows how to initialize GPIO and SPI, how to initialize the library, and how to use its methods.
 
 This YouTube video shows what the demo application does:  
 <a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
  <img src="pictures/demo_app_video_frame.png" alt="Watch the video" width="300"  border="10" /></a>
+
+To use the application, copy files from folder [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app) into the src folder of your application project in Vitis.
+
+The application contains code for all four combinations of PS/AXI GPIO/SPI interfaces. The correct version of code will be enabled based on the definition library's configuration macros in [ILI9488_Xil_setup.h](ILI9488-Xilinx_library/ILI9488_Xil_setup.h) (see chapter [Configuring the library](#configuring-the-library) for details.)
+
+The application assumes that GPIO and SPI device 0 is used and that the RST signal is connected to GPIO pin 0 and DC/RS signal is connected to GPIO pin 1.  
+To change this to other GPIO/SPI devices or to other pins, you need to set accordingly values of macros ILI9488_SPI_DEVICE_ID, ILI9488_GPIO_DEVICE_ID, ILI9488_RST_PIN and ILI9488_DC_PIN, which are defined at the beginning of [main.cpp](ILI9488-Xilinx_library_demo_app/main.cpp#L54).
 
 Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
 
