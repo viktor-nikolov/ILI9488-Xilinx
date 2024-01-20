@@ -236,7 +236,7 @@ Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_file
  <img src="http://img.youtube.com/vi/Yp6-icTad4Y/mqdefault.jpg" alt="Watch the video" width="300"  border="10" />
 </a>
 
-[go](http://stackoverflow.com){:target="_blank" rel="noopener"}
+[go](http://stackoverflow.com){target="_blank" rel="noopener"}
 
 #### TODO:
 
