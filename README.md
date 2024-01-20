@@ -226,8 +226,6 @@ For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For 
 
 ### Demo application and sample projects
 
-:construction::construction::construction::construction: THIS CHAPTER IS WORK IN PROGRESS :construction::construction::construction::construction:
-
 I prepared a [demo application](ILI9488-Xilinx_library_demo_app), which shows how to initialize GPIO and SPI, how to initialize the library, and how to use its methods.
 
 This YouTube video shows what the demo application does:  
@@ -238,14 +236,10 @@ To use the application, copy files from folder [ILI9488-Xilinx_library_demo_app]
 
 The application contains code for all four combinations of PS/AXI GPIO/SPI interfaces. The correct version of code will be enabled based on the definition library's configuration macros in [ILI9488_Xil_setup.h](ILI9488-Xilinx_library/ILI9488_Xil_setup.h) (see chapter [Configuring the library](#configuring-the-library) for details.)
 
-The application assumes that GPIO and SPI device 0 is used and that the RST signal is connected to GPIO pin 0 and DC/RS signal is connected to GPIO pin 1.  
+The application assumes that GPIO and SPI device 0 is used and that the RST signal is connected to GPIO pin 0 and the DC/RS signal is connected to GPIO pin 1.  
 To change this to other GPIO/SPI devices or to other pins, you need to set accordingly values of macros ILI9488_SPI_DEVICE_ID, ILI9488_GPIO_DEVICE_ID, ILI9488_RST_PIN and ILI9488_DC_PIN, which are defined at the beginning of [main.cpp](ILI9488-Xilinx_library_demo_app/main.cpp#L54).
 
-Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_files](sample_project_files)
-
-#### TODO:
-
-- Mention to increase stack size for the MicroBlaze.
+I included in this repository several sample projects designed in Vivado 2023.1 and Vitis 2023.1, which show the use of the library on Zynq-7000 and MicroBlaze. Refer to the folder [sample_project_files](sample_project_files) for details.
 
 ### Performance
 
