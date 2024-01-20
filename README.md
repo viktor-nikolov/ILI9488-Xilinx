@@ -234,6 +234,10 @@ Demo projects for Zynq-7000 showing PS SPI and AXI SPI use: [sample_project_file
 
 [![Watch the video](https://img.youtube.com/vi/Yp6-icTad4Y/maxresdefault.jpg)](https://youtu.be/Yp6-icTad4Y)
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=Yp6-icTad4Y" target="_blank">
+ <img src="http://img.youtube.com/vi/Yp6-icTad4Y/mqdefault.jpg" alt="Watch the video" width="240" height="180" border="10" />
+</a>
+
 #### TODO:
 
 - Mention to increase stack size for the MicroBlaze.
