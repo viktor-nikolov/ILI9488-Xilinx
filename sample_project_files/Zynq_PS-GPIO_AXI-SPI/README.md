@@ -20,8 +20,6 @@ I selected Pmod JE on the Zybo Z7 to connect the display. JE is a so-called stan
 SPI0 of the Zynq is used, and two EMIO GPIO pins are enabled.  
 The two Slices are used solely for "aesthetic purposes" so the RST and DC pins can be scalar pins in the diagram.
 
-![https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_AXI-SPI_diagram.png?raw=true](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_AXI-SPI_diagram.png)
-
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_AXI-SPI_diagram.png)
 
 ## Physical connection
