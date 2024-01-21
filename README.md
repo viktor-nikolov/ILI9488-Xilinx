@@ -89,6 +89,10 @@ The class ILI9488 extends the class Adafruit_GFX, which is defined (together wit
 Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts that came with the Adafruit_GFX library.  
 (See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
 
+> [!WARNING]
+> When using the library on the MicroBlaze, be aware of the fact that the default stack size on the MicroBlaze is only 1 kB. The method ILI9488::fillRect uses 768 B from the stack for a local array, which is used to prepare data to be sent to the display over SPI.  
+> The demo application included in this repository works with 1 kB of the stack but mor complex application may not. I highly recommend you increase the stack size in lscript.ld.
+
 > [!IMPORTANT]
 > The compiler optimization matters!  
 > There is a code in the library (especially in ILI9488::fillRect) which is CPU intensive.
