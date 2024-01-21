@@ -45,7 +45,7 @@ We have 256 MB of DDR3 SDRAM at our disposal, so I increased the Stack Size from
 
 Increasing the Stack Size from the MicroBlaze's default 1 kB is important.  
 The method ILI9488::fillRect uses 768 B from the stack for a local array, which is used to prepare data to be sent to the display over SPI.  
-The [demo application](ILI9488-Xilinx_library_demo_app) used in this project works with a 1 kB stack size, but more complex applications may not.
+The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this project works with a 1 kB stack size, but more complex applications may not.
 
 ## The physical connection of the display
 
