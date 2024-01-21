@@ -38,5 +38,5 @@ Increasing the Stack Size is important.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ArtyA7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ArtyA7_connection_schematics.png)
 
-[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Arty_A7.jpg?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Arty_A7.jpg.jpg)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Arty_A7.jpg?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Arty_A7.jpg)
 
