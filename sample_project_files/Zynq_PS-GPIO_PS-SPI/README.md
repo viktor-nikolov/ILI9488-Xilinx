@@ -27,7 +27,7 @@ If you want to be on the safe side, you can set the SPI frequency to 150 MHz in 
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_PS-SPI_diagram.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_PS-SPI_diagram.png)
 
-## Physical connection
+## The physical connection of the display
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ZyboZ7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ZyboZ7_connection_schematics.png)
 
