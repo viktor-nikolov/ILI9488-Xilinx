@@ -1,7 +1,5 @@
 # ILI9488 library on MicroBlaze (AXI GPIO, AXI SPI, DDR3 SDRAM)
 
-:construction::construction::construction::construction: **THIS IS WORK IN PROGRESS** :construction::construction::construction::construction:
-
 This folder contains a sample project for using the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using DDR3 SDRAM.
 
 The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Arty A7-35T](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) (this variant 35T is no longer in production).
@@ -34,6 +32,8 @@ I selected Pmod JD on the Arty A7 to connect the display. JD is a so-called stan
 
 The AXI GPIO IP is configured to provide two output GPIO signals, which are used as RST and DC signals for the display.  
 The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
+
+
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png)
 
