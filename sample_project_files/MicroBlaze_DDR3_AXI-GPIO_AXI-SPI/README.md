@@ -15,14 +15,25 @@ The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Arty A7-35T
 
 ## HW design
 
-I followed the steps of my [MicroBlaze with DDR3 SDRAM tutorial](https://github.com/viktor-nikolov/MicroBlaze-DDR3-tutorial) for the basis of this HW design.
+I followed the steps of my [MicroBlaze with DDR3 SDRAM tutorial](https://github.com/viktor-nikolov/MicroBlaze-DDR3-tutorial) for the basis of this HW design. I, of course, added an AXI Quad SPI IP.
+
+During testing of the library on this HW design, I faced occasional glitches in SPI communication. I discovered that the reason for these glitches was too high clock frequency of the MicroBlaze, AXI bus and AXI SPI IP.
+
+I achieved a reliable operation with MicroBlaze clocked at 160 MHz and the AXI bus with the peripherals clocked at 120 MHz.  
+This is consistent with the information in the AXI Quad SPI [Product Guide PG153](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi), which states in the chapter [Performance](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi/Performance) that the maximum AXI-Lite frequency for this IP is 120 MHz on the slowest speed grade of Artix-7 (i.e., the IC used on Arty A7).
+
+The final design presented here uses a single Clocking Wizard, which produces four clocks:
+
+- clk_out1 is the 160 MHz clock for the MicroBlaze and Slave interfaces on the AXI Interconnects (i.e., the interfaces exposed towards the MicroBlaze).
+- clk_out2 is the 40 MHz clock needed for the ext_spi_clk input signal of the AXI Quad SPI IP. The Frequency Ratio of the AXI SPI IP is set to 2. This results in the desired 20 MHz SPI clock for the display.
+- clk_out3 is the 120 MHz clock for the Master interfaces of the perif_interconnect and for AXI GPI, AXI UART Lite and AXI Quad SPI IPs.  
+  (The master interface of the ram_interconnect is clocked by the 81.25 MHz ui_clk output clock of the MIG.)
+- clk_out4 is the 200 MHz clock needed for the MIG clk_ref_i input clock.
 
 I selected Pmod JD on the Arty A7 to connect the display. JD is a so-called standard Pmod (see details in the Arty A7 [Reference Manual](https://digilent.com/reference/programmable-logic/arty-a7/reference-manual?redirect=1#pmod_connectors)).
 
-... RST and DC signals.  
+The AXI GPIO IP is configured to provide two output GPIO signals, which are used as RST and DC signals for the display.  
 The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
-
-Input ext_spi_clk of the AXI SPI IP is fed with a 40 MHz clock signal from the Clocking Wizzard. The Frequency Ratio of the AXI SPI IP is set to 2. This results in a 20 MHz SPI clock for the display.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png)
 
