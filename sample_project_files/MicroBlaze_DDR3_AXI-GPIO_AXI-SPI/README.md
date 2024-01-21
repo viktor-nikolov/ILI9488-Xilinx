@@ -31,8 +31,7 @@ The final design presented here uses a single Clocking Wizard, which produces fo
 I selected Pmod JD on the Arty A7 to connect the display. JD is a so-called standard Pmod (see details in the Arty A7 [Reference Manual](https://digilent.com/reference/programmable-logic/arty-a7/reference-manual?redirect=1#pmod_connectors)).
 
 The AXI GPIO IP is configured to provide two output GPIO signals, which are used as RST and DC signals for the display.  
-The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
-
+The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.  
 
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png)
