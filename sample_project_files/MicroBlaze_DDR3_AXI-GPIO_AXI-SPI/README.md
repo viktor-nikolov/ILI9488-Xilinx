@@ -2,9 +2,9 @@
 
 :construction::construction::construction::construction: **THIS IS WORK IN PROGRESS** :construction::construction::construction::construction:
 
-This folder contains a sample project for using the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using DD3 SDRAM.
+This folder contains a sample project for using the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using DDR3 SDRAM.
 
-The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Arty A7-35T](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) (this variant 35T  is no longer in production).
+The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Arty A7-35T](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) (this variant 35T is no longer in production).
 
 > [!IMPORTANT]
 > **If you have Arty A7-100T**, you must change the board to A7-100T in Vivado in Tools|Settings|General|Project device.  
@@ -15,9 +15,9 @@ The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Arty A7-35T
 
 ## HW design
 
+I followed the steps of my [MicroBlaze with DDR3 SDRAM tutorial](https://github.com/viktor-nikolov/MicroBlaze-DDR3-tutorial) for the basis of this HW design.
+
 I selected Pmod JD on the Arty A7 to connect the display. JD is a so-called standard Pmod (see details in the Arty A7 [Reference Manual](https://digilent.com/reference/programmable-logic/arty-a7/reference-manual?redirect=1#pmod_connectors)).
-
-
 
 ... RST and DC signals.  
 The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
@@ -34,7 +34,7 @@ We have 256 MB of DDR3 SDRAM at our disposal, so I increased the Stack Size from
 
 Increasing the Stack Size is important.  
 
-## Physical connection
+## The physical connection of the display
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ArtyA7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ArtyA7_connection_schematics.png)
 
