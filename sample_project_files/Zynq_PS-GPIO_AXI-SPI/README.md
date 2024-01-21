@@ -24,7 +24,7 @@ Input ext_spi_clk of the AXI SPI IP is fed with a 40 MHz clock signal from the C
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/Zynq_PS-GPIO_AXI-SPI_diagram.png)
 
-## Physical connection
+## The physical connection of the display
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ZyboZ7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ZyboZ7_connection_schematics.png)
 
