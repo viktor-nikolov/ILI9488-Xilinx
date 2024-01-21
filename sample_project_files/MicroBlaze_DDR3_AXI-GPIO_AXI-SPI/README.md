@@ -1,6 +1,6 @@
 # ILI9488 library on MicroBlaze (AXI GPIO, AXI SPI, DDR3 SDRAM)
 
-This folder contains a sample project for using the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using DDR3 SDRAM.
+This folder contains a sample project for using the [ILI9488 TFT display library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using DDR3 SDRAM.
 
 The design was made in Vivado 2023.1 and Vitis 2023.1 and tested on [Arty A7-35T](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) (this variant 35T is no longer in production).
 
