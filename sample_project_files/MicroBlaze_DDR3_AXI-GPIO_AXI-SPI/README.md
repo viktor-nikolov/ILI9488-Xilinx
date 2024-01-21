@@ -32,7 +32,7 @@ I selected Pmod JD on the Arty A7 to connect the display. JD is a so-called stan
 
 The AXI GPIO IP is configured to provide two output GPIO signals, which are used as RST and DC signals for the display.  
 The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.  
-
+&nbsp;
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_DDR3_AXI-GPIO_AXI-SPI_diagram.png)
 
