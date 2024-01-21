@@ -91,7 +91,8 @@ Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains 
 
 > [!WARNING]
 > When using the library on the MicroBlaze, be aware of the fact that the default stack size on the MicroBlaze is only 1 kB. The method ILI9488::fillRect uses 768 B from the stack for a local array, which is used to prepare data to be sent to the display over SPI.  
-> The [demo application](ILI9488-Xilinx_library_demo_app) included in this repository works with 1 kB of the stack, but more complex applications may not.  
+> The [demo application](ILI9488-Xilinx_library_demo_app) included in this repository works with a 1 kB stack size, but more complex applications may not.
+>
 > **I highly recommend you increase the stack size in lscript.ld on the MicroBlaze.**
 
 > [!IMPORTANT]
