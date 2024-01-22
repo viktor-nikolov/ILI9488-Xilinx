@@ -232,7 +232,7 @@ For ILI9488::drawImage565, a pixel is represented as an array of two bytes. For 
 
 ### Demo application and sample projects
 
-I prepared a [demo application](ILI9488-Xilinx_library_demo_app), which shows how to initialize GPIO and SPI, how to initialize the library, and how to use its methods.
+I prepared a [demo application](ILI9488-Xilinx_library_demo_app), which shows how to initialize GPIO and SPI, how to initialize the library, and how to use its methods. It is a standalone application running on Zynq ARM core or MicroBlaze soft CPU.
 
 This YouTube video shows what the demo application does:  
 <a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
