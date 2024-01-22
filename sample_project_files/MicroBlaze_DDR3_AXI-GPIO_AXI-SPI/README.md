@@ -17,7 +17,7 @@ I followed the steps of my [MicroBlaze with DDR3 SDRAM tutorial](https://github.
 
 During testing of the library on this HW design, I faced occasional glitches in SPI communication. I discovered that the reason for these glitches was too high clock frequency of the MicroBlaze, AXI bus and AXI SPI IP.
 
-I achieved a reliable operation with MicroBlaze clocked at 160 MHz and the AXI bus with the peripherals clocked at 120 MHz.  
+I achieved a reliable operation with the MicroBlaze clocked at 160 MHz and the AXI bus with the peripherals clocked at 120 MHz.  
 This is consistent with the information in the AXI Quad SPI [Product Guide PG153](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi), which states in the chapter [Performance](https://docs.xilinx.com/r/en-US/pg153-axi-quad-spi/Performance) that the maximum AXI-Lite frequency for this IP is 120 MHz on the slowest speed grade of Artix-7 (i.e., the IC used on Arty A7).
 
 The final design presented here uses a single Clocking Wizard, which produces four clocks:
