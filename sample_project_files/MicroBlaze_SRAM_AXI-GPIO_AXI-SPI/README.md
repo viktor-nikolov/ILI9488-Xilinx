@@ -52,7 +52,15 @@ The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this proje
 
 ## The physical connection of the display
 
-For connecting the display I selected the Cmod A7 pins close to the Pmod connector.
+For connecting the display I selected the Cmod A7 pins close to the Pmod connector.  
+I recommend using ground from the ground pin No. 25 of the Cmod A7.  
+3.3 V power is available only on the Pmod pins 6 and 12.
+
+The following images describe the connection and provide the pin numbers of the Cmod A7.
+
+> [!CAUTION]
+>
+> Do not use VU pin No. 24 on the Cmod A7 for powering the display. This pin is connected to 5 V coming via the USB. 5 V will very likely fry your ILI9488 display.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png)
 
