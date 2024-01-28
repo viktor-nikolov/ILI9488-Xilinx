@@ -30,6 +30,6 @@ The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this proje
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png)
 
-[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png?raw=true" title="" alt="" >](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png?raw=true" title="" alt="" width="250">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png)
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg?raw=true" title="" alt="" width="500">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg)
