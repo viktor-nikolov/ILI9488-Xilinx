@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="ILI9488_library_demo_system-bitFile" value="${project_loc:ILI9488_library_demo}/_ide/bitstream/system_wrapper.bit"/>
+	<item key="ILI9488_library_demo_system-bmmFile" value="${project_loc:ILI9488_library_demo}/_ide/bitstream/system_wrapper.mmi"/>
+	<item key="ILI9488_library_demo_system-target" value="Local"/>
+	<item key="ILI9488_library_demo_system-device" value="Auto Detect"/>
+	<item key="ILI9488_library_demo_system-partial_bit" value="false"/>
+	<item key="ILI9488_library_demo_system-skip_rev_check" value="false"/>
+	<item key="programfpga.sdxproject" value="ILI9488_library_demo_system"/>
+	<item key="ILI9488_library_demo_system-microblaze_0-initElf" value="bootloop"/>
+	<item key="devices_info_Local" value="{&quot;cables&quot;:[{&quot;name&quot;:&quot;Digilent Cmod A7 - 35T 210328B857E3A&quot;,&quot;indexContextMap&quot;:{&quot;2&quot;:&quot;jsn-Cmod A7 - 35T-210328B857E3A-0362d093-0&quot;}}]}"/>
+</section>
