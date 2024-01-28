@@ -11,6 +11,8 @@ The integral part was the porting of the [Adafruit_GFX library](https://github.c
 I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU) with
 the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels (can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).
 
+This repository contains [sample projects](sample_project_files) that run on Digilent boards [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/), [Arty A7](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) and [Cmod A7](https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/).
+
 > [!NOTE]
 > The ILI9488 3.5&Prime; TFT LCD module is a touch screen. However, the library presented here contains only graphics display capabilities. It does not read any user touch inputs from the display.
 
@@ -298,3 +300,5 @@ The durations listed in the table are the durations of the call `display.fillRec
 [<img src="pictures/ILI9488_with_Zybo_Z7.jpg" title="" alt="" width="600">](pictures/ILI9488_with_Zybo_Z7.jpg)
 
 [<img src="pictures/ILI9488_with_Arty_A7.jpg" title="" alt="" width="600">](pictures/ILI9488_with_Arty_A7.jpg)
+
+[<img src="pictures/ILI9488_with_Cmod_A7.jpg" title="" alt="" width="500">](pictures/ILI9488_with_Cmod_A7.jpg)
