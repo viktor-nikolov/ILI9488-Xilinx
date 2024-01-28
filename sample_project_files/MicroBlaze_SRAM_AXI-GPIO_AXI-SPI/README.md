@@ -60,7 +60,7 @@ The following images describe the connection and provide the pin numbers of the 
 
 > [!CAUTION]
 >
-> Do not use VU pin No. 24 on the Cmod A7 for powering the display. This pin is connected to 5 V coming via the USB. 5 V will very likely fry your ILI9488 display.
+> Do not use VU pin No. 24 on the Cmod A7 for powering the display. This pin is connected to 5 V coming via the USB. 5 V will very likely fry your ILI9488 display and could damage the Cmod A7 FPGA.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png)
 
