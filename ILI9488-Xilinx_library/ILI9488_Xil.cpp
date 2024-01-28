@@ -310,12 +310,15 @@ void ILI9488::fillRect( int16_t x, int16_t y, int16_t w, int16_t h, uint16_t col
 #if defined(__arm__)
 	const unsigned BUFFERED_PIXELS = 480;       //Max. size of the buffer of pixels we write to SPI
 #elif defined(__MICROBLAZE__)
-	#if defined(XPAR_XMIG7SERIES_NUM_INSTANCES) //This macro is defined when a MIG is present in the HW design,
-	                                            //i.e., we are using external RAM and can spare more memory.
-		const unsigned BUFFERED_PIXELS =  256;  //But be aware that default stack size for MicroBlaze project is 1 kB.
-		                                        //It can be increased in the lscript.ld.
+	/* XPAR_XMIG7SERIES_NUM_INSTANCES is defined in xparameters.h when a MIG (usually for DDR3 SDRAM) is present in the HW design.
+	 * XPAR_AXI_EMC is defined when an AXI EMC (External Memory Controller) is present in the HW design.
+	 * In either case we are using an external RAM and can spare more memory for the pixel buffer.
+	 * However, be aware that default stack size for MicroBlaze project is 1 kB. It can be increased in the lscript.ld.
+	 */
+	#if defined(XPAR_XMIG7SERIES_NUM_INSTANCES) || defined(XPAR_AXI_EMC)
+		const unsigned BUFFERED_PIXELS =  256; //The buffer will consume 768 B (== 256*3)
 	#else
-		const unsigned BUFFERED_PIXELS =  32;
+		const unsigned BUFFERED_PIXELS =  32;  //We are probably using Block RAM and we keep the buffer small.
 	#endif
 #else
 	#error "Both '__arm__' and '__MICROBLAZE__' macros are undefined. Make sure that a relevant one is defined."
