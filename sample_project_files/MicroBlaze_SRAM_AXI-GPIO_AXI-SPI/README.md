@@ -4,11 +4,13 @@
 
 The MicroBlaze and all peripherals are clocked on 100 MHz. (My attempts to try a higher clock were not successful. 100 MHz is the highest clock producing a stable design.)
 
-In the Address Editor I must manually change size of /axi_emc_0/S_AXI_MEM to 512K (it appear twice in the Address Editor list).
+In the Address Editor, I must manually change the size of /axi_emc_0/S_AXI_MEM to 512K (note that it appears twice in the Address Editor list).
 
 > [!NOTE]
 > It was important to set the Source to "No Buffer" in the Input Clock Information in the Clocking Wizard configuration.  
 > Without the "No Buffer" setting, I was getting strange timing requirement warnings. In fact, we have no buffer between the input clock pin and the Clocking Wizard.
+
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_SRAM_AXI-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_SRAM_AXI-GPIO_AXI-SPI_diagram.png)
 
 ## Application setup in Vitis
 
@@ -22,3 +24,4 @@ The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this proje
 
 ## The physical connection of the display
 
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg)
