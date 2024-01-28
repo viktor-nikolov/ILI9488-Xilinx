@@ -24,12 +24,12 @@ Clocking Wizard's clk_out2 is the 40 MHz clock needed for the ext_spi_clk input 
 
 > [!NOTE]
 > It was important to set the Source to "No Buffer" in the Input Clock Information in the Clocking Wizard configuration.  
-> Without the "No Buffer" setting, I was getting strange timing requirement warnings. In fact, we have no buffer between the input clock pin and the Clocking Wizard.
+> Without the "No Buffer" setting, I was getting strange timing requirements warnings. In fact, we have no buffer between the input clock pin and the Clocking Wizard.
 
 The AXI GPIO IP is configured to provide two output GPIO signals, which are used as RST and DC signals for the display.  
 The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
 
-The performance of the app running on MicroBlaze is totally dependent on the amount of instruction and data cache you can provide to the processor. Make it as big as possible. The cache in FPGA's local memory is tremendously faster than the SRAM.  
+The performance of an app running on MicroBlaze is totally dependent on the amount of instruction and data cache you can provide to the processor. Make it as big as possible. The cache in FPGA's local memory is tremendously faster than the SRAM.  
 I configured the Microblaze with 16kB of Instruction Cache and 32kB of Data Cache.
 
 I configured the MicroBlaze with 16kB of local memory even though the application will run from the 512 KB SRAM. This is for future use. When you decide to load the FPGA configuration and MicroBlaze app from the flash (like on a production device), you will need the local memory to store the MicroBlaze bootloader, which will load the app from the flash to DDR3 memory. See this tutorial on the topic: [Flashing a MicroBlaze Program](https://www.instructables.com/Flashing-a-MicroBlaze-Program).
@@ -48,12 +48,15 @@ The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this proje
 
 > [!NOTE]
 > Having only 512 KB of SRAM on Cmod A7 significantly limits our ability to work with larger RGB bitmaps on this platform.  
-> The size of the demo application is 229 KB (which includes 19 KB of a small sample RGB bitmap [Sun_png_image888](../../ILI9488-Xilinx_library_demo_app/demo_image2.h)). That leaves 283 KB available. The demo application on Cmod A7, therefore, can't display from memory a full-screen bitmap 480x320 because that is 300 KB big (in the color coding R:G:B 5b:6b:5b).
+> The size of the demo application is 229 KB (which includes 19 KB of a small demo RGB bitmap [Sun_png_image888](../../ILI9488-Xilinx_library_demo_app/demo_image2.h)). That leaves 283 KB available. The demo application on Cmod A7, therefore, can't display from memory a full-screen bitmap 480x320 because that is 300 KB big (in the color coding R:G:B 5b:6b:5b).
 
 ## The physical connection of the display
 
+For connecting the display I selected the Cmod A7 pins close to the Pmod connector.
+
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/CmodA7_connection_schematics.png)
 
-[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png?raw=true" title="" alt="" width="180">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png?raw=true" title="" alt="" width="180">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/cmoda7_b_dip.png)  
+&nbsp; 
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg?raw=true" title="" alt="" width="500">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg)
