@@ -12,7 +12,8 @@ I chose the button BTN0 as a reset button. BTN0 is a regular button, and it, the
 I selected output pins on the board for display connection signals in a way to make breadboard connections as easy as possible.  
 I uncommented and renamed the chosen pins in the Cmod A7 [Master XSD file](https://github.com/Digilent/digilent-xdc/blob/master/Cmod-A7-Master.xdc) and created the ports in the diagram. Note that the system clock on the Cmod A7 has a frequency of 12 MHz.
 
-I dragged the "Call RAM" and "USB UART" components from the Board window onto the Block Diagram. Then, I manually created AXI GPIO and AXI Quad SPI IPs and added the MicroBlaze. Vivado connection automation then did the vast majority of connections, including the creation of AXI Interconnect and AXI SmartConnect IPs.
+I dragged the "Cell RAM" and "USB UART" components from the Board window onto the Block Diagram. This created AXI EMC (External Memory Controller) and AXI UART Lite IPs and relevant ports.  
+Then, I manually created AXI GPIO and AXI Quad SPI IPs and added the MicroBlaze. Vivado connection automation then did the vast majority of connections, including the creation of AXI Interconnect and AXI SmartConnect IPs.
 
 In the Address Editor, I must manually change the size of /axi_emc_0/S_AXI_MEM to 512K (note that axi_emc_0 appears twice in the Address Editor list).
 
