@@ -6,7 +6,7 @@
 const uint16_t PragueCastle_png_width  = 480;
 const uint16_t PragueCastle_png_height = 320;
 const uint32_t PragueCastle_png_pixels = 153600;
-const uint32_t PragueCastle_png_bytes  = 460800;
+const uint32_t PragueCastle_png_bytes  = 307200;
 
 const uint8_t PragueCastle_png_image565[ PragueCastle_png_bytes ] = {
 3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,3,251,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,27,4,28,3,252,4,28,4,28,
