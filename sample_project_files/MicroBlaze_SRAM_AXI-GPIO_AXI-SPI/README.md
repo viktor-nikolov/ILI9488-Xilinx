@@ -24,7 +24,7 @@ The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this proje
 
 > [!NOTE]
 > Having only 512 KB of SRAM on Cmod A7 significantly limits our ability to work with larger RGB bitmaps on this platform.  
-> The size of the demo application is 229 KB (which includes 19 KB of a small sample RGB bitmap [Sun_png_image888](../../ILI9488-Xilinx_library_demo_app/demo_image2.h)). That leaves 283 KB available. The demo application on Cmod A7, therefore, can't display from memory a full-screen bitmap 480x320 because that is 300 KB big (in the color coding R:G:B 5b:6b:5b)
+> The size of the demo application is 229 KB (which includes 19 KB of a small sample RGB bitmap [Sun_png_image888](../../ILI9488-Xilinx_library_demo_app/demo_image2.h)). That leaves 283 KB available. The demo application on Cmod A7, therefore, can't display from memory a full-screen bitmap 480x320 because that is 300 KB big (in the color coding R:G:B 5b:6b:5b).
 
 ## The physical connection of the display
 
