@@ -24,4 +24,4 @@ The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this proje
 
 ## The physical connection of the display
 
-[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg?raw=true" title="" alt="" width="500">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cmod_A7.jpg)
