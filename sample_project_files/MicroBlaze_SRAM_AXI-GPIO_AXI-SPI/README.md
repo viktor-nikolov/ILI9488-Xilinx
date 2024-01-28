@@ -1,3 +1,5 @@
+# ILI9488 library on MicroBlaze (AXI GPIO, AXI SPI, SRAM)
+
 This folder contains a sample project for using the [ILI9488 TFT display library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using SRAM on the [Cmod A7-35T](https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/) board.
 
 The design was made in Vivado 2023.1 and Vitis 2023.1.
