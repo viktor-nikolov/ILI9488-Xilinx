@@ -16,11 +16,15 @@ In the Address Editor, I must manually change the size of /axi_emc_0/S_AXI_MEM t
 
 In the C/C++ Build Settings, I set Optimization to "Optimize most (-O3)". The default optimization setting was -O2.
 
-We have 512 KB of SRAM at our disposal, so I increased the Stack Size from the default 1 KB to 8 KB and the Heap Size from the default 2 KB to 16 KB in lscript.ld.
+We have 512 KB of SRAM at our disposal (however, 229 KB is consumed by the code of the demo application).  I increased the Stack Size from the default 1 KB to 8 KB and the Heap Size from the default 2 KB to 16 KB in lscript.ld.
 
 Increasing the Stack Size from the MicroBlaze's default 1 KB is important.  
 The method ILI9488::fillRect uses 768 B from the stack for a local array, which is used to prepare data to be sent to the display over SPI.  
 The [demo application](../../ILI9488-Xilinx_library_demo_app) used in this project works with a 1 KB stack size, but more complex applications may not.
+
+> [!NOTE]
+> Having only 512 KB of SRAM on Cmod A7 significantly limits our ability to work with larger RGB bitmaps on this platform.  
+> The size of the demo application is 229 KB (which includes 19 KB of a small sample RGB bitmap [Sun_png_image888](../../ILI9488-Xilinx_library_demo_app/demo_image2.h)). That leaves 283 KB available. The demo application on Cmod A7, therefore, can't display from memory a full-screen bitmap 480x320 because that is 300 KB big (in the color coding R:G:B 5b:6b:5b)
 
 ## The physical connection of the display
 
