@@ -301,4 +301,4 @@ The durations listed in the table are the durations of the call `display.fillRec
 
 [<img src="pictures/ILI9488_with_Arty_A7.jpg" title="" alt="" width="600">](pictures/ILI9488_with_Arty_A7.jpg)
 
-[<img src="pictures/ILI9488_with_Cmod_A7.jpg" title="" alt="" width="500">](pictures/ILI9488_with_Cmod_A7.jpg)
+[<img src="pictures/ILI9488_with_Cmod_A7.jpg" title="" alt="" width="350">](pictures/ILI9488_with_Cmod_A7.jpg)
