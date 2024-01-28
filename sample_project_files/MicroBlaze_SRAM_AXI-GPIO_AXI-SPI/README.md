@@ -1,6 +1,13 @@
 :construction: :construction: :construction: :construction: :construction: **THIS README IS WORK IN PROGRESS**:construction: :construction: :construction: :construction: :construction: 
 
+This folder contains a sample project for using the [ILI9488 TFT display library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on the [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU using SRAM on the [Cmod A7-35T](https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/) board.
+
+The design was made in Vivado 2023.1 and Vitis 2023.1.
+
 ## HW design
+
+HW design for the [Cmod A7-35T](https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/) was quite straightforward thanks to the board files provided by Digilent.  
+I dragged "Call RAM" and "USB UART" components from the Board window onto the Block Diagram. Then I manually created AXI GPIO and AXI Quad SPI IPs and added the MicroBlaze. Vivado connection automation then did vast majority of connections, including creation of AXI Interconnectg and AXI SmartConnect IPs.
 
 The MicroBlaze and all peripherals are clocked on 100 MHz. (My attempts to try a higher clock were not successful. 100 MHz is the highest clock producing a stable design.)
 
