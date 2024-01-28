@@ -29,9 +29,9 @@ The AXI GPIO IP is configured to provide two output GPIO signals, which are used
 The two Slices are used solely for "aesthetic purposes", so the RST and DC pins can be scalar pins in the diagram.
 
 The performance of the app running on MicroBlaze is totally dependent on the amount of instruction and data cache you can provide to the processor. Make it as big as possible. The cache in FPGA's local memory is tremendously faster than the SRAM.  
-I configured the Microblaze with 16 kB of Instruction Cache and 32 kB of Data Cache.
+I configured the Microblaze with 16kB of Instruction Cache and 32kB of Data Cache.
 
-I configured the MicroBlaze with 16KB of local memory even though the application will run from the 512 KB SRAM. This is for future use. When you decide to load the FPGA configuration and MicroBlaze app from the flash (like on a production device), you will need the local memory to store the MicroBlaze bootloader, which will load the app from the flash to DDR3 memory. See this tutorial on the topic: [Flashing a MicroBlaze Program](https://www.instructables.com/Flashing-a-MicroBlaze-Program).
+I configured the MicroBlaze with 16kB of local memory even though the application will run from the 512 KB SRAM. This is for future use. When you decide to load the FPGA configuration and MicroBlaze app from the flash (like on a production device), you will need the local memory to store the MicroBlaze bootloader, which will load the app from the flash to DDR3 memory. See this tutorial on the topic: [Flashing a MicroBlaze Program](https://www.instructables.com/Flashing-a-MicroBlaze-Program).
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_SRAM_AXI-GPIO_AXI-SPI_diagram.png?raw=true" title="" alt="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/MicroBlaze_SRAM_AXI-GPIO_AXI-SPI_diagram.png)
 
