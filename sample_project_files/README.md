@@ -1,4 +1,4 @@
-# ILI9488 TFT display library sample projects
+# ILI9488 TFT SPI display library sample projects
 
 This folder includes several sample projects designed in Vivado 2023.1 and Vitis 2023.1, which show the use of the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on Zynq-7000 and MicroBlaze.  
 The projects include a standalone application running on Zynq ARM core or MicroBlaze soft CPU.
