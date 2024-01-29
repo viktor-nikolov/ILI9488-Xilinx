@@ -68,7 +68,7 @@ We are going to use Cora Z7 pins marked IO0..IO4 for connecting the display. The
 #set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { ck_io4 }]; #IO_L21P_T3_DQS_34 Sch=ck_io[4]
 ```
 
-For clarity, it's good to add the name of the display pin we connect the port to each port name. The final content of our constraints file will then look as follows:
+For clarity, it's good to add the name of the display pin we connect the port to as a port name suffix. The final content of our constraints file will then look as follows:
 
 ```
 ## ChipKit Outer Digital Header
@@ -83,7 +83,7 @@ Now we can add the ports to the Block Design.
 Right-click on the empty diagram space and select Create Port for each of the ports.  
 We specify all ports as Output and Type "Other".
 
-<img title="" src="pictures/add_port.png" alt="" width="400">
+<img title="" src="pictures/add_port.png" alt="" width="400">q
 
 Now we add to the diagram an IP representing the Zynq Processing System.  
 Search for "zynq" in the IP Catalog window and drag the "ZYNQ7 Processing System" to the diagram.
