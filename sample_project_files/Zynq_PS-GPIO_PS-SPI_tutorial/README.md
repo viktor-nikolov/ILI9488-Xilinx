@@ -54,6 +54,29 @@ An empty block design window opens.
 Before we use output ports in the block design, we need to define them in a constraints file (.XDC).  
 Download Cora Z7 [Master XDC](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc) from Digilent GitHub and import it as a constraints source file by clicking "+" icon in the Sources window; then follow the wizard.
 
-<img title="" src="pictures/add_constraints_source.png" alt="" width="350">
+<img title="" src="pictures/add_constraints_source.png" alt="" width="400">
+
+Open the imported constraints file in the editor.  
+We are going to use Cora Z7 pins marked IO0..IO4 for connecting the display. They are named ports ck_io0..ck_io4  in the master XDC file. We, therefore, need to uncomment the following lines in the constraints file:
+
+```
+## ChipKit Outer Digital Header
+#set_property -dict { PACKAGE_PIN U14   IOSTANDARD LVCMOS33 } [get_ports { ck_io0 }]; #IO_L11P_T1_SRCC_34 Sch=ck_io[0]
+#set_property -dict { PACKAGE_PIN V13   IOSTANDARD LVCMOS33 } [get_ports { ck_io1 }]; #IO_L3N_T0_DQS_34 Sch=ck_io[1]
+#set_property -dict { PACKAGE_PIN T14   IOSTANDARD LVCMOS33 } [get_ports { ck_io2 }]; #IO_L5P_T0_34 Sch=ck_io[2]
+#set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { ck_io3 }]; #IO_L5N_T0_34 Sch=ck_io[3]
+#set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { ck_io4 }]; #IO_L21P_T3_DQS_34 Sch=ck_io[4]
+```
+
+For clarity, it's good to add the name of the display pin we connect the port to each port name. The final content of our constraints file will then look as follows:
+
+```
+## ChipKit Outer Digital Header
+set_property -dict { PACKAGE_PIN U14   IOSTANDARD LVCMOS33 } [get_ports { ck_io0_SCK  }]; #IO_L11P_T1_SRCC_34 Sch=ck_io[0]
+set_property -dict { PACKAGE_PIN V13   IOSTANDARD LVCMOS33 } [get_ports { ck_io1_MOSI }]; #IO_L3N_T0_DQS_34 Sch=ck_io[1]
+set_property -dict { PACKAGE_PIN T14   IOSTANDARD LVCMOS33 } [get_ports { ck_io2_DC   }]; #IO_L5P_T0_34 Sch=ck_io[2]
+set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { ck_io3_RST  }]; #IO_L5N_T0_34 Sch=ck_io[3]
+set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { ck_io4_CS   }]; #IO_L21P_T3_DQS_34 Sch=ck_io[4]
+```
 
 tbd
