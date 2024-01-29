@@ -6,7 +6,7 @@ This tutorial describes how to use a TFT SPI display on the AMD Xilinx Zynq-7000
 
 ## Hardware
 
-We will use the [3.5&Prime; TFT SPI ILI9488](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels display (which can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).  
+We will use the [3.5&Prime; ILI9488 TFT SPI](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels display (which can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).  
 The reasons for selecting this particular display are simple: I like its size (it is not too small nor too big), and I prepared a SW library for it. :smiley:
 
 ![](pictures/display_MSP3520.jpg)
@@ -16,4 +16,28 @@ It's a nice small-factor, low-cost Zynq-7000 SoC board with excellent documentat
 
 ![](pictures/cora-obl-600.png)
 
-tbed
+## Connecting the display
+
+The 3.5&Prime; ILI9488 TFT SPI display is controlled by an SPI bus with a clock frequency of 20 MHz.  
+In addition to the SPI, it has to be connected to two GPIO pins (reset and Data/Command selection signals).
+
+We need to connect the display pins highlighted in the photo below.
+
+Logic IO pins accept a 3.3 V voltage level (TTL). VCC and LED (the backlight control) pins need to be connected to a 3.3 V power source.
+
+- Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
+
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_TFT_display_pins.png?raw=true" title="" alt="ILI9488 TFT display pins" width="230">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_TFT_display_pins.png)
+
+TODO
+
+## HW design in Vivado
+
+Start Vivado 2023.1. Click Create Project. Click Next.  
+Enter the project name and directory. Click Next.  
+Select "RTL Project" and "Do not specify sources at this time". Click Next.
+
+Now, we select the board. Click on "Boards" and type "cora" in the Search prompt.  
+Select the version of the Cora Z7 you have. Cora Z7-07S is the board in production as of January 2024 (version -10 is discontinued). Click on the download icon in the Status column if this is the very first time you use the board in Vivado.
+
+[<img src="pictures/board_selection.png" title="" alt="" width="400">](pictures/board_selection.png)
