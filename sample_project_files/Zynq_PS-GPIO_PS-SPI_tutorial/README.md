@@ -83,5 +83,5 @@ Now, we can add the ports to the Block Design.
 Right-click on the empty diagram space and select Create Port for each of the ports.  
 We specify all ports as Output and Type "Other".
 
-<img title="" src="pictures/add_port.png" alt="" width="300">
+<img title="" src="pictures/add_port.png" alt="" width="400">
 
