@@ -88,6 +88,6 @@ We specify all ports as Output and Type "Other".
 Now we add to the diagram an IP representing the Zynq Processing System.  
 Search for "zynq" in the IP Catalog window and drag the "ZYNQ7 Processing System" to the diagram.
 
-<img title="" src="pictures/zynq_added.png" alt="" width="400">
+<img title="" src="pictures/zynq_added.png" alt="" width="550">
 
 TBD
