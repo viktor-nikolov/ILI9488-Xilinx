@@ -54,6 +54,6 @@ An empty block design window opens.
 Before we use output ports in the block design, we need to define them in a constraints file (.XDC).  
 Download Cora Z7 [Master XDC](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc) from Digilent GitHub and import it as a constraints source file by clicking "+" icon in the Sources window; then follow the wizard.
 
-<img title="" src="pictures/add_constraints_source.png" alt="" width="250">
+<img title="" src="pictures/add_constraints_source.png" alt="" width="">
 
 tbd
