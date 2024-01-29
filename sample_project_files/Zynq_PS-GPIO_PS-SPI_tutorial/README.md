@@ -41,7 +41,7 @@ Now, we select the board. Click on "Boards" and type "cora" in the Search prompt
 Select the version of the Cora Z7 you have. Cora Z7-07S is the board in production as of January 2024 (version -10 has been discontinued).  
 Click on the download icon in the Status column if this is the very first time you use the board in Vivado.
 
-[<img src="pictures/board_selection.png" title="" alt="" width="600">](pictures/board_selection.png)
+<img src="pictures/board_selection.png" title="" alt="" width="600">
 
 Click Next and Finish. The Vivado IDE will open an empty project.
 
@@ -50,3 +50,4 @@ Click Create Block Design, and name the design "system":
 <img title="" src="pictures/name_bd.png" alt="" width="310">
 
 An empty block design window opens.
+
