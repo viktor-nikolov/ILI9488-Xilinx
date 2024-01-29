@@ -79,4 +79,9 @@ set_property -dict { PACKAGE_PIN T15   IOSTANDARD LVCMOS33 } [get_ports { ck_io3
 set_property -dict { PACKAGE_PIN V17   IOSTANDARD LVCMOS33 } [get_ports { ck_io4_CS   }]; #IO_L21P_T3_DQS_34 Sch=ck_io[4]
 ```
 
-tbd
+Now, we can add the ports to the Block Design.  
+Right-click on the empty diagram space and select Create Port for each of the ports.  
+We specify all ports as Output and Type "Other".
+
+<img title="" src="pictures/add_port.png" alt="" width="300">
+
