@@ -103,6 +103,22 @@ Enable SPI 0 in the list of MIO Configuration items.
 
 <img title="" src="pictures/spi_enable.png" alt="" width="550">
 
-TBD
+Then, scroll down the list and enable EMIO GPIO. Set the width to 2 (we need two GPIO signals for the display).
 
 <img title="" src="pictures/emio_enable.png" alt="" width="650">
+
+Because we are not using Zynq AXI interface in our design, we must switch it off in the Zynq configuration.  
+Go back to the Zynq Block Design and click on the "32b GP AXI Master Ports" at the bottom. Disable the "M AXI GP0 interface".
+
+
+
+
+
+Click OK.  
+You will probably get a critical warning message [PSU-1] and [PSU-2] about two parameters having a negative value. Ignore the warning. It doesn't have a negative impact on the functionality of the HW design.
+
+New signal groups GPIO_0 and SPI_0 appeared on the Zynq PS IP.  
+Let's start with connecting the SPI. When you expand the SPI_0, you will see a lot of signals. We need to connect just three of them (all with the suffix "_O") in the way shown in the following screenshot. (We don't need to connect the SPI0_MISO_I signal because we don't read any data from the display.)
+
+<img title="" src="pictures/spi_connected.png" alt="" width="500">
+
