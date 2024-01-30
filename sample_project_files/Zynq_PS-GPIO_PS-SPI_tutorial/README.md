@@ -107,12 +107,10 @@ Then, scroll down the list and enable EMIO GPIO. Set the width to 2 (we need two
 
 <img title="" src="pictures/emio_enable.png" alt="" width="650">
 
-Because we are not using Zynq AXI interface in our design, we must switch it off in the Zynq configuration.  
+Because we are not using Zynq AXI interface in our design, we must switch it off in the Zynq configuration (othewise we would get a critical warning that we do not provide clock signal to the AXI interface).  
 Go back to the Zynq Block Design and click on the "32b GP AXI Master Ports" at the bottom. Disable the "M AXI GP0 interface".
 
-
-
-
+<img title="" src="pictures/axi_disable.png" alt="" width="500">
 
 Click OK.  
 You will probably get a critical warning message [PSU-1] and [PSU-2] about two parameters having a negative value. Ignore the warning. It doesn't have a negative impact on the functionality of the HW design.
