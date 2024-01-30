@@ -88,6 +88,8 @@ We specify all ports as Output and Type "Other".
 Now we add to the diagram an IP representing the Zynq Processing System.  
 Search for "zynq" in the IP Catalog window and drag the "ZYNQ7 Processing System" to the diagram.
 
-<img title="" src="pictures/zynq_added.png" alt="" width="550">
+Now, we let Vivado make basic connections for us. Click Run Block Automation, which appeared at the top of the Diagram window. We accept all block automation defaults, so we just click OK.
 
-TBD
+This the results of the steps we did so far:
+
+<img title="" src="pictures/zynq_added.png" alt="" width="550">
