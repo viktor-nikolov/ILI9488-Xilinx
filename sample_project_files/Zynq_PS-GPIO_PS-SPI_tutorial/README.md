@@ -129,5 +129,13 @@ GPIO_O[1:0] is a vector of two signals. We will use Slice elements to "cut" the 
 Search for "slice" in the IP Catalog and drag Slice two times to the diagram.  
 Double-click on xlslice_0 and configure it to extract bit 0 from a 2-bit input:
 
+<img title="" src="pictures/xlslice_0.png" alt="" width="350">
+
 Next, configure xlslice_1 to extract bit 1 from the 2-bit input:
 
+<img title="" src="pictures/xlslice_1.png" alt="" width="350">
+
+Connect inputs of both slices to the GPIO_O[1:0]. Output of xlslice_0 goes to port ck_io3_RST. xlslice_1 drives port ck_io2_DC ports.  
+We now have our final diagram.
+
+<img title="" src="pictures/final_diagram.png" alt="" width="550">
