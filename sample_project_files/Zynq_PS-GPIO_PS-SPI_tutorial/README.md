@@ -86,7 +86,7 @@ Now we can add the ports to the Block Design.
 Right-click on the empty diagram space and select Create Port for each of the ports.  
 We specify all ports as Output and Type "Other".
 
-<img title="" src="pictures/add_port.png" alt="" width="400">q
+<img title="" src="pictures/add_port.png" alt="" width="400">
 
 Now we add to the diagram an IP representing the Zynq Processing System.  
 Search for "zynq" in the IP Catalog window and drag the "ZYNQ7 Processing System" to the diagram.
@@ -135,7 +135,28 @@ Next, configure xlslice_1 to extract bit 1 from the 2-bit input:
 
 <img title="" src="pictures/xlslice_1.png" alt="" width="350">
 
-Connect inputs of both slices to the GPIO_O[1:0]. Output of xlslice_0 goes to port ck_io3_RST. xlslice_1 drives port ck_io2_DC ports.  
+Connect inputs of both slices to the GPIO_O[1:0]. Output of xlslice_0 goes to port ck_io3_RST. xlslice_1 drives port ck_io2_DC.  
 We now have our final diagram.
 
 <img title="" src="pictures/final_diagram.png" alt="" width="550">
+
+To make sure that nothing was missed, click the Validate Design button in the toolbar of the diagram window (or press F6). There should be no errors.
+
+HDL Wrapper for the diagram needs to be created: Go to Sources|Design Sources, right-click on "system", select "Create HDL Wrapper", and select "Let Vivado manage wrapper".
+
+Now, we create the design outputs: Click "Generate Bitstream" in the Flow Navigator on the left. Synthesis and Implementation will be run automatically before bitstream generation.
+
+There should be no errors or critical warnings. (Some standard warnings will be generated, though.)
+
+Last but not least, we need to export the hardware specification. It is necessary for the development of the SW app for the Zynq ARM core in Vitis IDE.  
+Go to File|Export|Export Hardware, select "Include Bitstream". Set the XSA file name as "system_wrapper", as suggested by the Export Hardware wizard.
+
+## SW application in Vitis
+
+TBD
+
+> [!TIP]
+>
+> If you don't have git installed on your computer, the easy way to download content of a folder from a GitHub repository is to use [download-directory.github.io](https://download-directory.github.io/).
+> To get the ILI9488-Xilinx_library folder content, enter the path `https://github.com/viktor-nikolov/ILI9488-Xilinx/tree/main/ILI9488-Xilinx_library`.
+
