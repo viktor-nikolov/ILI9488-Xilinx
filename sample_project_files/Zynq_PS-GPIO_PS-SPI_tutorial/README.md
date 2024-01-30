@@ -93,3 +93,16 @@ Now, we let Vivado make basic connections for us. Click Run Block Automation, wh
 This the results of the steps we did so far:
 
 <img title="" src="pictures/zynq_added.png" alt="" width="550">
+
+We must now configure the Zynq to expose GPIO and SPI interfaces.  
+Double-click on the Zynq PS IP and click on the "SPI 0" on the top left of Zynq Block Design.
+
+<img title="" src="pictures/zynq_bd.png" alt="" width="550">
+
+Enable SPI 0 in the list of MIO Configuration items.
+
+<img title="" src="pictures/spi_enable.png" alt="" width="550">
+
+TBD
+
+<img title="" src="pictures/emio_enable.png" alt="" width="550">
