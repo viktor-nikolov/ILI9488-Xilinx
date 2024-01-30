@@ -12,7 +12,10 @@ The reasons for selecting this particular display are simple: I like its size (i
 ![](pictures/display_MSP3520.jpg)
 
 As a representative of the AMD Xilinx Zynq-7000 SoC platform, we will use the [Digilent Cora Z7](https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/) development board.  
-It's a nice small-factor, low-cost Zynq-7000 SoC board with excellent documentation and good board files available for Xilinx Vivado. It comes with a 667 MHz single-core Cortex-A9 processor with integrated programmable logic equivalent to Artix A7 FPGA and 512 MB of DDR3 memory. It is not the most powerful Zynq board, but it is more than adequate for the standalone single-thread application we will build in this project.
+It's a nice small-factor, low-cost Zynq-7000 SoC board with excellent documentation and good board files available for Xilinx Vivado. It comes with a 667 MHz single-core Cortex-A9 processor with integrated programmable logic equivalent to Artix A7 FPGA and 512 MB of DDR3 memory.  It can accept standard Arduino shields (the ones that run on 3.3 V).
+It is not the most powerful Zynq board, but it is more than adequate for the standalone single-thread application we will build in this project.
+
+Please note that most steps in this tutorial are valid also for any other Zynq-7000 SoC board.
 
 ![](pictures/cora-obl-600.png)
 
@@ -119,4 +122,12 @@ New signal groups GPIO_0 and SPI_0 appeared on the Zynq PS IP.
 Let's start with connecting the SPI. When you expand the SPI_0, you will see a lot of signals. We need to connect just three of them (all with the suffix "_O") in the way shown in the following screenshot. (We don't need to connect the SPI0_MISO_I signal because we don't read any data from the display.)
 
 <img title="" src="pictures/spi_connected.png" alt="" width="500">
+
+The next step is to connect GPIO_O[1:0] to the ck_io3_RST and ck_io2_DC ports.  
+GPIO_O[1:0] is a vector of two signals. We will use Slice elements to "cut" the vector to the two scalar signals.
+
+Search for "slice" in the IP Catalog and drag Slice two times to the diagram.  
+Double-click on xlslice_0 and configure it to extract bit 0 from a 2-bit input:
+
+Next, configure xlslice_1 to extract bit 1 from the 2-bit input:
 
