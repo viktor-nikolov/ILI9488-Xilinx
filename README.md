@@ -153,7 +153,7 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 > [!TIP]
 > Part of this repository is a [demo application](ILI9488-Xilinx_library_demo_app), which shows the usage of the library. The application is implemented to work with all combinations of PS/AXI SPI/GPIO connections.
 > 
-> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L103), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L166), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L235) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L262) from the demo application as templates for SPI/GPIO interfaces initialization.
+> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L103), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L166), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L234) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L262) from the demo application as templates for SPI/GPIO interfaces initialization.
 
 ### SPI Slave selection
 
