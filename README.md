@@ -89,7 +89,7 @@ The library is defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_li
 The class ILI9488 extends the class Adafruit_GFX, which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
 
 Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts that came with the Adafruit_GFX library.  
-(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
+(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L360) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
 
 > [!WARNING]
 > When using the library on the MicroBlaze, be aware of the fact that the default stack size on the MicroBlaze is only 1 kB. The method ILI9488::fillRect uses 768 B from the stack for a local array, which is used to prepare data to be sent to the display over SPI.  
@@ -153,7 +153,7 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 > [!TIP]
 > Part of this repository is a [demo application](ILI9488-Xilinx_library_demo_app), which shows the usage of the library. The application is implemented to work with all combinations of PS/AXI SPI/GPIO connections.
 > 
-> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L101), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L164), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L232) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L260) from the demo application as templates for SPI/GPIO interfaces initialization.
+> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L103), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L166), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L235) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L262) from the demo application as templates for SPI/GPIO interfaces initialization.
 
 ### SPI Slave selection
 
