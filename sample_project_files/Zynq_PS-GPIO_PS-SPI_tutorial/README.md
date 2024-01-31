@@ -34,7 +34,7 @@ Logic IO pins accept a 3.3 V voltage level (TTL). VCC and LED (the backlight con
 
 TODO
 
-[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="600">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="650">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
 
 ## HW design in Vivado
 
@@ -155,7 +155,16 @@ Go to File|Export|Export Hardware, select "Include Bitstream". Set the XSA file 
 
 ## SW application in Vitis
 
-TBD
+Start Vitis 2023.1.  
+Enter the path to a directory where you want to store the workspace and click "Launch."
+
+The first step is to create a platform project based on the HW design we created in Vivado.  
+Click on "Create Platform Project". Name the project "system". On the next screen, we select the XSA file, which we created by "Export Hardware" in Vivado.  
+Click on Browse and go to the root folder of your HW project (where the .xpr file is). Here you should find the "system_wrapper.xsa". The wizard will read the XSA file. Set Operating system to "standalone" and click Finish.
+
+<img title="" src="pictures/new_platform_proj.png" alt="" width="500">
+
+
 
 > [!TIP]
 >
