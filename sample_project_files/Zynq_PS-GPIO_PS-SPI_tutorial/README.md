@@ -160,7 +160,7 @@ Enter the path to a directory where you want to store the workspace and click "L
 
 The first step is to create a platform project based on the HW design we created in Vivado.  
 Click on "Create Platform Project". Name the project "system". On the next screen, we select the XSA file, which we created by "Export Hardware" in Vivado.  
-Click on Browse and go to the root folder of your HW project (where the .xpr file is). Here you should find the "system_wrapper.xsa". The wizard will read the XSA file. Set Operating system to "standalone" and click Finish.
+Click on Browse and go to the root folder of your HW project (where the .xpr file is). Here you should find the "system_wrapper.xsa". The wizard will read the XSA file. Set Operating system to "standalone" and click Finish. The Vitis IDE will open the platform project "system".
 
 <img title="" src="pictures/new_platform_proj.png" alt="" width="500">
 
