@@ -52,6 +52,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	/* Define SPI device ID, to which is the ILI9488 display connected. Macro XPAR_PS7_QSPI_0_DEVICE_ID,
 	 * is from the header xparameters.h, which was generated based on the HW design. */
 	#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_QSPI_0_DEVICE_ID
+//	#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_SPI_0_DEVICE_ID //On Zynq boards, which do not have Quad SPI Flash, the macro
+                                                             //XPAR_PS7_SPI_0_DEVICE_ID provides the ID of SPI device 0
 
 	XSpiPs SpiInstance;
 
