@@ -160,10 +160,24 @@ Enter the path to a directory where you want to store the workspace and click "L
 
 The first step is to create a platform project based on the HW design we created in Vivado.  
 Click on "Create Platform Project". Name the project "system". On the next screen, we select the XSA file, which we created by "Export Hardware" in Vivado.  
-Click on Browse and go to the root folder of your HW project (where the .xpr file is). Here you should find the "system_wrapper.xsa". The wizard will read the XSA file. Set Operating system to "standalone" and click Finish. The Vitis IDE will open the platform project "system".
+Click on Browse and go to the root folder of your HW project (where the .xpr file is). Here you should find the "system_wrapper.xsa". The wizard will read the XSA file. Set the Operating system to "standalone" and click Finish. The Vitis IDE will open the platform project "system".
 
 <img title="" src="pictures/new_platform_proj.png" alt="" width="500">
 
+With the platform created, we now create the application project.  
+Select File|New|Application project. Skip the first page of the wizard.   
+On the next screen, we select the platform project "system", which we created a moment ago. Click Next.
+
+<img title="" src="pictures/new_app_project.png" alt="" width="650">
+
+On the next screen, fill the "Application project name" with a name, for example, "ILI9488_CoraZ7". The rest of the fields will be filled automatically. Click Next.
+
+<img title="" src="pictures/app_proj_name.png" alt="" width="450">
+
+On the next screen, we just confirm that we are using standalone_domain. Then, on the last screen, select the project template "Empty Application (**C++**)".  
+We now have an empty application project created.
+
+<img title="" src="pictures/app_proj_created.png" alt="" width="650">
 
 
 > [!TIP]
