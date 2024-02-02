@@ -168,7 +168,7 @@ With the platform created, we now create the application project.
 Select File|New|Application project. Skip the first page of the wizard.   
 On the next screen, we select the platform project "system", which we created a moment ago. Click Next.
 
-<img title="" src="pictures/new_app_project.png" alt="" width="650">
+<img title="" src="pictures/new_app_project.png" alt="" width="700">
 
 On the next screen, fill the "Application project name" with a name, for example, "ILI9488_CoraZ7". The rest of the fields will be filled automatically. Click Next.
 
@@ -177,7 +177,7 @@ On the next screen, fill the "Application project name" with a name, for example
 On the next screen, we just confirm that we are using standalone_domain. Then, on the last screen, select the project template "Empty Application (**C++**)".  
 We now have an empty application project created.
 
-<img title="" src="pictures/app_proj_created.png" alt="" width="650">
+<img title="" src="pictures/app_proj_created.png" alt="" width="700">
 
 
 > [!TIP]
