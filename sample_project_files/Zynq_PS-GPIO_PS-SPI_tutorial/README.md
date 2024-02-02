@@ -190,5 +190,5 @@ Let's start with my [ILI9488 library for Xilinx](https://github.com/viktor-nikol
 
 Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** which I prepared for the purpose of this tutorial. Paste them in the src directory of the application project.
 
-<img title="" src="pictures/app_proj_content.png" alt="" width="280">
+<img title="" src="pictures/app_proj_content.png" alt="" width="230">
 
