@@ -180,7 +180,7 @@ We now have an empty application project created.
 <img title="" src="pictures/app_proj_created.png" alt="" width="700">
 
 Now, it's time to add some source code.  
-Let's start with my [ILI9488 library for Xilinx](https://github.com/viktor-nikolov/ILI9488-Xilinx). Download the content of [this GitHub directory](https://github.com/viktor-nikolov/ILI9488-Xilinx/tree/main/ILI9488-Xilinx_library) and paste it into the src directory of the application project (you can do "Paste" in the Explorer of Vitis)
+Let's start with my [ILI9488 library for Xilinx](https://github.com/viktor-nikolov/ILI9488-Xilinx). Download the content of [this GitHub directory](https://github.com/viktor-nikolov/ILI9488-Xilinx/tree/main/ILI9488-Xilinx_library) and paste it into the src directory of the application project (you can do "Paste" in the Explorer in Vitis).
 
 
 > [!TIP]
@@ -190,5 +190,5 @@ Let's start with my [ILI9488 library for Xilinx](https://github.com/viktor-nikol
 
 Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** which I prepared for the purpose of this tutorial. Paste them in the src directory of the application project.
 
-<img title="" src="pictures/app_proj_content.png" alt="" width="">
+<img title="" src="pictures/app_proj_content.png" alt="" width="280">
 
