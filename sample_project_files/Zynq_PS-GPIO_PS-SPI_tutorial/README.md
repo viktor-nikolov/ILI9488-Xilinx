@@ -196,7 +196,7 @@ Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** w
 ## Using GPIO, SPI and ILI9488 library
 
 In general, the display can be connected to the system using Zynq Processing System SPI or AXI SPI and PS GPIO or AXI GPIO. We need to tell the library that we are using PS SPI and PS GPIO.  
-The library is configured by editing the header ILI9488_Xil_setup.h. (The ILI9488_Xil_setup.h is being included by the ILI9488_Xil.h.). We must edit the following section of this header, uncommenting one of the macros for SPI and one of the macros for GPIO:
+The library is configured by editing the header [ILI9488_Xil_setup.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h). (The ILI9488_Xil_setup.h is being included by the [ILI9488_Xil.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h).). We must edit the following section of this header, uncommenting one of the macros for SPI and one of the macros for GPIO:
 
 ```c
 /**** select one of the SPI types used by given application ****/
