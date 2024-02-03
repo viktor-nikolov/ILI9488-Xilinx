@@ -218,7 +218,7 @@ XGpioPs_Config *GpioConfig;
 
 GpioConfig = XGpioPs_LookupConfig( XPAR_PS7_GPIO_0_DEVICE_ID );
 if( GpioConfig == NULL ) {
-	//handle the error
+    //handle the error
 }
 ```
 
@@ -232,7 +232,7 @@ int Status;
 
 Status = XGpioPs_CfgInitialize( &GpioInstance, GpioConfig, GpioConfig->BaseAddr );
 if( Status != XST_SUCCESS ) {
-	//handle the error
+    //handle the error
 }
 ```
 
