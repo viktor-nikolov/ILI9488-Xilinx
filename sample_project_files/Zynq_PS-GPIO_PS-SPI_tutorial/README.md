@@ -195,5 +195,61 @@ Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** w
 
 ## Using GPIO, SPI and ILI9488 library
 
-tbd
+In general, the display can be connected to the system using Zynq Processing System SPI or AXI SPI and PS GPIO or AXI GPIO. We need to tell the library that we are using PS SPI and PS GPIO.  
+The library is configured by editing the header ILI9488_Xil_setup.h. (The ILI9488_Xil_setup.h is being included by the ILI9488_Xil.h.). We must edit the following section of this header, uncommenting one of the macros for SPI and one of the macros for GPIO:
+
+```c
+/**** select one of the SPI types used by given application ****/
+#define ILI9488_SPI_PS  //SPI of Zynq Processing Systems is used.
+//#define ILI9488_SPI_AXI //AXI Quad SPI IP is used.
+
+/**** select one of the GPIO types used by given application ****/
+#define ILI9488_GPIO_PS  //EMIO GPIO of Zynq Processing Systems is used.
+//#define ILI9488_GPIO_AXI //AXI GPIO IP is used.
+```
+
+In order to use the ILI9488 library (i.e., the class ILI9488 defined in [ILI9488_Xil.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h)), we need to provide it with initialized, ready-to-use instances of SPI and GPIO drivers.  
+The drivers are initialized in functions initialize_PS_GPIO() and initialize_PS_SPI() in main.cpp. Let me explain how the drivers are initialized.
+
+For GPIO driver initialization, we first need to load the configuration of our GPIO device:
+
+```c
+XGpioPs_Config *GpioConfig;
+
+GpioConfig = XGpioPs_LookupConfig( XPAR_PS7_GPIO_0_DEVICE_ID );
+if( GpioConfig == NULL ) {
+	//handle the error
+}
+```
+
+XPAR_PS7_GPIO_0_DEVICE_ID is a macro defined in xparameters.h, which was generated in the platform project based on the HW design made in Vivado. XPAR_PS7_GPIO_0_DEVICE_ID provides the ID of the GPIO device 0.
+
+With the configuration loaded, we initialize the GPIO driver:
+
+```c
+XGpioPs GpioInstance;
+int Status;
+
+Status = XGpioPs_CfgInitialize( &GpioInstance, GpioConfig, GpioConfig->BaseAddr );
+if( Status != XST_SUCCESS ) {
+	//handle the error
+}
+```
+
+DDD
+
+```c
+#define ILI9488_RST_PIN  54 //== EMIO pin 0
+#define ILI9488_DC_PIN   55 //== EMIO pin 1
+```
+
+
+
+> [!NOTE]
+>
+> On Zynq boards, which have Quad SPI Flash (e.g., [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/)), the ID of SPI 0 is provided by the macro XPAR_PS7_QSPI_0_DEVICE_ID.
+
+dfdfd
+
+
 
