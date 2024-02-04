@@ -209,7 +209,9 @@ The library is configured by editing the header [ILI9488_Xil_setup.h](https://gi
 ```
 
 In order to use the ILI9488 library (i.e., the class ILI9488 defined in [ILI9488_Xil.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h)), we need to provide it with initialized, ready-to-use instances of SPI and GPIO drivers.  
-The drivers are initialized in functions initialize_PS_GPIO() and initialize_PS_SPI() in main.cpp. Let me explain how the drivers are initialized.
+The drivers are initialized in functions initialize_PS_GPIO() and initialize_PS_SPI() in main.cpp. Let me explain how the initialization is done.
+
+Note: Normally, we would need to include headers [xgpiops.h](https://xilinx.github.io/embeddedsw.github.io/gpiops/doc/html/api/xgpiops_8h.html) and [xspips.h](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/xspips_8h.html) in our source code to be able to work with PS GPIO and PS SPI drivers. Nevertheless, the [ILI9488_Xil.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h) already included these two headers for us.
 
 For GPIO driver initialization, we first need to load the configuration of our GPIO device:
 
@@ -218,7 +220,7 @@ XGpioPs_Config *GpioConfig;
 
 GpioConfig = XGpioPs_LookupConfig( XPAR_PS7_GPIO_0_DEVICE_ID );
 if( GpioConfig == NULL ) {
-    //handle the error
+    //report an error
 }
 ```
 
@@ -232,7 +234,7 @@ int Status;
 
 Status = XGpioPs_CfgInitialize( &GpioInstance, GpioConfig, GpioConfig->BaseAddr );
 if( Status != XST_SUCCESS ) {
-    //handle the error
+    //report an error
 }
 ```
 
@@ -264,7 +266,7 @@ XSpiPs_Config *SpiConfig;
 
 SpiConfig = XSpiPs_LookupConfig( XPAR_PS7_SPI_0_DEVICE_ID );
 if( SpiConfig == NULL ) {
-    //handle the error
+    //report an error
 }
 ```
 
@@ -273,22 +275,58 @@ XPAR_PS7_SPI_0_DEVICE_ID is a macro defined in xparameters.h, which was generate
 > [!NOTE]
 > On Zynq boards, which have Quad SPI Flash (e.g., [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/)), the ID of SPI 0 is provided by the macro XPAR_PS7_**QSPI**_0_DEVICE_ID.
 
+With the configuration loaded, we initialize the SPI driver and perform a self-test. The function [XSpiPs_SelfTest](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/group__spips.html#gaaa797b9b8184e6f39b0c0038553e48d8) verifies that there really is an SPI device connected to the driver.
 
 ```c
+XSpiPs SpiInstance;
 int Status;
 
-Status = XSpiPs_CfgInitialize(&SpiInstance, SpiConfig, SpiConfig->BaseAddress);
-if(Status != XST_SUCCESS) {
-    //handle the error
+Status = XSpiPs_CfgInitialize( &SpiInstance, SpiConfig, SpiConfig->BaseAddress );
+if( Status != XST_SUCCESS ) {
+    //report an error
 }
 
-Status = XSpiPs_SelfTest(&SpiInstance);
-if(Status != XST_SUCCESS) {
-    //handle the error
+Status = XSpiPs_SelfTest( &SpiInstance );
+if( Status != XST_SUCCESS ) {
+    //report an error
 }
 ```
 
-dfdfd
+Next, we configure our device as SPI Master (the display works as an SPI Slave), and we set the Force Slave Select option of the PS SPI driver.  
+With the Force Slave Select option enabled, the slave select signal SPI0_SS_O will be driven low (meaning "slave 0 active") as soon as we call function [XSpiPs_SetSlaveSelect](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/group__spips.html#ga1ef5af2211095df5692567fa4721a8d5). Without Force Slave Select enabled, the SPI0_SS_O will be driven low only when data transfer is in progress.  
+The display will work with any setting of the Force Slave Select option. However, we gain a bit of SPI data transfer performance with the Force Slave Select option enabled because keeping SPI0_SS_O low all the time eliminates a delay before the start of the data transfer.  
+The following call sets the options:
+
+```c
+Status = XSpiPs_SetOptions( &SpiInstance, XSPIPS_MASTER_OPTION | XSPIPS_FORCE_SSELECT_OPTION );
+if( Status != XST_SUCCESS ) {
+    //report an error
+}
+```
+
+And the next call sets SPI Slave 0 as active.  
+In our simple HW design we have just the display connected to PS SPI. However, in a more complex design, you may have several SPI peripherals connected and would be switching between them by calling XSpiPs_SetSlaveSelect.
+
+```c
+Status = XSpiPs_SetSlaveSelect( &SpiInstance, 0 );
+if( Status != XST_SUCCESS ) {
+    //report an error
+}
+```
+
+The last step in configuring the SPI is setting the SPI clock frequency.  
+The Zynq PS default SPI clock is 166.67 MHz. You can scale this frequency down by a power of two factors by calling [XSpiPs_SetClkPrescaler](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/group__spips.html#ga146ed84d7a6ab3b3f8961697bd78da60).  
+The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the shortest possible SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet).
+
+For getting a setting closest to the ILI9488 rated 20 MHz, we can call 
+```c
+Status = XSpiPs_SetClkPrescaler( &SpiInstance, XSPIPS_CLK_PRESCALE_8 );
+if( Status != XST_SUCCESS ) {
+    //report an error
+}
+```
+which gives us an SPI clock of 20.83 MHz (==&nbsp;166,67&nbsp;/&nbsp;8).  
+20.83 MHz is higher than the 20 MHz from the datasheet. Nevertheless, my specimen of the display worked well at this frequency.
 
 
-
+If you want to be on the safe side, you can set the SPI frequency to 150 MHz in the Zynq-7000 configuration in Vivado. Then, with the factor XSPIPS_CLK_PRESCALE_8, you get the SPI frequency of 18,75 MHz.
