@@ -304,8 +304,7 @@ if( Status != XST_SUCCESS ) {
 }
 ```
 
-And the next call sets SPI Slave 0 as active.  
-In our simple HW design we have just the display connected to PS SPI. However, in a more complex design, you may have several SPI peripherals connected and would be switching between them by calling XSpiPs_SetSlaveSelect.
+And the next call sets SPI Slave 0 as active: 
 
 ```c
 Status = XSpiPs_SetSlaveSelect( &SpiInstance, 0 );
@@ -313,6 +312,8 @@ if( Status != XST_SUCCESS ) {
     //report an error
 }
 ```
+
+In our simple HW design we have just the display connected to PS SPI. However, in a more complex design, you may have several SPI peripherals connected and would be switching between them by calling XSpiPs_SetSlaveSelect.
 
 The last step in configuring the SPI is setting the SPI clock frequency.  
 The Zynq PS default SPI clock is 166.67 MHz. You can scale this frequency down by a power of two factors by calling [XSpiPs_SetClkPrescaler](https://xilinx.github.io/embeddedsw.github.io/spips/doc/html/api/group__spips.html#ga146ed84d7a6ab3b3f8961697bd78da60).  
