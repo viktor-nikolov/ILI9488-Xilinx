@@ -222,7 +222,7 @@ if( GpioConfig == NULL ) {
 }
 ```
 
-XPAR_PS7_GPIO_0_DEVICE_ID is a macro defined in xparameters.h, which was generated in the platform project based on the HW design made in Vivado. XPAR_PS7_GPIO_0_DEVICE_ID provides the ID of the GPIO device 0.
+XPAR_PS7_GPIO_0_DEVICE_ID is a macro defined in xparameters.h, which was generated in the platform project based on the HW design we made in Vivado. XPAR_PS7_GPIO_0_DEVICE_ID provides the ID of the GPIO device 0.
 
 With the configuration loaded, we initialize the GPIO driver:
 
@@ -236,18 +236,57 @@ if( Status != XST_SUCCESS ) {
 }
 ```
 
-DDD
+After initializing the GPIO driver, we need to do the SW configuration of the pins.  
+In our HW design, we configured two EMIO GPIO pins. There are 54 MIO GPIO pins on Zynq, numbered 0..53. The EMIO pins follow after the MIO pins. Therefore the first EMIO pin has number 54.  
+The following two macros define the numbers of RST and DC pins:
 
 ```c
 #define ILI9488_RST_PIN  54 //== EMIO pin 0
 #define ILI9488_DC_PIN   55 //== EMIO pin 1
 ```
 
+In the following cycle, we configure both pins as output pins, enable them, and drive them low.
 
+```c++
+std::vector<int> outputPins = { ILI9488_RST_PIN, ILI9488_DC_PIN };
+for( auto p : outputPins ) {
+    XGpioPs_SetDirectionPin( &GpioInstance, p, 1 /*output*/ );
+    XGpioPs_SetOutputEnablePin( &GpioInstance, p, 1 /*enable*/ );
+    XGpioPs_WritePin( &GpioInstance, p, 0 /*low*/ );
+}
+```
+
+Let's now initialize the SPI.  
+As with GPIO, we first load the SPI device configuration.
+
+```c
+XSpiPs_Config *SpiConfig;
+
+SpiConfig = XSpiPs_LookupConfig( XPAR_PS7_SPI_0_DEVICE_ID );
+if( SpiConfig == NULL ) {
+    //handle the error
+}
+```
+
+XPAR_PS7_SPI_0_DEVICE_ID is a macro defined in xparameters.h, which was generated in the platform project based on the HW design we made in Vivado. XPAR_PS7_SPI_0_DEVICE_ID provides the ID of the SPI device 0.
 
 > [!NOTE]
->
-> On Zynq boards, which have Quad SPI Flash (e.g., [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/)), the ID of SPI 0 is provided by the macro XPAR_PS7_QSPI_0_DEVICE_ID.
+> On Zynq boards, which have Quad SPI Flash (e.g., [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/)), the ID of SPI 0 is provided by the macro XPAR_PS7_**QSPI**_0_DEVICE_ID.
+
+
+```c
+int Status;
+
+Status = XSpiPs_CfgInitialize(&SpiInstance, SpiConfig, SpiConfig->BaseAddress);
+if(Status != XST_SUCCESS) {
+    //handle the error
+}
+
+Status = XSpiPs_SelfTest(&SpiInstance);
+if(Status != XST_SUCCESS) {
+    //handle the error
+}
+```
 
 dfdfd
 
