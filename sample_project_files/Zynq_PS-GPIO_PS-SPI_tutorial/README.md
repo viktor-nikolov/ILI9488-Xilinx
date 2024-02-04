@@ -363,6 +363,16 @@ ILI9488 display;
 display.init( &SpiInstance, &GpioInstance, ILI9488_RST_PIN, ILI9488_DC_PIN );
 ```
 
+After calling the ILI9488::init, you will probably want to set the rotation of the display by calling for example
+
+```c++
+display.setRotation( 3 );
+```
+
+The following image shows the effect of calling ILI9488::setRotation with different parameter values. The default setting is setRotation(0).
+
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/rotations.png?raw=true" title="" alt="ILI9488 TFT display pins" width="">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/rotations.png)
+
 You can refer to the Adafruit GFX library's [reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [user guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) for information on drawing graphic elements. You just need to ignore Arduino-specific aspects of the Adafruit GFX library.
 
-In the **main.cpp**, I strived to show the usage of the most common Adafruit GFX methods. Check the functions call from main().
+In the **main.cpp**, I strived to show the usage of the most common Adafruit GFX methods. Check the functions called from main().
