@@ -193,7 +193,16 @@ Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** w
 
 <img title="" src="pictures/app_proj_content.png" alt="" width="230">
 
-## Using GPIO, SPI and ILI9488 library
+The **main.cpp** contains a demo, which shows most of the abilities of the ILI9488 library.  
+You just need to run Project|Build all and then run the application: right-click on ILI9488_CoraZ7, Run As|Launch Hardware (Single Application Debug).
+
+This YouTube video shows what the demo application does:  
+<a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
+ <img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/demo_app_video_frame.png?raw=true" alt="Watch the video" width="300"  border="10" /></a>
+
+In the next chapters, I'm providing more details about what is happening in the main.cpp.
+
+## Preparing GPIO and SPI
 
 In general, the display can be connected to the system using Zynq Processing System SPI or AXI SPI and PS GPIO or AXI GPIO. We need to tell the library that we are using PS SPI and PS GPIO.  
 The library is configured by editing the header [ILI9488_Xil_setup.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h). (The ILI9488_Xil_setup.h is being included by the [ILI9488_Xil.h](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/ILI9488-Xilinx_library/ILI9488_Xil.h).). We must edit the following section of this header, uncommenting one of the macros for SPI and one of the macros for GPIO:
@@ -329,5 +338,22 @@ if( Status != XST_SUCCESS ) {
 which gives us an SPI clock of 20.83 MHz (==&nbsp;166,67&nbsp;/&nbsp;8).  
 20.83 MHz is higher than the 20 MHz from the datasheet. Nevertheless, my specimen of the display worked well at this frequency.
 
+If you want to be on the safe side, you can set the SPI frequency to 150 MHz in the Zynq configuration in Vivado. Then, with the factor XSPIPS_CLK_PRESCALE_8, you get the SPI frequency of 18,75 MHz.
 
-If you want to be on the safe side, you can set the SPI frequency to 150 MHz in the Zynq-7000 configuration in Vivado. Then, with the factor XSPIPS_CLK_PRESCALE_8, you get the SPI frequency of 18,75 MHz.
+## Using the ILI9488 library
+
+Now we have the GPIO and SPI drivers fully initialized and configured for our needs. Before drawing things on display, we need to initialize the library, i.e., the class ILI9488.
+
+The ILI9488 has an empty constructor.  
+The initialization of the class and configuration of the display is done by the method ILI9488::init. During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
+
+We pass to ILI9488::init initialized SPI and GPIO instances and numbers of display reset and DC pins.
+
+```c++
+ILI9488 display;
+display.init( &SpiInstance, &GpioInstance, ILI9488_RST_PIN, ILI9488_DC_PIN );
+```
+
+You can refer to the Adafruit GFX library's [reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [user guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) for information on drawing graphic elements. You just need to ignore Arduino-specific aspects of the Adafruit GFX library.
+
+In the **main.cpp**, I strived to show the usage of the most common Adafruit GFX methods.
