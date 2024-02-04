@@ -363,7 +363,7 @@ ILI9488 display;
 display.init( &SpiInstance, &GpioInstance, ILI9488_RST_PIN, ILI9488_DC_PIN );
 ```
 
-After calling the ILI9488::init, you will probably want to set the rotation of the display by calling for example
+After calling the ILI9488::init, you will probably want to set the rotation of the display by calling, for example:
 
 ```c++
 display.setRotation( 3 );
