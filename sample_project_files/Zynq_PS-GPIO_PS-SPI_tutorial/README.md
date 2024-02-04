@@ -202,6 +202,15 @@ This YouTube video shows what the demo application does:
 
 In the next chapters, I'm providing more details about what is happening in the main.cpp.
 
+> [!IMPORTANT]
+> The compiler optimization matters!  
+> There is a code in the library (especially in ILI9488::fillRect) which is CPU intensive.
+>
+> Do build the final application in the Release configuration.
+>
+> I recommend changing the Properties|C/C++ Build|Setting|Optimization to "Optimize most (-O3)" (the default is -O2 optimization setting).  
+> I measured that using -O3 increases the library's performance as compared to -O2.
+
 ## Preparing GPIO and SPI
 
 In general, the display can be connected to the system using Zynq Processing System SPI or AXI SPI and PS GPIO or AXI GPIO. We need to tell the library that we are using PS SPI and PS GPIO.  
@@ -342,7 +351,7 @@ If you want to be on the safe side, you can set the SPI frequency to 150 MHz in 
 
 ## Using the ILI9488 library
 
-Now we have the GPIO and SPI drivers fully initialized and configured for our needs. Before drawing things on display, we need to initialize the library, i.e., the class ILI9488.
+Now, we have the GPIO and SPI drivers fully initialized and configured for our needs. Before drawing things on display, we need to initialize the library, i.e., the class ILI9488.
 
 The ILI9488 has an empty constructor.  
 The initialization of the class and configuration of the display is done by the method ILI9488::init. During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
@@ -356,4 +365,4 @@ display.init( &SpiInstance, &GpioInstance, ILI9488_RST_PIN, ILI9488_DC_PIN );
 
 You can refer to the Adafruit GFX library's [reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [user guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) for information on drawing graphic elements. You just need to ignore Arduino-specific aspects of the Adafruit GFX library.
 
-In the **main.cpp**, I strived to show the usage of the most common Adafruit GFX methods.
+In the **main.cpp**, I strived to show the usage of the most common Adafruit GFX methods. Check the functions call from main().
