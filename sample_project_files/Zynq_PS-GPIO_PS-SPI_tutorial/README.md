@@ -21,18 +21,19 @@ Please note that most steps in this tutorial are valid also for any other Zynq-7
 
 ## Connecting the display
 
-The 3.5&Prime; ILI9488 TFT SPI display is controlled by an SPI bus with a clock frequency of 20 MHz.  
-In addition to the SPI, it has to be connected to two GPIO pins (reset and Data/Command selection signals).
-
+The 3.5&Prime; ILI9488 TFT SPI display is controlled by the SPI bus with a clock frequency of 20 MHz.  
+In addition to the SPI, it has to be connected to two GPIO pins (reset and Data/Command selection signals).  
 We need to connect the display pins highlighted in the photo below.
-
-Logic IO pins accept a 3.3 V voltage level (TTL). VCC and LED (the backlight control) pins need to be connected to a 3.3 V power source.
-
-- Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_TFT_display_pins.png?raw=true" title="" alt="ILI9488 TFT display pins" width="230">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_TFT_display_pins.png)
 
-TODO
+Logic IO pins accept a 3.3 V voltage level (TTL). VCC and LED (the backlight control) pins must be connected to a 3.3 V power source.
+
+- Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
+
+I have chosen to connect logic IO pins to the Cora Z7 digital outer header pins io0..io4. This is because digital header pins are protected by 200 &Omega; resistors against short-circuit.  
+Cora Z7 has to Pmod connectors, however these are so called high-speed Pmods and their pins are not protected.  
+We will use a Pmod connector for getting 3.3 V and GND though.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="650">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
 
