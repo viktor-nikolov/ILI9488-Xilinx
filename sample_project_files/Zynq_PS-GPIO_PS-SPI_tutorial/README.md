@@ -37,7 +37,7 @@ We will use a Pmod connector to get 3.3 V and GND, though.
 
 <img title="" src="pictures/CoraZ7_connection_schematics.png" alt="" width="650">
 
-[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="650">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="700">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
 
 ## HW design in Vivado
 
