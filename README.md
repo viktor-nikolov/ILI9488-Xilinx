@@ -250,6 +250,8 @@ To change this to other GPIO/SPI devices or to other pins, you need to set accor
 
 I included in this repository several sample projects designed in Vivado 2023.1 and Vitis 2023.1, which show the use of the library on Zynq-7000 and MicroBlaze. Refer to the folder [sample_project_files](sample_project_files) for details.
 
+I also provided a detailed [step-by-step tutorial](sample_project_files/Zynq_PS-GPIO_PS-SPI_tutorial) on how to use the display on the Zynq board [Cora Z7](https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/).
+
 ### Performance
 
 ILI9488 is not very fast.  
