@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="ILI9488_CoraZ7" location="C:/CoraZ7_tutorial/ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7" platform="C:/CoraZ7_tutorial/ILI9488_TFT_on_CoraZ7_sw/system/export/system/system.xpfm" platformUID="xilinx:cora-z7-07s::0.0(custom)" systemProject="ILI9488_CoraZ7_system" sysConfig="system" runtime="C/C++" cpu="standalone_domain" cpuInstance="ps7_cortexa9_0" os="standalone" language="CPP" mssSignature="27d5b6027e35caafe74375ce4965ada6">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.2098684819">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.1472402703">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="empty_application"/>
+</sdkproject:SdkProject>
