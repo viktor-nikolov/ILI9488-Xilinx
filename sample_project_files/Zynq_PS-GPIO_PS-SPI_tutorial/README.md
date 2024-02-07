@@ -31,9 +31,9 @@ Logic IO pins accept a 3.3 V voltage level (TTL). VCC and LED (the backlight con
 
 - Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
 
-I have chosen to connect logic IO pins to the Cora Z7 digital outer header pins io0..io4. This is because digital header pins are protected by 200 &Omega; resistors against short-circuit.  
-Cora Z7 has to Pmod connectors, however these are so called high-speed Pmods and their pins are not protected.  
-We will use a Pmod connector for getting 3.3 V and GND though.
+I have chosen to connect logic IO pins to the Cora Z7 digital outer header pins io0..io4. This is because 200 Ω resistors protect digital header pins against short circuits.  
+Cora Z7 has two Pmod connectors. However, these are so-called high-speed Pmods whose pins are not protected.  
+We will use a Pmod connector to get 3.3 V and GND, though.
 
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="650">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
 
