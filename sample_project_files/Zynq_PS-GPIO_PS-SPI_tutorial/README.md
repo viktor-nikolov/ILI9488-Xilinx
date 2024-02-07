@@ -354,7 +354,7 @@ If you want to be on the safe side, you can set the SPI frequency to 150 MHz in 
 
 ## Using the ILI9488 library
 
-Now, we have the GPIO and SPI drivers fully initialized and configured for our needs. Before drawing things on display, we need to initialize the library, i.e., the class ILI9488.
+Now, we have the GPIO and SPI drivers fully initialized and configured for our needs. Before drawing things on the display, we need to initialize the library, i.e., the class ILI9488.
 
 The ILI9488 has an empty constructor.  
 The initialization of the class and configuration of the display is done by the method ILI9488::init. During the execution of ILI9488::init, configuration commands are sent to the display over SPI.
