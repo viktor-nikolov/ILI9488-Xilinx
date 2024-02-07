@@ -191,7 +191,7 @@ Let's start with my [ILI9488 library for Xilinx](https://github.com/viktor-nikol
 > If you don't have git installed on your computer, the easy way to download the content of a folder from a GitHub repository is to use [download-directory.github.io](https://download-directory.github.io/).
 > To get the ILI9488-Xilinx_library folder content, enter the path `https://github.com/viktor-nikolov/ILI9488-Xilinx/tree/main/ILI9488-Xilinx_library`.
 
-Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** which I prepared for the purpose of this tutorial. Paste them in the src directory of the application project.  
+Next, download the files [main.cpp](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/main.cpp), [demo_image1.h](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/demo_image1.h) and [demo_image2.h](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/demo_image2.h), which I prepared for the purpose of this tutorial. Paste them in the src directory of the application project.  
 (You can delete the README.txt file from the src folder. It doesn't contain any important information.)
 
 <img title="" src="pictures/app_proj_content.png" alt="" width="230">
