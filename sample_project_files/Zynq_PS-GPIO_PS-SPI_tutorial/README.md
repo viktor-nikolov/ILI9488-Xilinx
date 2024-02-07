@@ -31,7 +31,7 @@ Logic IO pins accept a 3.3 V voltage level (TTL). VCC and LED (the backlight con
 
 - Please note that we do not need to connect the "SDO (MISO)" pin of the display to SPI because we are not reading any data from the display.
 
-I have chosen to connect logic IO pins to the Cora Z7 digital outer header pins named IO0..IO4. This is because 200 Ω resistors protect digital header pins against short circuits.  
+I have chosen to connect display's logic IO pins to the Cora Z7 digital outer header pins named IO0..IO4. This is because 200 Ω resistors protect digital header pins against short circuits.  
 Cora Z7 has two Pmod connectors. However, these are so-called high-speed Pmods whose pins are not protected.  
 We will use a Pmod connector to get 3.3 V and GND, though.
 
@@ -59,8 +59,8 @@ Click Create Block Design, and name the design "system":
 
 An empty block design window opens.
 
-Before we use output ports in the block design, we need to define them in a constraints file (.XDC).  
-Download Cora Z7 [Master XDC](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc) from Digilent GitHub and import it as a constraints source file by clicking "+" icon in the Sources window; then follow the wizard.
+Before we use output ports in the block design, we need to define them in a constraints file (XDC).  
+Download the Cora Z7 [Master XDC](https://github.com/Digilent/digilent-xdc/blob/master/Cora-Z7-07S-Master.xdc) from Digilent GitHub and import it as a constraints source file by clicking "+" icon in the Sources window; then follow the wizard.
 
 <img title="" src="pictures/add_constraints_source.png" alt="" width="400">
 
@@ -93,10 +93,10 @@ We specify all ports as Output and Type "Other".
 
 <img title="" src="pictures/add_port.png" alt="" width="400">
 
-Now we add to the diagram an IP representing the Zynq Processing System.  
+Now, we add an IP representing the Zynq Processing System to the diagram.  
 Search for "zynq" in the IP Catalog window and drag the "ZYNQ7 Processing System" to the diagram.
 
-Now, we let Vivado make basic connections for us. Click Run Block Automation, which appeared at the top of the Diagram window. We accept all block automation defaults, so we just click OK.
+Now, we let Vivado make basic connections for us. Click Run Block Automation, which appeared at the top of the diagram window. We accept all block automation defaults, so we just click OK.
 
 This the results of the steps we did so far:
 
@@ -115,8 +115,8 @@ Then, scroll down the list and enable EMIO GPIO. Set the width to 2 (we need two
 
 <img title="" src="pictures/emio_enable.png" alt="" width="650">
 
-Because we are not using Zynq AXI interface in our design, we must switch it off in the Zynq configuration (othewise we would get a critical warning that we do not provide clock signal to the AXI interface).  
-Go back to the Zynq Block Design and click on the "32b GP AXI Master Ports" at the bottom. Disable the "M AXI GP0 interface".
+Because we are not using the Zynq AXI interface in our design, we better switch it off in the Zynq configuration (otherwise, we would get a critical warning that we do not provide a clock signal to the AXI interface).  
+Return to the Zynq Block Design and click "32b GP AXI Master Ports" at the bottom. Disable the "M AXI GP0 interface".
 
 <img title="" src="pictures/axi_disable.png" alt="" width="500">
 
@@ -124,7 +124,7 @@ Click OK.
 You will probably get a critical warning message [PSU-1] and [PSU-2] about two parameters having a negative value. Ignore the warning. It doesn't have a negative impact on the functionality of the HW design.
 
 New signal groups GPIO_0 and SPI_0 appeared on the Zynq PS IP.  
-Let's start with connecting the SPI. When you expand the SPI_0, you will see a lot of signals. We need to connect just three of them (all with the suffix "_O") in the way shown in the following screenshot. (We don't need to connect the SPI0_MISO_I signal because we don't read any data from the display.)
+Let's start with connecting the SPI. When you expand the SPI_0, you will see a lot of signals. We need to connect just three of them (all with the suffix "_O"), as shown in the following screenshot. (We don't need to connect the SPI0_MISO_I signal because we don't read any data from the display.)
 
 <img title="" src="pictures/spi_connected.png" alt="" width="500">
 
