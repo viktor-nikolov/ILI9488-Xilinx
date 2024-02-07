@@ -192,7 +192,7 @@ The method `void ILI9488::setRotation(uint8_t rotation)` sets the position of th
 The following image shows the effect of calling ILI9488::setRotation on the 3.5&Prime; TFT SPI Module ILI9488.  
 The default setting is setRotation(0).
 
-![](pictures/rotations.png)
+[<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/rotations.png?raw=true" title="" alt="ILI9488 TFT display pins" width="500">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/rotations.png)
 
 ### Drawing graphics elements
 
