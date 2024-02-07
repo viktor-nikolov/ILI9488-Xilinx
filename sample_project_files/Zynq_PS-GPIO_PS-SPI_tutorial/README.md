@@ -35,6 +35,8 @@ I have chosen to connect logic IO pins to the Cora Z7 digital outer header pins 
 Cora Z7 has two Pmod connectors. However, these are so-called high-speed Pmods whose pins are not protected.  
 We will use a Pmod connector to get 3.3 V and GND, though.
 
+<img title="" src="pictures/CoraZ7_connection_schematics.png" alt="" width="650">
+
 [<img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg?raw=true" title="" alt="" width="650">](https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/ILI9488_with_Cora_Z7.jpg)
 
 ## HW design in Vivado
