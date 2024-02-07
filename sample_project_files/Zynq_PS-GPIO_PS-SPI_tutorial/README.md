@@ -196,7 +196,7 @@ Next, download the files [main.cpp](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/
 
 <img title="" src="pictures/app_proj_content.png" alt="" width="230">
 
-The **main.cpp** contains a demo, which shows most of the abilities of the ILI9488 library.  
+The [main.cpp](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/main.cpp) contains a demo, which shows most of the abilities of the ILI9488 library.  
 You just need to run Project|"Build all" and then run the application: right-click on ILI9488_CoraZ7, Run As|"Launch Hardware (Single Application Debug)".
 
 This YouTube video shows what the demo application does:  
@@ -378,4 +378,4 @@ The following image shows the effect of calling ILI9488::setRotation with differ
 
 You can refer to the Adafruit GFX library's [reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [user guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) for information on drawing graphic elements. You just need to ignore Arduino-specific aspects of the Adafruit GFX library.
 
-In the **main.cpp**, I strived to show the usage of the most common Adafruit GFX methods. Check the functions called from main().
+In the [main.cpp](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/main.cpp), I strived to show the usage of the most common Adafruit GFX methods. Check the functions called from main().
