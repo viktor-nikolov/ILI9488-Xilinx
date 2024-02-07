@@ -9,7 +9,7 @@ of Xilinx SPI libraries, and made other modifications.
 The integral part was porting of the [Adafruit_GFX library](https://github.com/adafruit/Adafruit-GFX-Library) because the ILI9488 library is based on it.
 
 I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU) with
-the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels (can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).
+the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels (which can be purchased on [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6/ref=sr_1_1?crid=1JH7HIUGZU29J&keywords=3%2C5%22%2B480x320%2BSPI%2BTFT%2BILI9488&qid=1691653179&sprefix=3%2C5%2B480x320%2Bspi%2Btft%2Bili9488%2Caps%2C212&sr=8-1&th=1) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).
 
 This repository contains [sample projects](sample_project_files) that run on Digilent boards [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/), [Arty A7](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) and [Cmod A7](https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/).
 
@@ -89,7 +89,7 @@ The library is defined as the class ILI9488 in [ILI9488_Xil.h](ILI9488-Xilinx_li
 The class ILI9488 extends the class Adafruit_GFX, which is defined (together with other needed classes) in the source files in the [Adafruit_GFX](ILI9488-Xilinx_library/Adafruit_GFX) folder.
 
 Folder [Adafruit_GFX/Fonts](ILI9488-Xilinx_library/Adafruit_GFX/Fonts) contains definitions of several fonts that came with the Adafruit_GFX library.  
-(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L358) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
+(See function [testBigFont](ILI9488-Xilinx_library_demo_app/main.cpp#L360) in the library [demo app](ILI9488-Xilinx_library_demo_app/main.cpp) for an example of use.)
 
 > [!WARNING]
 > When using the library on the MicroBlaze, be aware of the fact that the default stack size on the MicroBlaze is only 1 kB. The method ILI9488::fillRect uses 768 B from the stack for a local array, which is used to prepare data to be sent to the display over SPI.  
@@ -153,7 +153,7 @@ You must pass initialized and ready to use instances of SPI and GPIO drivers to 
 > [!TIP]
 > Part of this repository is a [demo application](ILI9488-Xilinx_library_demo_app), which shows the usage of the library. The application is implemented to work with all combinations of PS/AXI SPI/GPIO connections.
 > 
-> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L101), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L164), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L232) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L260) from the demo application as templates for SPI/GPIO interfaces initialization.
+> I recommend that you use functions [initialize_PS_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L103), [initialize_AXI_SPI()](ILI9488-Xilinx_library_demo_app/main.cpp#L166), [initialize_PS_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L234) and [initialize_AXI_GPIO()](ILI9488-Xilinx_library_demo_app/main.cpp#L262) from the demo application as templates for SPI/GPIO interfaces initialization.
 
 ### SPI Slave selection
 
