@@ -197,17 +197,17 @@ Next, **(TODO) download the files main.cpp, demo_image1.h and demo_image2.h,** w
 <img title="" src="pictures/app_proj_content.png" alt="" width="230">
 
 The **main.cpp** contains a demo, which shows most of the abilities of the ILI9488 library.  
-You just need to run Project|Build all and then run the application: right-click on ILI9488_CoraZ7, Run As|Launch Hardware (Single Application Debug).
+You just need to run Project|"Build all" and then run the application: right-click on ILI9488_CoraZ7, Run As|"Launch Hardware (Single Application Debug)".
 
 This YouTube video shows what the demo application does:  
 <a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
  <img src="https://github.com/viktor-nikolov/ILI9488-Xilinx/blob/main/pictures/demo_app_video_frame.png?raw=true" alt="Watch the video" width="300"  border="10" /></a>
 
-In the next chapters, I'm providing more details about what is happening in the main.cpp.
+In the next chapters, I'll provide more details about what is happening in the main.cpp.
 
 > [!IMPORTANT]
 > The compiler optimization matters!  
-> There is a code in the library (especially in ILI9488::fillRect) which is CPU intensive.
+> There is a code in the library (especially in the method ILI9488::fillRect) which is CPU intensive.
 >
 > Do build the final application in the Release configuration.
 >
