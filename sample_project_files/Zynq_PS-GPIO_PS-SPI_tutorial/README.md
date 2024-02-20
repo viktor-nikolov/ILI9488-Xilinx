@@ -377,3 +377,7 @@ The following image shows the effect of calling ILI9488::setRotation with differ
 You can refer to the Adafruit GFX library's [reference](https://adafruit.github.io/Adafruit-GFX-Library/html/class_adafruit___g_f_x.html) and the [user guide](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-gfx-graphics-library.pdf) for information on drawing graphic elements. You just need to ignore Arduino-specific aspects of the Adafruit GFX library.
 
 In the [main.cpp](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/main.cpp), I strived to show the usage of the most common Adafruit GFX methods. Check the functions called from [main()](ILI9488_TFT_on_CoraZ7_sw/ILI9488_CoraZ7/src/main.cpp#L384).
+
+## Project files
+
+Folders [ILI9488_TFT_on_CoraZ7_hw](ILI9488_TFT_on_CoraZ7_hw) and [ILI9488_TFT_on_CoraZ7_sw](ILI9488_TFT_on_CoraZ7_sw) contain the HW design made in Vivado 2023.1 and Vitis 2023.1 SW workspace created by this tutorial.
