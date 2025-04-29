@@ -102,7 +102,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 int initialize_PS_SPI() {
 	XSpiPs_Config *SpiConfig;
-    int Status;
+	int Status;
 
 	SpiConfig = XSpiPs_LookupConfig(ILI9488_SPI_DEVICE_ID);
 	if(SpiConfig == NULL) {
@@ -164,10 +164,10 @@ int initialize_PS_SPI() {
 #elif defined(ILI9488_SPI_AXI)
 
 int initialize_AXI_SPI() {
-    int Status;
-    XSpi_Config *SpiConfig;
+	int Status;
+	XSpi_Config *SpiConfig;
 
-    SpiConfig = XSpi_LookupConfig(ILI9488_SPI_DEVICE_ID);
+	SpiConfig = XSpi_LookupConfig(ILI9488_SPI_DEVICE_ID);
 	if(SpiConfig == NULL) {
 		print("XSpi_LookupConfig failed\r\n");
 		return XST_FAILURE;
@@ -233,7 +233,7 @@ int initialize_AXI_SPI() {
 
 int initialize_PS_GPIO() {
 	XGpioPs_Config *GpioConfig;
-    int Status;
+	int Status;
 
 	GpioConfig = XGpioPs_LookupConfig(ILI9488_GPIO_DEVICE_ID);
 	if(GpioConfig == NULL) {
@@ -297,14 +297,14 @@ void testImages(ILI9488 &tft) {
 } //testImages
 
 void testScroll(ILI9488 &tft) {
-    tft.setRotation( 2 ); //scrolling works only along the long 480px edge
+	tft.setRotation( 2 ); //scrolling works only along the long 480px edge
 	tft.fillRect( 0, 0, 320, 20, ILI9488_BLUE);
 	tft.fillRect( 0, 480-20, 320, 20, ILI9488_BLUE);
 
 	tft.setScrollArea( 20, 20 );
 
 	int i,j;
-    uint8_t colVal = 255;
+	uint8_t colVal = 255;
 	uint16_t color1, color2;
 
 	for( i = 1; i < (480-20) / 20; i++ ) {
@@ -358,22 +358,22 @@ void testText( ILI9488 &tft ) {
 } //testText
 
 void testTextBigFont( ILI9488 &tft ) {
-    tft.fillScreen( ILI9488_BLACK );
+	tft.fillScreen( ILI9488_BLACK );
 
-    tft.setFont( &FreeSansBold24pt7b ); //The font is defined in "Adafruit_GFX/Fonts/FreeSansBold24pt7b.h"
+	tft.setFont( &FreeSansBold24pt7b ); //The font is defined in "Adafruit_GFX/Fonts/FreeSansBold24pt7b.h"
 
-    tft.setTextColor( ILI9488_YELLOW );
-    tft.setCursor( 0, 37 );
+	tft.setTextColor( ILI9488_YELLOW );
+	tft.setCursor( 0, 37 );
 
-    for( int i = 0; i < 6; i++ )
-    	tft.println("Hello World!");
+	for( int i = 0; i < 6; i++ )
+		tft.println("Hello World!");
 } //testText
 
 
 void testLines( ILI9488 &tft, uint16_t color) {
 	int x1, y1, x2, y2,
-        w = tft.width(),
-        h = tft.height();
+	w = tft.width(),
+	h = tft.height();
 
 	tft.fillScreen(ILI9488_BLACK);
 
@@ -421,8 +421,8 @@ void testFastLines(ILI9488 &tft, uint16_t color1, uint16_t color2) {
 
 void testRects(ILI9488 &tft, uint16_t color) {
 	int n, i, i2,
-        cx = tft.width()  / 2,
-        cy = tft.height() / 2;
+	cx = tft.width()  / 2,
+	cy = tft.height() / 2;
 
 	tft.fillScreen(ILI9488_BLACK);
 	n = std::min(tft.width(), tft.height());
@@ -434,8 +434,8 @@ void testRects(ILI9488 &tft, uint16_t color) {
 
 void testFilledRects(ILI9488 &tft, uint16_t color1, uint16_t color2) {
 	int n, i, i2,
-        cx = tft.width()  / 2 - 1,
-        cy = tft.height() / 2 - 1;
+	cx = tft.width()  / 2 - 1,
+	cy = tft.height() / 2 - 1;
 
 	tft.fillScreen(ILI9488_BLACK);
 	n = std::min(tft.width(), tft.height());
@@ -448,8 +448,8 @@ void testFilledRects(ILI9488 &tft, uint16_t color1, uint16_t color2) {
 
 void testCircles(ILI9488 &tft, uint8_t radius, uint16_t color) {
 	int x, y, r2 = radius * 2,
-        w = tft.width()  + radius,
-        h = tft.height() + radius;
+	w = tft.width()  + radius,
+	h = tft.height() + radius;
 
 	tft.fillScreen(ILI9488_BLACK);
 	for(x=0; x<w; x+=r2) {
@@ -472,7 +472,7 @@ void testFilledCircles(ILI9488 &tft, uint8_t radius, uint16_t color) {
 
 void testTriangles(ILI9488 &tft) {
 	int n, i, cx = tft.width()  / 2 - 1,
-        cy = tft.height() / 2 - 1;
+	cy = tft.height() / 2 - 1;
 
 	tft.fillScreen(ILI9488_BLACK);
 	n = std::min(cx, cy);
@@ -487,21 +487,21 @@ void testTriangles(ILI9488 &tft) {
 
 void testFilledTriangles(ILI9488 &tft) {
 	int i, cx = tft.width()  / 2 - 1,
-        cy = tft.height() / 2 - 1;
+	cy = tft.height() / 2 - 1;
 
 	tft.fillScreen(ILI9488_BLACK);
 	for(i=std::min(cx,cy); i>10; i-=5) {
 		tft.fillTriangle(cx, cy - i, cx - i, cy + i, cx + i, cy + i,
-                         ILI9488::color565(0, i*10, i*10));
+		                 ILI9488::color565(0, i*10, i*10));
 		tft.drawTriangle(cx, cy - i, cx - i, cy + i, cx + i, cy + i,
-                         ILI9488::color565(i*10, i*10, 0));
+		                 ILI9488::color565(i*10, i*10, 0));
 	}
 } //testFilledTriangles
 
 void testRoundRects(ILI9488 &tft) {
 	int w, i, i2,
-        cx = tft.width()  / 2 - 1,
-        cy = tft.height() / 2 - 1;
+	cx = tft.width()  / 2 - 1,
+	cy = tft.height() / 2 - 1;
 
 	tft.fillScreen(ILI9488_BLACK);
 	w = std::min(tft.width(), tft.height());
@@ -513,8 +513,8 @@ void testRoundRects(ILI9488 &tft) {
 
 void testFilledRoundRects(ILI9488 &tft) {
 	int i, i2,
-        cx = tft.width()  / 2 - 1,
-        cy = tft.height() / 2 - 1;
+	cx = tft.width()  / 2 - 1,
+	cy = tft.height() / 2 - 1;
 
 	tft.fillScreen(ILI9488_BLACK);
 	for(i=std::min(tft.width(), tft.height()); i>20; i-=6) {
@@ -549,47 +549,47 @@ int main()
 
     /*** Initialize SPI driver ***/
 #if defined(ILI9488_SPI_PS)
-    if( initialize_PS_SPI()  != XST_SUCCESS )
-    	return XST_FAILURE;
+	if( initialize_PS_SPI()  != XST_SUCCESS )
+		return XST_FAILURE;
 #elif defined(ILI9488_SPI_AXI)
-    if( initialize_AXI_SPI() != XST_SUCCESS )
-    	return XST_FAILURE;
+	if( initialize_AXI_SPI() != XST_SUCCESS )
+		return XST_FAILURE;
 #endif
 
     /*** Initialize GPIO driver ***/
 #if defined(ILI9488_GPIO_PS)
-    if( initialize_PS_GPIO()  != XST_SUCCESS )
-    	return XST_FAILURE;
+	if( initialize_PS_GPIO()  != XST_SUCCESS )
+		return XST_FAILURE;
 #elif defined(ILI9488_GPIO_AXI)
-    if( initialize_AXI_GPIO() != XST_SUCCESS )
-    	return XST_FAILURE;
+	if( initialize_AXI_GPIO() != XST_SUCCESS )
+		return XST_FAILURE;
 #endif
 
-    ILI9488 display;
-    display.init( &SpiInstance, &GpioInstance, ILI9488_RST_PIN, ILI9488_DC_PIN );
-    display.setRotation( 3 );
+	ILI9488 display;
+	display.init( &SpiInstance, &GpioInstance, ILI9488_RST_PIN, ILI9488_DC_PIN );
+	display.setRotation( 3 );
 
-    while(1) {
-    	testFillScreen( display );
-    	testImages( display );
-    	sleep( 3 );
+	while(1) {
+		testFillScreen( display );
+		testImages( display );
+		sleep( 3 );
 
-    	testScroll( display );
-    	display.setRotation( 3 ); //testScroll changed the rotation
-    	sleep ( 1 );
+		testScroll( display );
+		display.setRotation( 3 ); //testScroll changed the rotation
+		sleep ( 1 );
 
-    	testText( display );
-        sleep ( 3 );
+		testText( display );
+		sleep ( 3 );
 
-        display.invertDisplay( true );
-        usleep( 1500*1000 );
-        display.invertDisplay( false );
-        sleep( 1 );
+		display.invertDisplay( true );
+		usleep( 1500*1000 );
+		display.invertDisplay( false );
+		sleep( 1 );
 
-        testTextBigFont( display );
-        usleep( 1500*1000 );
+		testTextBigFont( display );
+		usleep( 1500*1000 );
 
-        testLines( display, ILI9488_YELLOW );
+		testLines( display, ILI9488_YELLOW );
 		sleep ( 1 );
 		testFastLines( display, ILI9488_YELLOW, ILI9488_WHITE );
 		sleep ( 1 );
@@ -600,23 +600,23 @@ int main()
 		sleep ( 1 );
 
 		testCircles( display, 10, ILI9488_YELLOW );
-    	sleep ( 1 );
-    	testFilledCircles( display, 10, ILI9488_YELLOW );
-    	sleep ( 1 );
+		sleep ( 1 );
+		testFilledCircles( display, 10, ILI9488_YELLOW );
+		sleep ( 1 );
 
-    	testTriangles( display );
-    	sleep ( 1 );
-    	testFilledTriangles( display );
-    	sleep ( 1 );
+		testTriangles( display );
+		sleep ( 1 );
+		testFilledTriangles( display );
+		sleep ( 1 );
 
-    	testRoundRects( display );
-    	sleep ( 1 );
-    	testFilledRoundRects( display );
-    	sleep( 1 );
-    }
+		testRoundRects( display );
+		sleep ( 1 );
+		testFilledRoundRects( display );
+		sleep( 1 );
+	}
 
-    print("graceful exit\r\n"); //never reached
-    return 0;
+	print("graceful exit\r\n"); //never reached
+	return 0;
 } //main
 
 
