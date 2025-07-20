@@ -6,7 +6,7 @@ This is the port of Jaret Burkett's [ILI9488 Arduino library](https://github.com
 
 I removed all Arduino-specific code, optimized SPI writes for the capabilities
 of Xilinx SPI libraries, and made other modifications.  
-The integral part was porting the [Adafruit_GFX library](https://github.com/adafruit/Adafruit-GFX-Library) becaThe use the ILI9488 library is based on it.
+The integral part was porting the [Adafruit_GFX library](https://github.com/adafruit/Adafruit-GFX-Library) becase the ILI9488 library is based on it.
 
 I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU) with
 the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels (which can be purchased on  [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).
