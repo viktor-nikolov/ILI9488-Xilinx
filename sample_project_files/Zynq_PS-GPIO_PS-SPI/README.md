@@ -2,8 +2,8 @@
 
 This folder contains a sample project for using the [ILI9488 library](https://github.com/viktor-nikolov/ILI9488-Xilinx) on Zynq-7000 with PS GPIO and PS SPI, which was tested on [Zybo Z7-20](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/). 
 
-The HW design [ZyboZ7_PS-GPIO_PS-SPI_hw](ZyboZ7_PS-GPIO_PS-SPI_hw) was made in Vivado 2023.1.
-The folder [ILI9488_library_demo_sw](ILI9488_library_demo_sw) is a project workspace for Vitis 2023.1.
+The HW design [ZyboZ7_PS-GPIO_PS-SPI_hw](ZyboZ7_PS-GPIO_PS-SPI_hw) was made in Vivado 2023.1.  
+The folder [ILI9488_library_demo_sw](ILI9488_library_demo_sw) is a project workspace for Vitis 2023.1.  
 The file [ILI9488_library_demo_sw_2025.1.zip](ILI9488_library_demo_sw_2025.1.zip) is a project archive from Vitis 2025.1. To use the archive, open an empty workspace in Vitis 2025.1, select File|Import, and provide the path to the project archive in the field "Import from Archive".
 
 > [!IMPORTANT]
