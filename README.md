@@ -83,7 +83,7 @@ Logic IO pins accept a 3.3 V voltage level (TTL).
 
 ### Using the library in Vitis
 
-I successfully used the library in Vitis 2023.1 (which is Vitis Classic) and Vitis 2025.1 (which is Vitis Unified). I believe it will also work in Vitis Classic 2024.
+I successfully used the library in Vitis 2023.1 (which is Vitis Classic) and Vitis 2025.1 (which is Vitis Unified). I believe it will also work in Vitis Classic 2024.x.
 
 To use the library, copy the whole content of the [ILI9488-Xilinx_library](ILI9488-Xilinx_library) folder to the src folder of your application project in Vitis.
 
