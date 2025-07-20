@@ -7,7 +7,7 @@ following display: http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520
 
 BSD 2-Clause License:
 
-Copyright (c) 2023 Viktor Nikolov
+Copyright (c) 2025 Viktor Nikolov
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -32,6 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "xil_printf.h"
 #include "xil_cache.h"
 #include "sleep.h"
+#include "xparameters.h"
 
 #include "ILI9488_Xil.h"
 #include "Adafruit_GFX/Fonts/FreeSansBold24pt7b.h" //needed for testTextBigFont()
@@ -49,19 +50,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #if defined(ILI9488_SPI_PS)
 
-	/* Define SPI device ID, to which is the ILI9488 display connected. Macro XPAR_PS7_QSPI_0_DEVICE_ID,
-	 * is from the header xparameters.h, which was generated based on the HW design. */
-	#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_QSPI_0_DEVICE_ID
-//	#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_SPI_0_DEVICE_ID //On Zynq boards, which do not have Quad SPI Flash, the macro
-                                                             //XPAR_PS7_SPI_0_DEVICE_ID provides the ID of SPI device 0
-
+	/* Define SPI device ID, to which is the ILI9488 display connected. Macros XPAR_* are
+	 * from the header xparameters.h, which was generated based on the HW design. */
+	#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+		#define ILI9488_SPI_BASEADDR    XPAR_XSPIPS_0_BASEADDR
+	#else
+		#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_QSPI_0_DEVICE_ID
+	//	#define ILI9488_SPI_DEVICE_ID   XPAR_PS7_SPI_0_DEVICE_ID //On Zynq boards, which do not have Quad SPI Flash, the macro
+    	                                                         //XPAR_PS7_SPI_0_DEVICE_ID provides the ID of SPI device 0
+	#endif
 	XSpiPs SpiInstance;
 
 #elif defined(ILI9488_SPI_AXI)
 
-	/* Define SPI device ID, to which is the ILI9488 display connected. Macro XPAR_AXI_QUAD_SPI_0_DEVICE_ID,
-	 * is from the header xparameters.h, which was generated based on the HW design. */
-	#define ILI9488_SPI_DEVICE_ID   XPAR_AXI_QUAD_SPI_0_DEVICE_ID
+	/* Define SPI device ID, to which is the ILI9488 display connected. Macrs XPAR_* are
+	 * from the header xparameters.h, which was generated based on the HW design. */
+	#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+		#define ILI9488_SPI_DEVICE_ID   XPAR_AXI_QUAD_SPI_0_BASEADDR
+	#else
+		#define ILI9488_SPI_DEVICE_ID   XPAR_AXI_QUAD_SPI_0_DEVICE_ID
+	#endif
 
 	XSpi   SpiInstance;
 
@@ -69,10 +77,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #if defined(ILI9488_GPIO_PS)
 
-	/* Define GPIO device ID, to which is the ILI9488 display connected. Macro XPAR_PS7_GPIO_0_DEVICE_ID,
-	 * is from the header xparameters.h, which was generated based on the HW design.
+	/* Define GPIO device ID, to which is the ILI9488 display connected. Macros XPAR_* are
+	 * from the header xparameters.h, which was generated based on the HW design.
 	 */
-	#define ILI9488_GPIO_DEVICE_ID  XPAR_PS7_GPIO_0_DEVICE_ID
+	#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+		#define ILI9488_GPIO_BASEADDR   XPAR_XGPIOPS_0_BASEADDR
+	#else
+		#define ILI9488_GPIO_DEVICE_ID  XPAR_PS7_GPIO_0_DEVICE_ID
+	#endif
 
 	/* Define numbers of EMIO GPIO pins to which are the RST and DC pins of ILI9488 display connected.
 	 * The first EMIO pin has number 54.
@@ -84,10 +96,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #elif defined(ILI9488_GPIO_AXI)
 
-	/* Define GPIO device ID, to which is the ILI9488 display connected. Macro XPAR_AXI_GPIO_0_DEVICE_ID,
-	 * is from the header xparameters.h, which was generated based on the HW design.
+	/* Define GPIO device ID, to which is the ILI9488 display connected. Macros XPAR_* are
+	 * from the header xparameters.h, which was generated based on the HW design.
 	 */
-	#define ILI9488_GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+	#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+		#define ILI9488_GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_BASEADDR
+	#else
+		#define ILI9488_GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+	#endif
 
 	/* Define masks of GPIO pins to which are the RST and DC pins of ILI9488 display connected.
 	 */
@@ -104,7 +120,11 @@ int initialize_PS_SPI() {
 	XSpiPs_Config *SpiConfig;
 	int Status;
 
+#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+	SpiConfig = XSpiPs_LookupConfig(ILI9488_SPI_BASEADDR);
+#else
 	SpiConfig = XSpiPs_LookupConfig(ILI9488_SPI_DEVICE_ID);
+#endif
 	if(SpiConfig == NULL) {
 		print("XSpiPs_LookupConfig failed\r\n");
 		return XST_FAILURE;
@@ -167,7 +187,11 @@ int initialize_AXI_SPI() {
 	int Status;
 	XSpi_Config *SpiConfig;
 
+#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+	SpiConfig = XSpi_LookupConfig(ILI9488_SPI_BASEADDR);
+#else
 	SpiConfig = XSpi_LookupConfig(ILI9488_SPI_DEVICE_ID);
+#endif
 	if(SpiConfig == NULL) {
 		print("XSpi_LookupConfig failed\r\n");
 		return XST_FAILURE;
@@ -235,7 +259,11 @@ int initialize_PS_GPIO() {
 	XGpioPs_Config *GpioConfig;
 	int Status;
 
+#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+	GpioConfig = XGpioPs_LookupConfig(ILI9488_GPIO_BASEADDR);
+#else
 	GpioConfig = XGpioPs_LookupConfig(ILI9488_GPIO_DEVICE_ID);
+#endif
 	if(GpioConfig == NULL) {
 		print("XGpioPs_LookupConfig failed\r\n");
 		return XST_FAILURE;
@@ -262,7 +290,11 @@ int initialize_PS_GPIO() {
 int initialize_AXI_GPIO() {
 	int Status;
 
+#ifdef SDT // Is System Device Tree used? (I.e., are we using Vitis Unified?)
+	Status = XGpio_Initialize(&GpioInstance, ILI9488_GPIO_BASEADDR);
+#else
 	Status = XGpio_Initialize(&GpioInstance, ILI9488_GPIO_DEVICE_ID);
+#endif
 	if (Status != XST_SUCCESS) {
 		print("XGpio_Initialize failed\r\n");
 		return XST_FAILURE;
