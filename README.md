@@ -6,7 +6,7 @@ This is the port of Jaret Burkett's [ILI9488 Arduino library](https://github.com
 
 I removed all Arduino-specific code, optimized SPI writes for the capabilities
 of Xilinx SPI libraries, and made other modifications.  
-The integral part was porting of the [Adafruit_GFX library](https://github.com/adafruit/Adafruit-GFX-Library) because the ILI9488 library is based on it.
+The integral part was porting the [Adafruit_GFX library](https://github.com/adafruit/Adafruit-GFX-Library) becaThe use the ILI9488 library is based on it.
 
 I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU) with
 the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels (which can be purchased on  [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).
@@ -15,7 +15,7 @@ This repository contains [sample projects](sample_project_files) that run on Dig
 I also provided a detailed [step-by-step tutorial](sample_project_files/Zynq_PS-GPIO_PS-SPI_tutorial) on how to use the display on the Zynq board [Cora Z7](https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/).
 
 > [!NOTE]
-> The ILI9488 3.5&Prime; TFT LCD module is a touch screen. However, the library presented here contains only graphics display capabilities. It does not read any user touch inputs from the display.
+> The ILI9488 3.5&Prime; TFT LCD module is a touchscreen. However, the library presented here contains only graphics display capabilities. It does not read any user touch inputs from the display.
 
 # How to use the library
 
@@ -25,7 +25,7 @@ I'm describing here the connection of the [3.5″ TFT SPI Module ILI9488](http:/
 
 ### Interfaces
 
-ILI9488 display controller IC has several interfaces. The 3.5″ TFT SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.  
+The ILI9488 display controller IC has several interfaces. The 3.5″ TFT SPI Module module in question uses "DBI Type C Option 3", which is, in fact, a 4-line SPI.  
 The [ILI9488 datasheet](http://www.lcdwiki.com/res/MSP3520/ILI9488%20Data%20Sheet.pdf) specifies that the shortest possible SPI clock cycle for write operations is 50 ns, i.e., 20 MHz (see page 332 in the datasheet). Nevertheless, my specimen of the display was able to run with the SPI clock increased to 20.83 MHz.
 
 In addition to the SPI, the display needs to be connected to two GPIO pins (reset and Data/Command selection signals).
@@ -82,6 +82,8 @@ Logic IO pins accept a 3.3 V voltage level (TTL).
 ## SW configuration and usage
 
 ### Using the library in Vitis
+
+I successfully used the library in Vitis 2023.1 (which is Vitis Classic) and Vitis 2025.1 (which is Vitis Unified). I believe it will also work in Vitis Classic 2024.
 
 To use the library, copy the whole content of the [ILI9488-Xilinx_library](ILI9488-Xilinx_library) folder to the src folder of your application project in Vitis.
 
@@ -162,7 +164,7 @@ The code using the library is responsible for selecting the correct SPI Slave be
 
 On PS SPI, you can select, for example, Slave 0 by the call `XSpiPs_SetSlaveSelect(&SpiInstance, 0);`.
 
-On AXI SPI, I recommend selecting a Slave by following commands:
+On AXI SPI, I recommend selecting a Slave by the following commands:
 
 ```C
 XSpi SpiInstance;
@@ -241,12 +243,12 @@ This YouTube video shows what the demo application does:
 <a href="http://www.youtube.com/watch?v=Yp6-icTad4Y">
  <img src="pictures/demo_app_video_frame.png" alt="Watch the video" width="300"  border="10" /></a>
 
-To use the application, copy files from folder [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app) into the src folder of your application project in Vitis.
+To use the application, copy files from the folder [ILI9488-Xilinx_library_demo_app](ILI9488-Xilinx_library_demo_app) into the src folder of your application project in Vitis.
 
 The application contains code for all four combinations of PS/AXI GPIO/SPI interfaces. The correct version of code will be enabled based on the definition library's configuration macros in [ILI9488_Xil_setup.h](ILI9488-Xilinx_library/ILI9488_Xil_setup.h) (see chapter [Configuring the library](#configuring-the-library) for details.)
 
 The application assumes that GPIO and SPI device 0 is used and that the RST signal is connected to GPIO pin 0 and the DC/RS signal is connected to GPIO pin 1.  
-To change this to other GPIO/SPI devices or to other pins, you need to set accordingly values of macros ILI9488_SPI_DEVICE_ID, ILI9488_GPIO_DEVICE_ID, ILI9488_RST_PIN and ILI9488_DC_PIN, which are defined at the beginning of [main.cpp](ILI9488-Xilinx_library_demo_app/main.cpp#L54).
+To change this to other GPIO/SPI devices or to other pins, you need to set accordingly the values of macros ILI9488_SPI_DEVICE_ID, ILI9488_GPIO_DEVICE_ID, ILI9488_RST_PIN and ILI9488_DC_PIN, which are defined at the beginning of [main.cpp](ILI9488-Xilinx_library_demo_app/main.cpp#L54).
 
 I included in this repository several sample projects designed in Vivado 2023.1 and Vitis 2023.1, which show the use of the library on Zynq-7000 and MicroBlaze. Refer to the folder [sample_project_files](sample_project_files) for details.
 
