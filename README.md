@@ -11,6 +11,8 @@ The integral part was porting the [Adafruit_GFX library](https://github.com/adaf
 I tested the library on AMD Xilinx Zynq-7000 SoC and Artix-7 FPGA (running on [MicroBlaze](https://www.xilinx.com/products/design-tools/microblaze.html) soft CPU) with
 the following display: [3.5&Prime; SPI Module ILI9488 SKU:MSP3520](http://www.lcdwiki.com/3.5inch_SPI_Module_ILI9488_SKU:MSP3520) 480x320 pixels (which can be purchased on  [Amazon](https://www.amazon.com/Hosyond-Display-Compatible-Mega2560-Development/dp/B0BWJHK4M6) or on [AliExpress](https://www.aliexpress.com/item/32995839609.html); I'm not affiliated in any way).
 
+I successfully used the library in Vitis 2023.1 (which is Vitis Classic) and Vitis 2025.1 (which is Vitis Unified). I believe it will also work in Vitis Classic 2024.x.
+
 This repository contains [sample projects](sample_project_files) that run on Digilent boards [Zybo Z7](https://digilent.com/shop/zybo-z7-zynq-7000-arm-fpga-soc-development-board/), [Arty A7](https://digilent.com/shop/arty-a7-100t-artix-7-fpga-development-board/) and [Cmod A7](https://digilent.com/shop/cmod-a7-35t-breadboardable-artix-7-fpga-module/).  
 I also provided a detailed [step-by-step tutorial](sample_project_files/Zynq_PS-GPIO_PS-SPI_tutorial) on how to use the display on the Zynq board [Cora Z7](https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development/).
 
